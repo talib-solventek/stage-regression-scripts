@@ -1,0 +1,11 @@
+tasks:
+  Canada Primary Casualty:
+    robotTaskName: Canada Primary Casualty
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

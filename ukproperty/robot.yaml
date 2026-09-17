@@ -1,0 +1,11 @@
+tasks:
+  UK PROPERTY:
+    robotTaskName: UK PROPERTY
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

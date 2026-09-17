@@ -1,0 +1,11 @@
+tasks:
+  E&S US Prop Toronto:
+    robotTaskName: E&S US Prop Toronto
+condaConfigFile: conda.yaml
+ignoreFiles:
+- .gitignore
+artifactsDir: output
+PATH:
+- .
+PYTHONPATH:
+- .

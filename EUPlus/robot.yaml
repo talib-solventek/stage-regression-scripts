@@ -1,0 +1,11 @@
+tasks:
+  US E&U Plus:
+    robotTaskName: US E&U Plus
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

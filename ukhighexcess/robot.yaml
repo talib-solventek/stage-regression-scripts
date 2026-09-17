@@ -1,0 +1,11 @@
+tasks:
+  UK HIGH EXCESS:
+    robotTaskName: UK HIGH EXCESS
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

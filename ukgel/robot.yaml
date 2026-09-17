@@ -1,0 +1,11 @@
+tasks:
+  UK GEL:
+    robotTaskName: UK GEL
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

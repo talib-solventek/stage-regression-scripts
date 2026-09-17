@@ -1,0 +1,11 @@
+tasks:
+  Oil And Gas:
+    robotTaskName: Oil And Gas
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

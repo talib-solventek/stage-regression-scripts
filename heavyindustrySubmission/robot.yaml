@@ -1,0 +1,11 @@
+tasks:
+  Heavy Industry:
+    robotTaskName: Heavy Industry
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .

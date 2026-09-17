@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>Regression Report</title><style>
+         body {{
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+            }}
+            h1 {{
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                margin: 0;
+                text-align: center;
+            }}
+        .node circle {
+            fill: #fff;
+            stroke: gray;
+            stroke-width: 0.5px;
+        }
+        .node text {
+            font-size: 12px;
+            font-family: 'Arial', sans-serif;
+        }
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 1px;
+        }
+    </style>
+</head>
+<body><h1>Regression Report</h1>
+        <div class='tabs'>
+            <ul id='tabs-list'></ul>
+            {tab_contents}
+        </div>
+        <script>
+            $(function() {{
+                var tabs = $('#tabs-list').tabs();
+                $('.tab-content').show();
+            }});
+        </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+tasks:
+  Property:
+    robotTaskName: Property
+condaConfigFile: conda.yaml
+ignoreFiles:
+- .gitignore
+artifactsDir: output
+PATH:
+- .
+PYTHONPATH:
+- .

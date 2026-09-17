@@ -1,0 +1,11 @@
+tasks:
+  PowerBI:
+    robotTaskName: PowerBI
+condaConfigFile: conda.yaml
+ignoreFiles:
+- .gitignore
+artifactsDir: output
+PATH:
+- .
+PYTHONPATH:
+- .

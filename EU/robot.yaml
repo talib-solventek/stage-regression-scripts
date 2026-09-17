@@ -1,0 +1,11 @@
+tasks:
+  US Excess and Umbrella:
+    robotTaskName: US Excess and Umbrella
+condaConfigFile: conda.yaml
+ignoreFiles:
+  - .gitignore
+artifactsDir: output
+PATH:
+  - .
+PYTHONPATH:
+  - .
