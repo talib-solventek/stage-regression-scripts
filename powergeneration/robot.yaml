@@ -1,11 +1,13 @@
 tasks:
   Primary GL:
     robotTaskName: Primary GL
+  Power Generation:
+    robotTaskName: Power Generation
 condaConfigFile: conda.yaml
 ignoreFiles:
-  - .gitignore
+- .gitignore
 artifactsDir: output
 PATH:
-  - .
+- .
 PYTHONPATH:
-  - .
+- .

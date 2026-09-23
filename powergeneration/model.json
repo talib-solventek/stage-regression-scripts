@@ -2557,12 +2557,6 @@
           },
           {
             "type": "keyword",
-            "name": "Los Angeles",
-            "args": [],
-            "step": 38
-          },
-          {
-            "type": "keyword",
             "name": "Safe Select From List By Label",
             "args": [
               {
@@ -2571,14 +2565,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListCompany'])[1]"
               }
             ],
-            "step": 39,
+            "step": 38,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "LSI2",
             "args": [],
-            "step": 40
+            "step": 39
           },
           {
             "type": "keyword",
@@ -2590,14 +2584,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListAssistant'])[1]"
               }
             ],
-            "step": 41,
+            "step": 40,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "1",
             "args": [],
-            "step": 42
+            "step": 41
           },
           {
             "type": "keyword",
@@ -2634,7 +2628,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 43
+            "step": 42
           },
           {
             "type": "keyword",
@@ -2646,14 +2640,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerEffectiveDate_textDate'])[1]"
               }
             ],
-            "step": 44,
+            "step": 43,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${effdate}",
             "args": [],
-            "step": 45
+            "step": 44
           },
           {
             "type": "keyword",
@@ -2690,7 +2684,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 46
+            "step": 45
           },
           {
             "type": "keyword",
@@ -2702,14 +2696,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_TextBoxIndustryCode'])[1]"
               }
             ],
-            "step": 47,
+            "step": 46,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${Indcode}",
             "args": [],
-            "step": 48
+            "step": 47
           },
           {
             "type": "keyword",
@@ -2720,7 +2714,7 @@
                 "value": "(//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]"
               }
             ],
-            "step": 49,
+            "step": 48,
             "defaultReturns": null
           },
           {
@@ -2769,7 +2763,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 50
+            "step": 49
           },
           {
             "type": "keyword",
@@ -2806,7 +2800,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 51
+            "step": 50
           },
           {
             "type": "keyword",
@@ -2818,14 +2812,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]"
               }
             ],
-            "step": 52,
+            "step": 51,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${brokfirm}",
             "args": [],
-            "step": 53
+            "step": 52
           },
           {
             "type": "keyword",
@@ -2837,7 +2831,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchStartsWith'])[1]"
               }
             ],
-            "step": 54,
+            "step": 53,
             "defaultReturns": null
           },
           {
@@ -2875,7 +2869,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 55
+            "step": 54
           },
           {
             "type": "keyword",
@@ -2906,7 +2900,7 @@
             "tags": [],
             "hide": false,
             "uid": "f32efcf36c8c57e5b11e3fefe04b456e",
-            "step": 56
+            "step": 55
           },
           {
             "type": "keyword",
@@ -2987,7 +2981,7 @@
             "tags": [],
             "hide": false,
             "uid": "dc1d71bbb5c4d2a5e936db79ef10c19f",
-            "step": 57
+            "step": 56
           },
           {
             "type": "keyword",
@@ -2999,7 +2993,7 @@
                 "value": "(//table[@id"
               }
             ],
-            "step": 58,
+            "step": 57,
             "defaultReturns": null
           },
           {
@@ -3037,7 +3031,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 59
+            "step": 58
           },
           {
             "type": "keyword",
@@ -3074,7 +3068,7 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 60
+            "step": 59
           },
           {
             "type": "keyword",
@@ -3137,13 +3131,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 61
+            "step": 60
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 62,
+            "step": 61,
             "containerValue": {
               "condition": "${value1} == True"
             },
@@ -3244,7 +3238,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 63
+            "step": 62
           },
           {
             "type": "keyword",
@@ -3275,7 +3269,7 @@
             "tags": [],
             "hide": false,
             "uid": "85537b6b17b4cb7cb19eb1c96306f5a8",
-            "step": 64
+            "step": 63
           },
           {
             "type": "keyword",
@@ -3334,19 +3328,19 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 65
+            "step": 64
           },
           {
             "type": "keyword",
             "name": "3x",
             "args": [],
-            "step": 66
+            "step": 65
           },
           {
             "type": "keyword",
             "name": "5s",
             "args": [],
-            "step": 67
+            "step": 66
           },
           {
             "type": "keyword",
@@ -3358,7 +3352,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]"
               }
             ],
-            "step": 68
+            "step": 67
           },
           {
             "type": "keyword",
@@ -3395,7 +3389,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 69
+            "step": 68
           },
           {
             "type": "keyword",
@@ -3432,7 +3426,7 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 70
+            "step": 69
           },
           {
             "type": "keyword",
@@ -3472,13 +3466,13 @@
             "tags": [],
             "hide": true,
             "uid": "0b724c4b66789fcdb9e424e521c5b87d",
-            "step": 71
+            "step": 70
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 72,
+            "step": 71,
             "containerValue": {
               "condition": "${variableExist} == True"
             },
@@ -3591,7 +3585,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 73
+            "step": 72
           },
           {
             "type": "keyword",
@@ -3628,7 +3622,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 74
+            "step": 73
           },
           {
             "type": "keyword",
@@ -3640,14 +3634,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]"
               }
             ],
-            "step": 75,
+            "step": 74,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${brokcont}",
             "args": [],
-            "step": 76
+            "step": 75
           },
           {
             "type": "keyword",
@@ -3659,7 +3653,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]"
               }
             ],
-            "step": 77,
+            "step": 76,
             "defaultReturns": null
           },
           {
@@ -3713,13 +3707,13 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 78
+            "step": 77
           },
           {
             "type": "keyword",
             "name": "30s",
             "args": [],
-            "step": 79
+            "step": 78
           },
           {
             "type": "keyword",
@@ -3731,7 +3725,7 @@
                 "value": "(//table[@id"
               }
             ],
-            "step": 80,
+            "step": 79,
             "defaultReturns": null
           },
           {
@@ -3780,7 +3774,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 81
+            "step": 80
           },
           {
             "type": "keyword",
@@ -3792,7 +3786,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave'])[1]"
               }
             ],
-            "step": 82,
+            "step": 81,
             "defaultReturns": null
           },
           {
@@ -3830,7 +3824,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 83
+            "step": 82
           },
           {
             "type": "keyword",
@@ -3856,7 +3850,7 @@
             "tags": [],
             "hide": true,
             "uid": "9acb0323b8eba93af5f7b66d96b5c48d",
-            "step": 84
+            "step": 83
           },
           {
             "type": "keyword",
@@ -3893,7 +3887,7 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 85
+            "step": 84
           },
           {
             "type": "keyword",
@@ -3956,13 +3950,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 86
+            "step": 85
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 87,
+            "step": 86,
             "containerValue": {
               "condition": "${yes_visible} == True"
             },
@@ -4090,19 +4084,19 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 88
+            "step": 87
           },
           {
             "type": "keyword",
             "name": "3x",
             "args": [],
-            "step": 89
+            "step": 88
           },
           {
             "type": "keyword",
             "name": "5s",
             "args": [],
-            "step": 90
+            "step": 89
           },
           {
             "type": "keyword",
@@ -4114,7 +4108,7 @@
                 "value": "//*[@id"
               }
             ],
-            "step": 91
+            "step": 90
           },
           {
             "type": "keyword",
@@ -4151,7 +4145,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 92
+            "step": 91
           },
           {
             "type": "keyword",
@@ -4188,13 +4182,13 @@
             "tags": [],
             "hide": false,
             "uid": "372a47e58a2add22c09daf26357d73d9",
-            "step": 93
+            "step": 92
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 94,
+            "step": 93,
             "containerValue": {
               "condition": "${continue_visible} == True"
             },

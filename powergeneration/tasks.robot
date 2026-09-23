@@ -150,7 +150,6 @@ Fill Insured Details[First Run]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
-    ...    Los Angeles
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListCompany'])[1]
     ...    LSI2

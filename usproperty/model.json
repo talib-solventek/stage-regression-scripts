@@ -738,8 +738,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 3,
@@ -771,8 +771,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 7,
@@ -804,8 +804,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 11,
@@ -835,8 +835,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 14,
@@ -1529,8 +1529,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 2,
@@ -6016,50 +6016,61 @@
           },
           {
             "type": "keyword",
-            "name": "Wait Until Element Is Visible",
-            "icon": "time",
+            "name": "Wait Until Keyword Succeeds",
+            "icon": null,
             "args": [
               {
                 "type": "argument",
-                "name": "locator",
-                "valueType": "locator-browser",
+                "name": "retry",
+                "valueType": "unknown",
                 "defaultValue": null,
                 "kind": "positional-or-named",
                 "required": true,
-                "doc": "Locator for element",
+                "doc": null,
+                "hide": false,
+                "value": "3x"
+              },
+              {
+                "type": "argument",
+                "name": "retry_interval",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Wait Until Element Is Visible"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
                 "hide": false,
                 "value": "(//a[normalize-space()='Subjectivities'])[1]"
-              },
-              {
-                "type": "argument",
-                "name": "timeout",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Time to wait, e.g. 5 seconds or 1 min",
-                "hide": false,
-                "value": "2s"
-              },
-              {
-                "type": "argument",
-                "name": "error",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Custom error message",
-                "hide": false,
-                "value": ""
               }
             ],
-            "returns": null,
+            "returns": "unknown",
             "defaultReturns": null,
-            "doc": "Waits until the element ``locator`` is visible.\n\nFails if ``timeout`` expires before the element is visible. See\nthe `Timeouts` section for more information about using timeouts and\ntheir default value and the `Locating elements` section for details\nabout the locator syntax.\n\n``error`` can be used to override the default error message.",
-            "shortdoc": "Waits until the element ``locator`` is visible.",
+            "doc": "Runs the specified keyword and retries if it fails.\n\n``name`` and ``args`` define the keyword that is executed similarly\nas with `Run Keyword`. How long to retry running the keyword is\ndefined using ``retry`` argument either as timeout or count.\n``retry_interval`` is the time to wait between execution attempts.\n\nIf ``retry`` is given as timeout, it must be in Robot Framework's\ntime format (e.g. ``1 minute``, ``2 min 3 s``, ``4.5``) that is\nexplained in an appendix of Robot Framework User Guide. If it is\ngiven as count, it must have ``times`` or ``x`` postfix (e.g.\n``5 times``, ``10 x``). ``retry_interval`` must always be given in\nRobot Framework's time format.\n\nBy default ``retry_interval`` is the time to wait _after_ a keyword has\nfailed. For example, if the first run takes 2 seconds and the retry\ninterval is 3 seconds, the second run starts 5 seconds after the first\nrun started. If ``retry_interval`` start with prefix ``strict:``, the\nexecution time of the previous keyword is subtracted from the retry time.\nWith the earlier example the second run would thus start 3 seconds after\nthe first run started. A warning is logged if keyword execution time is\nlonger than a strict interval.\n\nIf the keyword does not succeed regardless of retries, this keyword\nfails. If the executed keyword passes, its return value is returned.\n\nExamples:\n| Wait Until Keyword Succeeds | 2 min | 5 sec | My keyword | argument |\n| ${result} = | Wait Until Keyword Succeeds | 3x | 200ms | My keyword |\n| ${result} = | Wait Until Keyword Succeeds | 3x | strict: 200ms | My keyword |\n\nAll normal failures are caught by this keyword. Errors caused by\ninvalid syntax, test or keyword timeouts, or fatal exceptions (caused\ne.g. by `Fatal Error`) are not caught.\n\nRunning the same keyword multiple times inside this keyword can create\nlots of output and considerably increase the size of the generated\noutput files. It is possible to remove unnecessary keywords from\nthe outputs using ``--RemoveKeywords WUKS`` command line option.\n\nSupport for \"strict\" retry interval is new in Robot Framework 4.1.",
+            "shortdoc": "Runs the specified keyword and retries if it fails.",
             "tags": [],
-            "hide": false,
-            "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
+            "hide": true,
+            "uid": "4c823c9a7e94facae4457788e778b822",
             "step": 8
           },
           {
@@ -6855,8 +6866,8 @@
               },
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[2]"
+                "name": "xpath",
+                "value": "(//span[contains(@id, 'HeaderQuote')])[2]"
               }
             ],
             "returns": null,
@@ -6880,8 +6891,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[2]"
+                "name": "xpath",
+                "value": "(//span[contains(@id, 'HeaderQuote')])[2]"
               }
             ],
             "step": 7,
@@ -6899,8 +6910,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[1]"
+                "name": "xpath",
+                "value": "(//span[contains(@id, 'HeaderQuote')])[1]"
               }
             ],
             "step": 9,
@@ -9713,8 +9724,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 2,
@@ -10792,7 +10803,7 @@
                     "required": true,
                     "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                     "hide": false,
-                    "value": "60s"
+                    "value": "100s"
                   },
                   {
                     "type": "argument",
@@ -13119,50 +13130,61 @@
           },
           {
             "type": "keyword",
-            "name": "Wait Until Element Is Visible",
-            "icon": "time",
+            "name": "Wait Until Keyword Succeeds",
+            "icon": null,
             "args": [
               {
                 "type": "argument",
-                "name": "locator",
-                "valueType": "locator-browser",
+                "name": "retry",
+                "valueType": "unknown",
                 "defaultValue": null,
                 "kind": "positional-or-named",
                 "required": true,
-                "doc": "Locator for element",
+                "doc": null,
+                "hide": false,
+                "value": "3x"
+              },
+              {
+                "type": "argument",
+                "name": "retry_interval",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Wait Until Element Is Visible"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
                 "hide": false,
                 "value": "(//a[normalize-space()='Subjectivities'])[1]"
-              },
-              {
-                "type": "argument",
-                "name": "timeout",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Time to wait, e.g. 5 seconds or 1 min",
-                "hide": false,
-                "value": "2s"
-              },
-              {
-                "type": "argument",
-                "name": "error",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Custom error message",
-                "hide": false,
-                "value": ""
               }
             ],
-            "returns": null,
+            "returns": "unknown",
             "defaultReturns": null,
-            "doc": "Waits until the element ``locator`` is visible.\n\nFails if ``timeout`` expires before the element is visible. See\nthe `Timeouts` section for more information about using timeouts and\ntheir default value and the `Locating elements` section for details\nabout the locator syntax.\n\n``error`` can be used to override the default error message.",
-            "shortdoc": "Waits until the element ``locator`` is visible.",
+            "doc": "Runs the specified keyword and retries if it fails.\n\n``name`` and ``args`` define the keyword that is executed similarly\nas with `Run Keyword`. How long to retry running the keyword is\ndefined using ``retry`` argument either as timeout or count.\n``retry_interval`` is the time to wait between execution attempts.\n\nIf ``retry`` is given as timeout, it must be in Robot Framework's\ntime format (e.g. ``1 minute``, ``2 min 3 s``, ``4.5``) that is\nexplained in an appendix of Robot Framework User Guide. If it is\ngiven as count, it must have ``times`` or ``x`` postfix (e.g.\n``5 times``, ``10 x``). ``retry_interval`` must always be given in\nRobot Framework's time format.\n\nBy default ``retry_interval`` is the time to wait _after_ a keyword has\nfailed. For example, if the first run takes 2 seconds and the retry\ninterval is 3 seconds, the second run starts 5 seconds after the first\nrun started. If ``retry_interval`` start with prefix ``strict:``, the\nexecution time of the previous keyword is subtracted from the retry time.\nWith the earlier example the second run would thus start 3 seconds after\nthe first run started. A warning is logged if keyword execution time is\nlonger than a strict interval.\n\nIf the keyword does not succeed regardless of retries, this keyword\nfails. If the executed keyword passes, its return value is returned.\n\nExamples:\n| Wait Until Keyword Succeeds | 2 min | 5 sec | My keyword | argument |\n| ${result} = | Wait Until Keyword Succeeds | 3x | 200ms | My keyword |\n| ${result} = | Wait Until Keyword Succeeds | 3x | strict: 200ms | My keyword |\n\nAll normal failures are caught by this keyword. Errors caused by\ninvalid syntax, test or keyword timeouts, or fatal exceptions (caused\ne.g. by `Fatal Error`) are not caught.\n\nRunning the same keyword multiple times inside this keyword can create\nlots of output and considerably increase the size of the generated\noutput files. It is possible to remove unnecessary keywords from\nthe outputs using ``--RemoveKeywords WUKS`` command line option.\n\nSupport for \"strict\" retry interval is new in Robot Framework 4.1.",
+            "shortdoc": "Runs the specified keyword and retries if it fails.",
             "tags": [],
-            "hide": false,
-            "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
+            "hide": true,
+            "uid": "4c823c9a7e94facae4457788e778b822",
             "step": 2
           },
           {
@@ -13781,39 +13803,61 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Click Element",
+            "icon": null,
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
+                "name": "locator",
                 "valueType": "string",
                 "defaultValue": null,
                 "kind": "positional-or-named",
                 "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "doc": null,
                 "hide": false,
-                "value": "10s"
+                "value": "xpath=//body"
               },
               {
                 "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
+                "name": "index",
+                "valueType": "number",
+                "defaultValue": "0",
                 "kind": "positional-or-named",
                 "required": false,
-                "doc": "Optional reason for sleeping",
+                "doc": null,
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "action",
+                "valueType": "boolean",
+                "defaultValue": "True",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "timeout",
+                "valueType": "number",
+                "defaultValue": "10",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": null,
                 "hide": false,
                 "value": ""
               }
             ],
-            "returns": null,
+            "returns": "unknown",
             "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
+            "doc": "Click element\n\n:param target: element to click\n:param index: target element index if multiple are returned\n:param action: call click action on element (default), or use coordinates\n:param timeout: timeout in seconds to find element",
+            "shortdoc": "Click element",
             "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "hide": true,
+            "uid": "7fed82f52a533d8adfdf21896dc9a498",
             "step": 8
           },
           {
@@ -15165,8 +15209,8 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//span[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]"
+                "name": "xpath",
+                "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
             "step": 5,

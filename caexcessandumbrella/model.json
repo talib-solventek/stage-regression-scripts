@@ -1000,7 +1000,7 @@
                 "required": false,
                 "doc": null,
                 "hide": false,
-                "value": "edge"
+                "value": "chrome"
               },
               {
                 "type": "argument",
@@ -1011,7 +1011,7 @@
                 "required": false,
                 "doc": null,
                 "hide": false,
-                "value": "executable_path=${DRIVER}"
+                "value": "options=add_argument(\"--inprivate\")"
               },
               {
                 "type": "argument",
@@ -1022,7 +1022,7 @@
                 "required": false,
                 "doc": null,
                 "hide": false,
-                "value": "options=add_argument(\"--inprivate\")"
+                "value": ""
               },
               {
                 "type": "argument",
@@ -2854,63 +2854,247 @@
           },
           {
             "type": "keyword",
-            "name": "Is Element Visible",
-            "icon": "grid-cell",
+            "name": "Sleep",
+            "icon": "time",
             "args": [
               {
                 "type": "argument",
-                "name": "locator",
-                "valueType": "locator-browser",
+                "name": "time_",
+                "valueType": "string",
                 "defaultValue": null,
                 "kind": "positional-or-named",
                 "required": true,
-                "doc": "Locator for element",
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "(//span[normalize-space()='Yes'])[1]"
+                "value": "2s"
               },
               {
                 "type": "argument",
-                "name": "missing_ok",
-                "valueType": "boolean",
-                "defaultValue": "True",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
                 "kind": "positional-or-named",
                 "required": false,
-                "doc": "Allow element to not exist",
+                "doc": "Optional reason for sleeping",
                 "hide": false,
                 "value": ""
               }
             ],
             "returns": null,
-            "defaultReturns": "value1",
-            "doc": "Is element visible\n\n``locator`` element locator\n``missing_ok`` default True, set to False if keyword should\nFail if element does not exist\n\nExample:\n\n| ${res} | Is Element Visible | id:confirmation |",
-            "shortdoc": "Is element visible",
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
             "tags": [],
             "hide": false,
-            "uid": "372a47e58a2add22c09daf26357d73d9",
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
             "step": 59
+          },
+          {
+            "type": "keyword",
+            "name": "Run Keyword And Return Status",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "value1",
+            "doc": "Runs the given keyword with given arguments and returns the status as a Boolean value.\n\nThis keyword returns Boolean ``True`` if the keyword that is executed\nsucceeds and ``False`` if it fails. This is useful, for example, in\ncombination with `Run Keyword If`. If you are interested in the error\nmessage or return value, use `Run Keyword And Ignore Error` instead.\n\nThe keyword name and arguments work as in `Run Keyword`.\n\nExample:\n| ${passed} = | `Run Keyword And Return Status` | Keyword | args |\n| `Run Keyword If` | ${passed} | Another keyword |\n\nErrors caused by invalid syntax, timeouts, or fatal exceptions are not\ncaught by this keyword. Otherwise this keyword itself never fails.",
+            "shortdoc": "Runs the given keyword with given arguments and returns the status as a Boolean value.",
+            "tags": [],
+            "hide": true,
+            "uid": "887764c8c884141ff1e5992ac862fd83",
+            "step": 60
+          },
+          {
+            "type": "keyword",
+            "name": "Wait Until Keyword Succeeds",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "retry",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "3x"
+              },
+              {
+                "type": "argument",
+                "name": "retry_interval",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "2s"
+              },
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Element Should Be Visible"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false
+              },
+              {
+                "type": "argument",
+                "name": "(//span[normalize-space()",
+                "value": "'Yes'])[1]"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": null,
+            "doc": "Runs the specified keyword and retries if it fails.\n\n``name`` and ``args`` define the keyword that is executed similarly\nas with `Run Keyword`. How long to retry running the keyword is\ndefined using ``retry`` argument either as timeout or count.\n``retry_interval`` is the time to wait between execution attempts.\n\nIf ``retry`` is given as timeout, it must be in Robot Framework's\ntime format (e.g. ``1 minute``, ``2 min 3 s``, ``4.5``) that is\nexplained in an appendix of Robot Framework User Guide. If it is\ngiven as count, it must have ``times`` or ``x`` postfix (e.g.\n``5 times``, ``10 x``). ``retry_interval`` must always be given in\nRobot Framework's time format.\n\nBy default ``retry_interval`` is the time to wait _after_ a keyword has\nfailed. For example, if the first run takes 2 seconds and the retry\ninterval is 3 seconds, the second run starts 5 seconds after the first\nrun started. If ``retry_interval`` start with prefix ``strict:``, the\nexecution time of the previous keyword is subtracted from the retry time.\nWith the earlier example the second run would thus start 3 seconds after\nthe first run started. A warning is logged if keyword execution time is\nlonger than a strict interval.\n\nIf the keyword does not succeed regardless of retries, this keyword\nfails. If the executed keyword passes, its return value is returned.\n\nExamples:\n| Wait Until Keyword Succeeds | 2 min | 5 sec | My keyword | argument |\n| ${result} = | Wait Until Keyword Succeeds | 3x | 200ms | My keyword |\n| ${result} = | Wait Until Keyword Succeeds | 3x | strict: 200ms | My keyword |\n\nAll normal failures are caught by this keyword. Errors caused by\ninvalid syntax, test or keyword timeouts, or fatal exceptions (caused\ne.g. by `Fatal Error`) are not caught.\n\nRunning the same keyword multiple times inside this keyword can create\nlots of output and considerably increase the size of the generated\noutput files. It is possible to remove unnecessary keywords from\nthe outputs using ``--RemoveKeywords WUKS`` command line option.\n\nSupport for \"strict\" retry interval is new in Robot Framework 4.1.",
+            "shortdoc": "Runs the specified keyword and retries if it fails.",
+            "tags": [],
+            "hide": true,
+            "uid": "4c823c9a7e94facae4457788e778b822",
+            "step": 61
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 60,
+            "step": 62,
             "containerValue": {
               "condition": "${value1} == True"
             },
             "body": [
               {
                 "type": "keyword",
-                "name": "Safe Click Element",
+                "name": "Wait Until Keyword Succeeds",
+                "icon": null,
                 "args": [
                   {
                     "type": "argument",
+                    "name": "retry",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": null,
+                    "hide": false,
+                    "value": "3x"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "retry_interval",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": null,
+                    "hide": false,
+                    "value": "2s"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "name",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": null,
+                    "hide": false,
+                    "value": "Safe Click Element"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "args",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "var-positional",
+                    "required": false,
+                    "doc": null,
+                    "hide": false,
                     "value": "(//span[normalize-space()='Yes'])[1]"
                   }
                 ],
-                "step": 1,
-                "defaultReturns": null
+                "returns": "unknown",
+                "defaultReturns": null,
+                "doc": "Runs the specified keyword and retries if it fails.\n\n``name`` and ``args`` define the keyword that is executed similarly\nas with `Run Keyword`. How long to retry running the keyword is\ndefined using ``retry`` argument either as timeout or count.\n``retry_interval`` is the time to wait between execution attempts.\n\nIf ``retry`` is given as timeout, it must be in Robot Framework's\ntime format (e.g. ``1 minute``, ``2 min 3 s``, ``4.5``) that is\nexplained in an appendix of Robot Framework User Guide. If it is\ngiven as count, it must have ``times`` or ``x`` postfix (e.g.\n``5 times``, ``10 x``). ``retry_interval`` must always be given in\nRobot Framework's time format.\n\nBy default ``retry_interval`` is the time to wait _after_ a keyword has\nfailed. For example, if the first run takes 2 seconds and the retry\ninterval is 3 seconds, the second run starts 5 seconds after the first\nrun started. If ``retry_interval`` start with prefix ``strict:``, the\nexecution time of the previous keyword is subtracted from the retry time.\nWith the earlier example the second run would thus start 3 seconds after\nthe first run started. A warning is logged if keyword execution time is\nlonger than a strict interval.\n\nIf the keyword does not succeed regardless of retries, this keyword\nfails. If the executed keyword passes, its return value is returned.\n\nExamples:\n| Wait Until Keyword Succeeds | 2 min | 5 sec | My keyword | argument |\n| ${result} = | Wait Until Keyword Succeeds | 3x | 200ms | My keyword |\n| ${result} = | Wait Until Keyword Succeeds | 3x | strict: 200ms | My keyword |\n\nAll normal failures are caught by this keyword. Errors caused by\ninvalid syntax, test or keyword timeouts, or fatal exceptions (caused\ne.g. by `Fatal Error`) are not caught.\n\nRunning the same keyword multiple times inside this keyword can create\nlots of output and considerably increase the size of the generated\noutput files. It is possible to remove unnecessary keywords from\nthe outputs using ``--RemoveKeywords WUKS`` command line option.\n\nSupport for \"strict\" retry interval is new in Robot Framework 4.1.",
+                "shortdoc": "Runs the specified keyword and retries if it fails.",
+                "tags": [],
+                "hide": true,
+                "uid": "4c823c9a7e94facae4457788e778b822",
+                "step": 1
               }
             ]
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "2s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 63
           },
           {
             "type": "keyword",
@@ -2936,7 +3120,7 @@
             "tags": [],
             "hide": true,
             "uid": "9acb0323b8eba93af5f7b66d96b5c48d",
-            "step": 61
+            "step": 64
           },
           {
             "type": "keyword",
@@ -2995,19 +3179,19 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 62
+            "step": 65
           },
           {
             "type": "keyword",
             "name": "3x",
             "args": [],
-            "step": 63
+            "step": 66
           },
           {
             "type": "keyword",
             "name": "5s",
             "args": [],
-            "step": 64
+            "step": 67
           },
           {
             "type": "keyword",
@@ -3057,7 +3241,7 @@
             "tags": [],
             "hide": false,
             "uid": "8ef0520bbb67b1d02350ee5357efa767",
-            "step": 65
+            "step": 68
           },
           {
             "type": "keyword",
@@ -3094,7 +3278,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 66
+            "step": 69
           },
           {
             "type": "keyword",
@@ -3131,7 +3315,7 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 67
+            "step": 70
           },
           {
             "type": "keyword",
@@ -3171,13 +3355,13 @@
             "tags": [],
             "hide": true,
             "uid": "0b724c4b66789fcdb9e424e521c5b87d",
-            "step": 68
+            "step": 71
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 69,
+            "step": 72,
             "containerValue": {
               "condition": "${variableExist} == True"
             },
@@ -3290,7 +3474,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 70
+            "step": 73
           },
           {
             "type": "keyword",
@@ -3327,7 +3511,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 71
+            "step": 74
           },
           {
             "type": "keyword",
@@ -3339,14 +3523,14 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]"
               }
             ],
-            "step": 72,
+            "step": 75,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${brokcont}",
             "args": [],
-            "step": 73
+            "step": 76
           },
           {
             "type": "keyword",
@@ -3358,7 +3542,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]"
               }
             ],
-            "step": 74,
+            "step": 77,
             "defaultReturns": null
           },
           {
@@ -3412,13 +3596,13 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 75
+            "step": 78
           },
           {
             "type": "keyword",
             "name": "30s",
             "args": [],
-            "step": 76
+            "step": 79
           },
           {
             "type": "keyword",
@@ -3449,7 +3633,7 @@
             "tags": [],
             "hide": false,
             "uid": "f32efcf36c8c57e5b11e3fefe04b456e",
-            "step": 77
+            "step": 80
           },
           {
             "type": "keyword",
@@ -3530,7 +3714,7 @@
             "tags": [],
             "hide": false,
             "uid": "dc1d71bbb5c4d2a5e936db79ef10c19f",
-            "step": 78
+            "step": 81
           },
           {
             "type": "keyword",
@@ -3542,7 +3726,7 @@
                 "value": "(//table[@id"
               }
             ],
-            "step": 79,
+            "step": 82,
             "defaultReturns": null
           },
           {
@@ -3591,7 +3775,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 80
+            "step": 83
           },
           {
             "type": "keyword",
@@ -3633,13 +3817,13 @@
             "tags": [],
             "hide": false,
             "uid": "372a47e58a2add22c09daf26357d73d9",
-            "step": 81
+            "step": 84
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 82,
+            "step": 85,
             "containerValue": {
               "condition": "${EditVisible} == True"
             },
@@ -4094,7 +4278,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 83
+            "step": 86
           },
           {
             "type": "keyword",
@@ -4131,13 +4315,13 @@
             "tags": [],
             "hide": false,
             "uid": "372a47e58a2add22c09daf26357d73d9",
-            "step": 84
+            "step": 87
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 85,
+            "step": 88,
             "containerValue": {
               "condition": "${value2} == True"
             },

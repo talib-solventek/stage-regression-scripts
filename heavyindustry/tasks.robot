@@ -77,12 +77,12 @@ Login to App
     ...    id:ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlClearanceSearch_CreateInsured
     Sleep    5s
     ${EMAIL}=    Set Variable    ${NUSER}@libertymutual.com
-    Wait Until Element Is Visible    xpath=//input[@type='email']    30s
+    Safe Wait Until Element Is Visible    xpath=//input[@type='email']    30s
     Clear Element Text    xpath=//input[@type='email']
     Input Text    xpath=//input[@type='email']    ${EMAIL}
     Sleep    1s
     Press Keys    xpath=//input[@type='email']    ENTER
-    Wait Until Element Is Visible    xpath=//input[@type='password']    30s
+    Safe Wait Until Element Is Visible    xpath=//input[@type='password']    30s
     Clear Element Text    xpath=//input[@type='password']
     Input Text    xpath=//input[@type='password']    ${NUSERPASSWORD}
     Sleep    1s
@@ -113,21 +113,19 @@ Fill Insured Details[First Run]
     ...    ${adl1}
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible
+    Safe Wait Until Element Is Visible
     ...    (//legend[@class='ui-widget ui-widget-header ui-corner-all'][normalize-space()='Additional Named Insured'])[1]
     ...    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
+    Safe Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
-    ...    Los Angeles
-    Select From List By Index
+    ...    Adelaide
+    Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListCompany'])[1]
-    ...    3
-    Select From List By Index
-    ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListUnderWriter'])[1]
-    ...    1
+    ...    AUS
+
     Select From List By Index
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListAssistant'])[1]
     ...    1
@@ -142,9 +140,12 @@ Fill Insured Details[First Run]
     Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerEffectiveDate_textDate'])[1]
     ...    ${effdate}
+    Safe Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('First Run - Risk Number: ${risk_number}\\n')
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
+    Safe Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
     ${brokfirm}=    Get From Dictionary    ${current_row}    J
     Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]
@@ -156,7 +157,7 @@ Fill Insured Details[First Run]
     ...    xpath=(//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"])[3]
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible
+    Safe Wait Until Element Is Visible
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]
     ...    20s
     ${brokcont}=    Get From Dictionary    ${current_row}    K
@@ -168,13 +169,13 @@ Fill Insured Details[First Run]
     Sleep    20s
     Safe Click Element
     ...    xpath=(//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"])[2]
-    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
+    Safe Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave'])[1]
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
 Fill Pricing Details[First Run]
-    Wait Until Element Is Visible    (//a[normalize-space()='Location Management'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Location Management'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlLocationManagement_btnImportLocationDialog'])[1]
     Sleep    10s
@@ -190,10 +191,10 @@ Fill Pricing Details[First Run]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlLocationManagement_btnAddLocation'])[1]
     Sleep    5s
-    Input Text When Element Is Visible    (//input[@id='Name'])[1]    test
-    Input Text When Element Is Visible    (//input[@id='country'])[1]    Bangladesh
-    Input Text When Element Is Visible    (//input[@id='Latitude'])[1]    78
-    Input Text When Element Is Visible    (//input[@id='Longitude'])[1]    170
+    Safe Input Text    (//input[@id='Name'])[1]    test
+    Safe Input Text    (//input[@id='country'])[1]    Bangladesh
+    Safe Input Text    (//input[@id='Latitude'])[1]    78
+    Safe Input Text    (//input[@id='Longitude'])[1]    170
     Safe Click Element    (//button[normalize-space()='Match & Cleanse'])[1]
     Sleep    5s
     Safe Click Element    (//button[normalize-space()='Next'])[1]
@@ -213,19 +214,19 @@ Fill Pricing Details[First Run]
     ...    (//select[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlLocationInformation_ddlAssetCurrency'])[1]
     ...    USD
     ${pd_building}=    Get From Dictionary    ${current_row}    P
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlLocationInformation_txtPdBuilding'])[1]
     ...    500
     ${pd_mach_equip}=    Get From Dictionary    ${current_row}    P
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlLocationInformation_txtPdMachineryAndEquipment'])[1]
     ...    500
     ${pd_contents}=    Get From Dictionary    ${current_row}    P
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlLocationInformation_txtPdContents'])[1]
     ...    500
     ${pd_tiv}=    Get From Dictionary    ${current_row}    P
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlLocationInformation_txtPDTIV'])[1]
     ...    1500
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
@@ -245,7 +246,7 @@ Fill Pricing Details[First Run]
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Policy Terms'])[1]    20s
     ${lead_follow}=    Get From Dictionary    ${current_row}    Z
     Select From List By Label
     ...    (//select[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_ddlLeadFollow'])[1]
@@ -255,23 +256,23 @@ Fill Pricing Details[First Run]
     ...    (//select[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_ddlPolicyWording'])[1]
     ...    ${policy_wording}
     ${combined_loss_limit}=    Get From Dictionary    ${current_row}    AB
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtCombinedLossLimit'])[1]
     ...    ${combined_loss_limit}
     ${MB_PD}=    Get From Dictionary    ${current_row}    AC
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtSublimitsMbPd'])[1]
     ...    ${MB_PD}
     ${MB_BI}=    Get From Dictionary    ${current_row}    AD
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtSublimitsMbBi'])[1]
     ...    ${MB_BI}
     ${cbi}=    Get From Dictionary    ${current_row}    AE
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtSublimitsCbi'])[1]
     ...    ${cbi}
     ${extra_expense}=    Get From Dictionary    ${current_row}    AF
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtSublimitsExtraExpense'])[1]
     ...    ${extra_expense}
     ${BI_basis}=    Get From Dictionary    ${current_row}    AG
@@ -287,23 +288,23 @@ Fill Pricing Details[First Run]
     ...    (//select[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_ddlIpStartDate'])[1]
     ...    ${IP_start_date}
     ${PD}=    Get From Dictionary    ${current_row}    AJ
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtDeductiblesPD'])[1]
     ...    ${PD}
     ${bi_days}=    Get From Dictionary    ${current_row}    AK
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtDeductiblesBIDays'])[1]
     ...    ${bi_days}
     ${mb_pd_ded}=    Get From Dictionary    ${current_row}    AL
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtMbPdDeductible'])[1]
     ...    ${mb_pd_ded}
     ${mb_bi_ded}=    Get From Dictionary    ${current_row}    AM
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtMbBiDeductibleDays'])[1]
     ...    ${mb_bi_ded}
     ${cbi_days}=    Get From Dictionary    ${current_row}    AN
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPolicyTerms_txtDeductiblesCBIDays'])[1]
     ...    ${cbi_days}
     ${service_interuption}=    Get From Dictionary    ${current_row}    AO
@@ -312,15 +313,15 @@ Fill Pricing Details[First Run]
     ...    ${service_interuption}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Rates'])[1]    20s
     ${start_time}=    Get Time    epoch
     Sleep    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Policy Terms'])[1]    20s
     ${end_time}=    Get Time    epoch
     ${total_time}=    Subtract Time From Time    ${end_time}    ${start_time}
     Log    Total time taken on Operational Rates screen is ${total_time}
@@ -337,33 +338,33 @@ Fill Pricing Details[First Run]
     ...    (//select[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlNaturalPerilTerms_rptNaturalPerilsTerms_ctl03_ddlSublimitType'])[1]
     ...    ${sublimit_type3}
     ${bi_days1}=    Get From Dictionary    ${current_row}    AS
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlNaturalPerilTerms_rptNaturalPerilsTerms_ctl01_txtBiDays'])[1]
     ...    ${bi_days1}
     ${bi_days2}=    Get From Dictionary    ${current_row}    AT
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlNaturalPerilTerms_rptNaturalPerilsTerms_ctl02_txtBiDays'])[1]
     ...    ${bi_days2}
     ${bi_days3}=    Get From Dictionary    ${current_row}    AU
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlNaturalPerilTerms_rptNaturalPerilsTerms_ctl03_txtBiDays'])[1]
     ...    ${bi_days3}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Peril Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    20s
     Sleep    10s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Loss Experience'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Discretionary Modifiers'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Discretionary Modifiers'])[1]    20s
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_divNavButtons"]/input[2]
-    Wait Until Element Is Visible    (//a[normalize-space()='Excess Of Loss'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    20s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
@@ -371,48 +372,56 @@ Fill Pricing Details[First Run]
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Summary Of Pricing'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    20s
     ${liu_share}=    Get From Dictionary    ${current_row}    AV
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]
     ...    ${liu_share}
     ${commission}=    Get From Dictionary    ${current_row}    AW
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]
     ...    ${commission}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Fac'])[1]    20s
+    ${popup_visible}=    Run Keyword And Return Status    Safe Wait Until Element Is Visible    xpath=/html/body/div[2]    2s
+    IF    ${popup_visible}
+        Safe Click Element    xpath=/html/body/div[2]/div[3]/div/button/span
+        Click Element    xpath=//body
+        Sleep    5s
+        Safe Click Element
+        ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
+    END
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Fac'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Terror'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Terror'])[1]    20s
     ${other}=    Get From Dictionary    ${current_row}    AV
     Clear Element Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtMarketCertified'])[1]
     ${market_certificate}=    Get From Dictionary    ${current_row}    AV
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtMarketCertified'])[1]
     ...    1000
     ${garaet_prem}=    Get From Dictionary    ${current_row}    AX
-    Run Keyword And Ignore Error    Input Text When Element Is Visible
+    Run Keyword And Ignore Error    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlFrenchTerrorAndCatNat_txtGareatPremiumAmount'])[1]
     ...    10000
     Sleep    10s
-    Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
+    Safe Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
     ${tria_val}=    RPA.Browser.Selenium.Get Value    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
     ${tria_str}=    Convert To String    ${tria_val}
     IF    '100' not in '${tria_str}'
         Clear Element Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
-        Input Text When Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
+        Safe Input Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
     END
     Click Element    xpath=//body
     Sleep    5s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='LibertyIndex'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='LibertyIndex'])[1]    20s
     Safe Click Element    (//span[normalize-space()='+ve'])[1]
     ${renewal_years}=    Get From Dictionary    ${current_row}    AX
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlLibertyIndex_txtRenewalYears'])[1]
     ...    ${renewal_years}
     ${claims_approach}=    Get From Dictionary    ${current_row}    AY
@@ -429,7 +438,7 @@ Fill Pricing Details[First Run]
     ...    ${cyber_type}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
 
@@ -438,28 +447,31 @@ Fill Insured Details[Copy Risk]
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible
+    Safe Wait Until Element Is Visible
     ...    (//legend[@class='ui-widget ui-widget-header ui-corner-all'][normalize-space()='Additional Named Insured'])[1]
     ...    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
+    Safe Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     Select From List By Index
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListAssistant'])[1]
     ...    1
 	Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ddlPrimarySegmentOccupancy'])[1]
     ...    Steel
+    Safe Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('Copy Risk - Risk Number: ${risk_number}\\n')
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
+    Safe Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
+    Safe Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
 Fill Pricing Details[Copy Risk]
-    Wait Until Element Is Visible    (//a[normalize-space()='Location Management'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Location Management'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Sleep    5s
@@ -468,33 +480,33 @@ Fill Pricing Details[Copy Risk]
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Policy Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Rates'])[1]    20s
     Sleep    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Policy Terms'])[1]
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Policy Terms'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Peril Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    20s
     Sleep    10s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Loss Experience'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Discretionary Modifiers'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Discretionary Modifiers'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Excess Of Loss'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    20s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
@@ -502,34 +514,42 @@ Fill Pricing Details[Copy Risk]
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Summary Of Pricing'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    20s
     ${liu_share}=    Get From Dictionary    ${current_row}    AV
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]
     ...    ${liu_share}
     ${commission}=    Get From Dictionary    ${current_row}    AW
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]
     ...    ${commission}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Fac'])[1]    20s
+    ${popup_visible}=    Run Keyword And Return Status    Safe Wait Until Element Is Visible    xpath=/html/body/div[2]    2s
+    IF    ${popup_visible}
+        Safe Click Element    xpath=/html/body/div[2]/div[3]/div/button/span
+        Click Element    xpath=//body
+        Sleep    5s
+        Safe Click Element
+        ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
+    END
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Fac'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Terror'])[1]    20s
-    Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Terror'])[1]    20s
+    Safe Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
     ${tria_val}=    RPA.Browser.Selenium.Get Value    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
     ${tria_str}=    Convert To String    ${tria_val}
     IF    '100' not in '${tria_str}'
         Clear Element Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
-        Input Text When Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
+        Safe Input Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
     END
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='LibertyIndex'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='LibertyIndex'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
 
@@ -541,18 +561,21 @@ Risk Creation[Renewal]
     Fill Pricing Details[Renewal]
 
 Fill Insured Details[Renewal]
-    Wait Until Element Is Visible    (//a[normalize-space()='Insured Details'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Insured Details'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible
+    Safe Wait Until Element Is Visible
     ...    (//legend[@class='ui-widget ui-widget-header ui-corner-all'][normalize-space()='Additional Named Insured'])[1]
     ...    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
+    Safe Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
 	Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ddlPrimarySegmentOccupancy'])[1]
     ...    Steel
+    Safe Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('Renewal - Risk Number: ${risk_number}\\n')
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Safe Click Element
@@ -561,160 +584,168 @@ Fill Insured Details[Renewal]
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
 Fill Pricing Details[Renewal]
-    Wait Until Element Is Visible    (//a[normalize-space()='Location Management'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Location Management'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Policy Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Rates'])[1]    20s
     Sleep    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Policy Terms'])[1]
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Policy Terms'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Peril Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    20s
     Sleep    10s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Loss Experience'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Discretionary Modifiers'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Discretionary Modifiers'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Excess Of Loss'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    20s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
     Sleep    60s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
-    ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]Wait Until Element Is Visible    (//a[normalize-space()='Summary Of Pricing'])[1]    20s
+    ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    20s
     ${liu_share}=    Get From Dictionary    ${current_row}    AV
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]
     ...    ${liu_share}
     ${commission}=    Get From Dictionary    ${current_row}    AW
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]
     ...    ${commission}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Fac'])[1]    20s
+    ${popup_visible}=    Run Keyword And Return Status    Safe Wait Until Element Is Visible    xpath=/html/body/div[2]    2s
+    IF    ${popup_visible}
+        Safe Click Element    xpath=/html/body/div[2]/div[3]/div/button/span
+        Click Element    xpath=//body
+        Sleep    5s
+        Safe Click Element
+        ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
+    END
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Fac'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Terror'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Terror'])[1]    20s
     Clear Element Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtMarketCertified'])[1]
     ${market_certificate}=    Get From Dictionary    ${current_row}    AV
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtMarketCertified'])[1]
     ...    1000
     ${garaet_prem}=    Get From Dictionary    ${current_row}    AX
-    Run Keyword And Ignore Error    Input Text When Element Is Visible
+    Run Keyword And Ignore Error    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlFrenchTerrorAndCatNat_txtGareatPremiumAmount'])[1]
     ...    10000
     Sleep    10s
-    Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
+    Safe Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
     ${tria_val}=    RPA.Browser.Selenium.Get Value    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
     ${tria_str}=    Convert To String    ${tria_val}
     IF    '100' not in '${tria_str}'
         Clear Element Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
-        Input Text When Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
+        Safe Input Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
     END
     Click Element    xpath=//body
     Sleep    5s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='LibertyIndex'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='LibertyIndex'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
 
 Fill Pricing Details[Reissue]
-    Wait Until Element Is Visible    (//a[normalize-space()='Location Management'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Location Management'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Policy Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Rates'])[1]    20s
     Sleep    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Policy Terms'])[1]
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Policy Terms'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Peril Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    20s
     Sleep    10s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Loss Experience'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Discretionary Modifiers'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Discretionary Modifiers'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Excess Of Loss'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    20s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Sleep    30s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Summary Of Pricing'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    20s
     ${liu_share}=    Get From Dictionary    ${current_row}    AV
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]
     ...    ${liu_share}
     ${commission}=    Get From Dictionary    ${current_row}    AW
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]
     ...    ${commission}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Fac'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Fac'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Terror'])[1]    20s
-    Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Terror'])[1]    20s
+    Safe Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
     ${tria_val}=    RPA.Browser.Selenium.Get Value    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
     ${tria_str}=    Convert To String    ${tria_val}
     IF    '100' not in '${tria_str}'
         Clear Element Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
-        Input Text When Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
+        Safe Input Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
     END
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='LibertyIndex'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='LibertyIndex'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
 
 Pre Bind Endorsement
     Safe Click Element    (//input[@id='btnShowAllEndorsementTypes'])[1]
     ${endorsement_type}=    Get From Dictionary    ${current_row}    AP
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlPreBindEndorsements_txtEndorsementType'])[1]
     ...    ${endorsement_type}
     Sleep    2s
@@ -725,21 +756,21 @@ Pre Bind Endorsement
     Sleep    3s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    2s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Sleep    5s
 
 Quote
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Quote Final'])[1]    20s
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnComplete'])[1]
 
 Quote[Copy Risk]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Quote Final'])[1]    20s
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnGenerateQuote'])[1]
@@ -748,41 +779,41 @@ Pre Bind Endorsement[Reissue]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    2s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
 
 Quote[Reissue]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Quote Final'])[1]    20s
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnGenerateQuote'])[1]
 
 Quote[Renewal]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Quote Final'])[1]    20s
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnComplete'])[1]
 
 Ready To Bind
     Safe Click Element    (//a[normalize-space()='Bind'])[1]
-    Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
+    Safe Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl01'])[1]
-    Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
+    Safe Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnNext'])[1]
     ${written_line}=    Get From Dictionary    ${current_row}    CC
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlBind_txtWrittenLinePercent'])[1]
     ...    ${written_line}
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
     ${PIB/PB}=    Get From Dictionary    ${current_row}    CC
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlBind_txtPercentagePremiumForFireServicesLevy'])[1]
     ...    15
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
@@ -791,15 +822,15 @@ Ready To Bind
 
 Book
     [Arguments]    ${download_policy}
-    Wait Until Element Is Visible    (//a[normalize-space()='Book and Issue'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Book and Issue'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Book and Issue'])[1]
-    Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
+    Safe Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
+    Safe Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
+    Safe Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     ${major_rating_segment}=    Get From Dictionary    ${current_row}    BA
     Select From List By Label
     ...    (//select[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlPremiumBreakdownContainer_ddlMajorRatingSegment'])[1]
@@ -812,20 +843,20 @@ Book
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
+    Safe Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
     Sleep    5s
     ${due_days}=    Get From Dictionary    ${current_row}    AZ
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ctrlBook_ctrlBookInstallmentPlan_tbDueDays'])[1]
     ...    ${due_days}
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ButtonBook'])[1]
 
 Copy Quote
-    Wait Until Element Is Visible    (//a[normalize-space()='Copy Quote'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Copy Quote'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Copy Quote'])[1]
-    Wait Until Element Is Visible
+    Safe Wait Until Element Is Visible
     ...    xpath=(//span[contains(@id, 'HeaderQuote')])[2]
     ...    10s
     Verify Status
@@ -836,7 +867,7 @@ Copy Quote
     Sleep    5s
 
 View Risk
-    Wait Until Element Is Visible    (//a[normalize-space()='View Risk'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='View Risk'])[1]    30s
     Safe Click Element    (//a[normalize-space()='View Risk'])[1]
     Sleep    5s
     Safe Click Element
@@ -844,10 +875,10 @@ View Risk
     Verify Status    (//legend[@id='fsMainContentLegend'])[1]    View Risk
 
 Post Bind Endorsement
-    Wait Until Element Is Visible    (//a[normalize-space()='Endorsement'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Endorsement'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Endorsement'])[1]
     ${endorsement_type_list}=    Get From Dictionary    ${current_row}    CE
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_txtEndorsementType'])[1]
     ...    ${endorsement_type_list}
     Sleep    2s
@@ -856,28 +887,28 @@ Post Bind Endorsement
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btAddEndorsement'])[1]
     Sleep    3s
     ${endorsement_effective_date}=    Get From Dictionary    ${current_row}    CF
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerEndorsementEffectiveDate_textDate'])[1]
     ...    01/01/2025
     TRY
         ${expiry_date}=    Get From Dictionary    ${current_row}    CG
-        Input Text When Element Is Visible
+        Safe Input Text
         ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
         ...    ${expiry_date}
     EXCEPT
         ${expiry_date}=    Get From Dictionary    ${current_row}    CG
-        Input Text When Element Is Visible
+        Safe Input Text
         ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
         ...    ${expiry_date}
     END
     TRY
         ${due_days}=    Get From Dictionary    ${current_row}    CH
-        Input Text When Element Is Visible
+        Safe Input Text
         ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]
         ...    ${due_days}
     EXCEPT
         ${due_days}=    Get From Dictionary    ${current_row}    CH
-        Input Text When Element Is Visible
+        Safe Input Text
         ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]
         ...    ${due_days}
         Safe Click Element    (//span[normalize-space()='No Premium'])[1]
@@ -890,7 +921,7 @@ Post Bind Endorsement
     Sleep    900s
 
 Renewal
-    Wait Until Element Is Visible    (//a[normalize-space()='Renew'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Renew'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Renew'])[1]
     Verify Status
     ...    xpath=//span[contains(@id, 'labelStatus')]
@@ -902,14 +933,14 @@ Renewal
     Book    False
 
 Reissue
-    Wait Until Element Is Visible    (//a[normalize-space()='Reissue'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Reissue'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Reissue'])[1]
     Sleep    10s
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[7]
     Verify Status
     ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Quoted (Pending, In Revision, RI)
-    Wait Until Element Is Visible    (//a[normalize-space()='Edit Quote'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Edit Quote'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Edit Quote'])[1]
     Fill Pricing Details[Reissue]
     Quote[Reissue]
@@ -917,7 +948,7 @@ Reissue
     Book    False
 
 Copy Risk
-    Wait Until Element Is Visible    (//a[normalize-space()='Copy Risk'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Copy Risk'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Copy Risk'])[1]
     Sleep    10s
     Safe Click Element    //span[contains(.,"Original Risks's Account")]
@@ -928,7 +959,7 @@ Copy Risk
     Book    False
 
 Account
-    Wait Until Element Is Visible    (//a[normalize-space()='Account'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Account'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Account'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskAppraisal_ctrlRiskAppraisalButtons_btnNewRiskAppraisalRequest'])[1]
@@ -937,7 +968,7 @@ Account
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskAppraisal_ctrlRiskAppraisalButtons_ddlRiskEngineer'])[1]
     ...    ${risk_engineer}
     ${Comments}=    Get From Dictionary    ${current_row}    BH
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskAppraisal_ctrlRiskAppraisalButtons_txtDescription'])[1]
     ...    ${Comments}
     Safe Click Element    (//span[normalize-space()='Create'])[1]
@@ -953,71 +984,71 @@ Account
     Safe Click Element    (//a[normalize-space()='Pricing'])[1]
     Sleep    5s
     Safe Click Element    (//a[normalize-space()='Operational'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Policy Terms'])[1]    20s
     Safe Click Element    (//span[normalize-space()='Full'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Rates'])[1]    20s
     Sleep    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Policy Terms'])[1]
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Policy Terms'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Peril Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    20s
     Sleep    10s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Loss Experience'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Discretionary Modifiers'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Discretionary Modifiers'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Excess Of Loss'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    20s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Sleep    30s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Summary Of Pricing'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Fac'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Fac'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Terror'])[1]    20s
-    Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Terror'])[1]    20s
+    Safe Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
     ${tria_val}=    RPA.Browser.Selenium.Get Value    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
     ${tria_str}=    Convert To String    ${tria_val}
     IF    '100' not in '${tria_str}'
         Clear Element Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
-        Input Text When Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
+        Safe Input Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
     END
     Click Element    xpath=//body
     Sleep    5s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='LibertyIndex'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='LibertyIndex'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Quote Final'])[1]    20s
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnGenerateQuote'])[1]
     Sleep    30s
 
 Account[Renewal]
-    Wait Until Element Is Visible    (//a[normalize-space()='Account'])[1]    30s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Account'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Account'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskAppraisal_ctrlRiskAppraisalButtons_btnNewRiskAppraisalRequest'])[1]
@@ -1026,7 +1057,7 @@ Account[Renewal]
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskAppraisal_ctrlRiskAppraisalButtons_ddlRiskEngineer'])[1]
     ...    ${risk_engineer}
     ${Comments}=    Get From Dictionary    ${current_row}    BH
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskAppraisal_ctrlRiskAppraisalButtons_txtDescription'])[1]
     ...    ${Comments}
     Safe Click Element    (//span[normalize-space()='Create'])[1]
@@ -1042,78 +1073,78 @@ Account[Renewal]
     Safe Click Element    (//a[normalize-space()='Pricing'])[1]
     Sleep    5s
     Safe Click Element    (//a[normalize-space()='Operational'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Policy Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Policy Terms'])[1]    20s
     Safe Click Element    (//span[normalize-space()='Full'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Operational Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Operational Rates'])[1]    20s
     Sleep    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Policy Terms'])[1]
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Policy Terms'])[1]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Perils Location Terms'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Perils Location Terms'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Natural Peril Rates'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    20s
     Sleep    10s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Loss Experience'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Discretionary Modifiers'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Discretionary Modifiers'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Excess Of Loss'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    20s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Sleep    30s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Summary Of Pricing'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Fac'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Fac'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Terror'])[1]    20s
-    Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Terror'])[1]    20s
+    Safe Wait Until Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    20s
     ${tria_val}=    RPA.Browser.Selenium.Get Value    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
     ${tria_str}=    Convert To String    ${tria_val}
     IF    '100' not in '${tria_str}'
         Clear Element Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]
-        Input Text When Element Is Visible    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
+        Safe Input Text    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]    100
     END
     Click Element    xpath=//body
     Sleep    5s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='LibertyIndex'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='LibertyIndex'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Subjectivities'])[1]    20s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Quote Final'])[1]    20s
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btnGenerateQuote'])[1]
     Sleep    30s
 
 Continue on Next Risk
-    Wait Until Element Is Visible    xpath=//a[normalize-space()='Create New Risk >']    20s
+    Safe Wait Until Element Is Visible    xpath=//a[normalize-space()='Create New Risk >']    20s
     Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
     Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
-    Wait Until Element Is Visible    xpath=//a[normalize-space()='US Primary GL']    30s
+    Safe Wait Until Element Is Visible    xpath=//a[normalize-space()='US Primary GL']    30s
     Safe Click Element    xpath=//a[normalize-space()='US Primary GL']
     Safe Click Element
     ...    id:ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlClearanceSearch_CreateInsured
-    Wait Until Element Is Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]    40s
+    Safe Wait Until Element Is Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]    40s
 
 Verify Status
     [Arguments]    ${location}    ${status_expected}
@@ -1127,16 +1158,16 @@ RA Approval
     Open Browser    ${URL_RA1}    chrome    options=add_argument("--inprivate")
     Sleep    10s
     Safe Click Element    (//a[@class='btn btn-info'])[1]
-    Input Text When Element Is Visible    (//input[@id='i0116'])[1]    n9970632@libertymutual.com
+    Safe Input Text    (//input[@id='i0116'])[1]    n9970632@libertymutual.com
     Safe Click Element    (//input[@id='idSIButton9'])[1]
-    Input Text When Element Is Visible    (//input[@id='i0118'])[1]    wm$qY@32
+    Safe Input Text    (//input[@id='i0118'])[1]    wm$qY@32
     Safe Click Element    (//input[@id='idSIButton9'])[1]
     Sleep    10s
     ${locator}=    Send Keys    keys=${NUSER}{TAB}${NUSERPASSWORD}    send_enter=${TRUE}
     Send Keys    keys={RETURN}    send_enter=${TRUE}
     Sleep    120s
     Safe Click Element    (//span[@class='k-icon k-i-filter'])[8]
-    Input Text When Element Is Visible    (//input[@title='Value'])[1]    ${account_number}
+    Safe Input Text    (//input[@title='Value'])[1]    ${account_number}
     Safe Click Element    (//button[normalize-space()='Filter'])[1]
     Sleep    10s
     Safe Click Element    (//a[normalize-space()='Create RA'])[1]
@@ -1149,13 +1180,13 @@ RA Approval
         Press Keys    None    ARROW_DOWN
     END
     Select Frame    xpath=//iframe[@title='Rich Text Editor, ExecutiveSummary']
-    Wait Until Element Is Visible    xpath=//body
+    Safe Wait Until Element Is Visible    xpath=//body
     Click Element    xpath=//body
     Press Keys    xpath=//body    test
     Unselect Frame
     Sleep    5s
     Select Frame    xpath=//iframe[@title='Rich Text Editor, BusinessDescription']
-    Wait Until Element Is Visible    xpath=//body
+    Safe Wait Until Element Is Visible    xpath=//body
     Click Element    xpath=//body
     Press Keys    xpath=//body    test
     Unselect Frame
@@ -1164,28 +1195,28 @@ RA Approval
     Safe Click Element    //span[@class='glyphicon glyphicon-edit']
     Safe Click Element    (//a[normalize-space()='Loss Estimates'])[1]
     Safe Click Element    (//a[normalize-space()='EML'])[1]
-    Input Text When Element Is Visible    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
-    Input Text When Element Is Visible
+    Safe Input Text    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
+    Safe Input Text
     ...    (//input[@id='PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]
     ...    100
     Safe Click Element    (//a[normalize-space()='PML'])[1]
     Sleep    5s
-    Input Text When Element Is Visible    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
-    Input Text When Element Is Visible
+    Safe Input Text    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
+    Safe Input Text
     ...    (//input[@id='PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]
     ...    100
     Safe Click Element    (//a[normalize-space()='RA Score'])[1]
     Safe Click Element    (//input[@id='convertQuick'])[1]
     Sleep    5s
-    Input Text When Element Is Visible    (//input[@id='Groups_0__Categories_1__QuickScore'])[1]    90
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_0__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_1__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_2__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_3__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_4__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_5__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_0__Categories_1__QuickScore'])[1]    90
+    Safe Input Text    (//input[@id='Groups_1__Categories_0__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_1__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_2__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_3__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_4__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_5__QuickScore'])[1]    89
     Sleep    10s
-    Input Text When Element Is Visible    (//input[@id='Groups_2__Categories_0__QuickScore'])[1]    3
+    Safe Input Text    (//input[@id='Groups_2__Categories_0__QuickScore'])[1]    3
     Safe Click Element    (//a[normalize-space()='Location Summary'])[1]
     Sleep    5s
     Safe Click Element    (//button[normalize-space()='Complete Location Risk Appraisal'])[1]
@@ -1206,9 +1237,9 @@ RA Approval[Renewal]
     Get Browser Ids
     Switch Browser    3
     Safe Click Element    (//a[@class='btn btn-info'])[1]
-    Input Text When Element Is Visible    (//input[@id='i0116'])[1]    n9970632@libertymutual.com
+    Safe Input Text    (//input[@id='i0116'])[1]    n9970632@libertymutual.com
     Safe Click Element    (//input[@id='idSIButton9'])[1]
-    Input Text When Element Is Visible    (//input[@id='i0118'])[1]    wm$qY@32
+    Safe Input Text    (//input[@id='i0118'])[1]    wm$qY@32
     Safe Click Element    (//input[@id='idSIButton9'])[1]
     Sleep    10s
     Switch Browser    3
@@ -1216,7 +1247,7 @@ RA Approval[Renewal]
     Send Keys    keys={RETURN}    send_enter=${TRUE}
     Sleep    120s
     Safe Click Element    (//span[@class='k-icon k-i-filter'])[8]
-    Input Text When Element Is Visible    (//input[@title='Value'])[1]    ${account_number}
+    Safe Input Text    (//input[@title='Value'])[1]    ${account_number}
     Safe Click Element    (//button[normalize-space()='Filter'])[1]
     Sleep    10s
     Safe Click Element    (//a[normalize-space()='Renew RA'])[1]
@@ -1227,28 +1258,28 @@ RA Approval[Renewal]
     Safe Click Element    //span[@class='glyphicon glyphicon-edit']
     Safe Click Element    (//a[normalize-space()='Loss Estimates'])[1]
     Safe Click Element    (//a[normalize-space()='EML'])[1]
-    Input Text When Element Is Visible    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
-    Input Text When Element Is Visible
+    Safe Input Text    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
+    Safe Input Text
     ...    (//input[@id='PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]
     ...    100
     Safe Click Element    (//a[normalize-space()='PML'])[1]
     Sleep    5s
-    Input Text When Element Is Visible    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
-    Input Text When Element Is Visible
+    Safe Input Text    (//input[@id='PropertyDamageOGPCFields_PropertyDamageValue'])[1]    10000
+    Safe Input Text
     ...    (//input[@id='PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]
     ...    100
     Safe Click Element    (//a[normalize-space()='RA Score'])[1]
     Safe Click Element    (//input[@id='convertQuick'])[1]
     Sleep    5s
-    Input Text When Element Is Visible    (//input[@id='Groups_0__Categories_1__QuickScore'])[1]    90
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_0__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_1__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_2__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_3__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_4__QuickScore'])[1]    89
-    Input Text When Element Is Visible    (//input[@id='Groups_1__Categories_5__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_0__Categories_1__QuickScore'])[1]    90
+    Safe Input Text    (//input[@id='Groups_1__Categories_0__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_1__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_2__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_3__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_4__QuickScore'])[1]    89
+    Safe Input Text    (//input[@id='Groups_1__Categories_5__QuickScore'])[1]    89
     Sleep    10s
-    Input Text When Element Is Visible    (//input[@id='Groups_2__Categories_0__QuickScore'])[1]    3
+    Safe Input Text    (//input[@id='Groups_2__Categories_0__QuickScore'])[1]    3
     Safe Click Element    (//a[normalize-space()='Location Summary'])[1]
     Sleep    5s
     Safe Click Element    (//button[normalize-space()='Complete Location Risk Appraisal'])[1]
@@ -1265,4 +1296,29 @@ Safe Click Element
     ...    ${retries}
     ...    ${retry_interval}
     ...    RPA.Browser.Selenium.Click Element When Visible
-    ...    ${locator}
+    ...    ${locator}
+Safe Input Text
+    [Arguments]    ${locator}    ${text}    ${retries}=15x    ${retry_interval}=2s
+    Wait Until Keyword Succeeds
+    ...    ${retries}
+    ...    ${retry_interval}
+    ...    RPA.Browser.Selenium.Input Text When Element Is Visible
+    ...    ${locator}    ${text}
+
+Check Element Visibility Safely
+    [Arguments]    ${locator}
+    ${status}    ${is_visible}=    Run Keyword And Ignore Error    RPA.Browser.Selenium.Is Element Visible    ${locator}
+    IF    '${status}' == 'FAIL'
+        Fail    Element not visible yet
+    END
+    IF    not $is_visible
+        Fail    Element not visible yet
+    END
+
+Safe Wait Until Element Is Visible
+    [Arguments]    ${locator}    ${timeout}=120s    ${retry_interval}=2s
+    Wait Until Keyword Succeeds
+    ...    ${timeout}
+    ...    ${retry_interval}
+    ...    Check Element Visibility Safely
+    ...    ${locator}

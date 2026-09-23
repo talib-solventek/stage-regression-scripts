@@ -67,7 +67,7 @@ Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
     ${NUSER}=    Get From Dictionary    ${current_row}    B
     ${NUSERPASSWORD}=    Get From Dictionary    ${current_row}    C
-    Open Browser    ${URL}    edge    executable_path=${DRIVER}    options=add_argument("--inprivate")
+    Open Browser    ${URL}    chrome    options=add_argument("--inprivate")
     Maximize Browser Window
     Set Selenium Implicit Wait    30s
     Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']

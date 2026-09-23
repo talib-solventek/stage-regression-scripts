@@ -79,7 +79,7 @@ Flow to execute
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Submission (Pricing In Progress)
 
@@ -89,7 +89,7 @@ Flow to execute
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Quoted
 
@@ -99,7 +99,7 @@ Flow to execute
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Bound (Pending)
 
@@ -107,7 +107,7 @@ Flow to execute
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Bound
 
@@ -180,7 +180,7 @@ Risk Creation[First Run]
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Submission
 
@@ -719,7 +719,7 @@ Pre Bind Endorsement
 
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
 
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
 
     Safe Click Element
 
@@ -825,19 +825,19 @@ Copy Quote
 
     Wait Until Element Is Visible
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[2]
+    ...    xpath=(//span[contains(@id, 'HeaderQuote')])[2]
 
     ...    10s
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[2]
+    ...    xpath=(//span[contains(@id, 'HeaderQuote')])[2]
 
     ...    Option 2 - [Status : Quoted (In Revision)]
 
     Safe Click Element
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[1]
+    ...    xpath=(//span[contains(@id, 'HeaderQuote')])[1]
 
 
 Issue Policy
@@ -1139,7 +1139,7 @@ Risk Creation[Renewal]
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Submission
 
@@ -1269,7 +1269,7 @@ Fill Pricing Details[Renewal]
 
         END
 
-        Sleep    60s
+        Sleep    100s
 
     END
 
@@ -1532,7 +1532,7 @@ Pre Bind Endorsement[Reissue]
 
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
 
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
 
     Safe Click Element
 
@@ -1612,7 +1612,7 @@ Ready To Bind[Renewal]
 
     ...    1
 
-    Sleep    10s
+    Click Element    xpath=//body
 
     Safe Click Element
 
@@ -1762,7 +1762,7 @@ Reissue
 
     Verify Status
 
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
 
     ...    Quoted (Pending, In Revision, RI)
 

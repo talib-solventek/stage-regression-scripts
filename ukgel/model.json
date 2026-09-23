@@ -1037,7 +1037,7 @@
                 "required": false,
                 "doc": null,
                 "hide": false,
-                "value": "edge"
+                "value": "chrome"
               },
               {
                 "type": "argument",
@@ -1048,7 +1048,7 @@
                 "required": false,
                 "doc": null,
                 "hide": false,
-                "value": "executable_path=${DRIVER}"
+                "value": "options=add_argument(\"--inprivate\")"
               },
               {
                 "type": "argument",
@@ -1059,7 +1059,7 @@
                 "required": false,
                 "doc": null,
                 "hide": false,
-                "value": "options=add_argument(\"--inprivate\")"
+                "value": ""
               },
               {
                 "type": "argument",
