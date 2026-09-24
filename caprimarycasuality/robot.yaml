@@ -3,9 +3,9 @@ tasks:
     robotTaskName: Canada Primary Casualty
 condaConfigFile: conda.yaml
 ignoreFiles:
-  - .gitignore
+- .gitignore
 artifactsDir: output
 PATH:
-  - .
+- .
 PYTHONPATH:
-  - .
+- .

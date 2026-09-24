@@ -2819,7 +2819,7 @@
               {
                 "type": "argument",
                 "name": "(//input[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchContains'])[1]"
+                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchStartsWith'])[1]"
               }
             ],
             "step": 57,
