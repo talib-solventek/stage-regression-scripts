@@ -41,21 +41,21 @@ Flow to execute
     Login to App
     Risk Creation[First Run]
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Submission (Pricing In Progress)
     Pre Bind Endorsement
     Quote
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Quoted
     Copy Quote
     Ready To Bind
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Bound (Pending)
     Book    False
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Bound
     Copy Risk
     Sleep    900s
@@ -69,7 +69,7 @@ Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
     ${NUSER}=    Get From Dictionary    ${current_row}    B
     ${NUSERPASSWORD}=    Get From Dictionary    ${current_row}    C
-    Open Browser    ${URL}    edge    executable_path=${DRIVER}    options=add_argument("--inprivate")
+    Open Browser    ${URL}    chrome    options=add_argument("--inprivate")
     Maximize Browser Window
     Set Selenium Implicit Wait    30s
     Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
@@ -93,10 +93,11 @@ Login to App
 
 Risk Creation[First Run]
     Fill Insured Details[First Run]
-    Sleep    5s
+
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Submission
+    Extract And Store Risk Number    First Run
     Fill Pricing Details[First Run]
 
 Fill Insured Details[First Run]
@@ -167,10 +168,10 @@ Fill Insured Details[First Run]
     Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
     ${brokfirm}=    Get From Dictionary    ${current_row}    M
     Safe Input Text
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]
+    ...    xpath=//input[contains(@id, 'TextBoxBrokerFirm')]
     ...    ${brokfirm}
     Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchStartsWith'])[1]
+    ...    xpath=//input[contains(@id, 'ButtonBrokerFirmSearchStartsWith')]
     Sleep    10s
     Safe Click Element By Index
     ...    xpath=//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"]
@@ -184,10 +185,10 @@ Fill Insured Details[First Run]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     ${brokcont}=    Get From Dictionary    ${current_row}    N
     Safe Input Text
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]
+    ...    xpath=//input[contains(@id, 'TextBoxBrokerContact')]
     ...    ${brokcont}
     Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]
+    ...    xpath=//input[contains(@id, 'ButtonBrokerContactSearchStartsWith')]
     Sleep    20s
     Safe Click Element By Index
     ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
@@ -318,10 +319,10 @@ Fill Insured Details[Copy Risk]
     Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
     ${brokfirm}=    Get From Dictionary    ${current_row}    M
     Safe Input Text
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]
+    ...    xpath=//input[contains(@id, 'TextBoxBrokerFirm')]
     ...    ${brokfirm}
     Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchContains'])[1]
+    ...    xpath=//input[contains(@id, 'ButtonBrokerFirmSearchContains')]
     Sleep    10s
     Safe Click Element By Index
     ...    xpath=//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"]
@@ -335,10 +336,10 @@ Fill Insured Details[Copy Risk]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     ${brokcont}=    Get From Dictionary    ${current_row}    N
     Safe Input Text
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]
+    ...    xpath=//input[contains(@id, 'TextBoxBrokerContact')]
     ...    ${brokcont}
     Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]
+    ...    xpath=//input[contains(@id, 'ButtonBrokerContactSearchStartsWith')]
     Sleep    20s
     Safe Click Element By Index
     ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
@@ -380,8 +381,9 @@ Fill Pricing Details[Copy Risk]
 Risk Creation[Renewal]
     Fill Insured Details[Renewal]
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Submission
+    Extract And Store Risk Number    Renewal
     Fill Pricing Details[Renewal]
 
 Fill Insured Details[Renewal]
@@ -504,14 +506,14 @@ Pre Bind Endorsement
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
 
 Quote
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
     ${cyber_type}=    Get From Dictionary    ${current_row}    AE
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlQuoteFinal_ddlCyberType'])[1]
@@ -532,7 +534,7 @@ Quote
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnGenQuote'])[1]
 
 Quote[Copy Risk]
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnGenQuote'])[1]
 
@@ -540,13 +542,13 @@ Pre Bind Endorsement[Reissue]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
-    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
 
 Quote[Reissue]
-    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnGenQuote'])[1]
 
@@ -616,13 +618,13 @@ Copy Quote
     Wait Until Element Is Visible    (//a[normalize-space()='Copy Quote'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Copy Quote'])[1]
     Wait Until Element Is Visible
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[2]
+    ...    xpath=(//span[contains(@id, 'HeaderQuote')])[2]
     ...    10s
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[2]
+    ...    xpath=(//span[contains(@id, 'HeaderQuote')])[2]
     ...    Option 2 - [Status : Quoted (In Revision)]
     Safe Click Element
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[1]
+    ...    xpath=(//span[contains(@id, 'HeaderQuote')])[1]
     Sleep    5s
 
 View Risk
@@ -631,7 +633,7 @@ View Risk
     Sleep    5s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonViewCurrent'])[1]
-    Sleep    5s
+
     Verify Status    (//legend[@id='fsMainContentLegend'])[1]    View Risk
 
 Post Bind Endorsement
@@ -667,9 +669,9 @@ Post Bind Endorsement
 Renewal
     Wait Until Element Is Visible    (//a[normalize-space()='Renew'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Renew'])[1]
-    Sleep    10s
+
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Submission
     Risk Creation[Renewal]
     Pre Bind Endorsement[Reissue]
@@ -683,7 +685,7 @@ Reissue
     Sleep    10s
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[7]
     Verify Status
-    ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_riskHeader_labelStatus'])[1]
+    ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Quoted (Pending, In Revision, RI)
     Wait Until Element Is Visible    (//a[normalize-space()='Edit Quote'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Edit Quote'])[1]
@@ -699,6 +701,7 @@ Copy Risk
     Sleep    10s
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[4]
     Fill Insured Details[Copy Risk]
+    Extract And Store Risk Number    Copy Risk
     Fill Pricing Details[Copy Risk]
     Pre Bind Endorsement
     Quote[Copy Risk]
@@ -717,21 +720,11 @@ Continue on Next Risk
 
 Verify Status
     [Arguments]    ${location}    ${status_expected}
-    Wait Until Keyword Succeeds    15x    2s    Check Status Match    ${location}    ${status_expected}
-
-Check Status Match
-    [Arguments]    ${location}    ${status_expected}
-    ${status_actual}=    RPA.Browser.Selenium.Get Text    ${location}
-    Log    "status_expected ${status_expected}"
-    Log    "status_actual ${status_actual}"
-    ${value}=    Evaluate    "${status_expected}"=="${status_actual}"
-    IF    ${value} != ${TRUE}
-        Fail    "Status not Macthing: Expected ${status_expected} but Current Status is ${status_actual}"
-    END
+    Wait Until Keyword Succeeds    45x    2s    Element Should Contain    ${location}    ${status_expected}
 
 Safe Click Element
     [Arguments]    ${locator}
-    Wait Until Keyword Succeeds    5x    2s    Click Element When Visible    ${locator}
+    Wait Until Keyword Succeeds    15x    2s    Click Element When Visible    ${locator}
 
 Safe Input Text
     [Arguments]    ${locator}    ${text}
@@ -754,3 +747,9 @@ Click Element By Index And Wait
     ${elements}=    Get WebElements    ${locator}
     Log    Found ${elements.__len__()} elements
     Click Element When Visible    ${elements}[${index}]
+
+Extract And Store Risk Number
+    [Arguments]    ${flow_type}
+    Wait Until Keyword Succeeds    15x    2s    Wait Until Element Is Visible    xpath=//*[contains(@id, 'btnReturnToRiskSummary')]    15s
+    ${risk_number}=    Wait Until Keyword Succeeds    15x    2s    RPA.Browser.Selenium.Get Text    xpath=//*[contains(@id, 'btnReturnToRiskSummary')]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write($flow_type + ' - Risk Number: ' + $risk_number.strip() + '\\n')

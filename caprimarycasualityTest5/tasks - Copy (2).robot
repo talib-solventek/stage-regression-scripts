@@ -67,7 +67,7 @@ Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
     ${NUSER}=    Get From Dictionary    ${current_row}    B
     ${NUSERPASSWORD}=    Get From Dictionary    ${current_row}    C
-    Open Browser    ${URL}    chrome    options=add_argument("--inprivate")
+    Open Browser    ${URL}    edge    executable_path=${DRIVER}    options=add_argument("--inprivate")
     Maximize Browser Window
     Set Selenium Implicit Wait    30s
     Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
@@ -176,7 +176,7 @@ Fill Insured Details[First Run]
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]
     ...    ${brokfirm}
     Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchStartsWith'])[1]
+    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchContains'])[1]
     Wait Until Element Is Visible
     ...    xpath=//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"]
     ...    30s
@@ -689,6 +689,20 @@ Pre Bind Endorsement
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
     Check All Subjectivities
+    FOR    ${index}    IN RANGE    10    20
+        ${subjective_exist}=    Is Element Visible
+        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbMandatory'])[1]
+        IF    ${subjective_exist} == True
+            ${subjective_checked}=    Is Checkbox Selected
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbMandatory'])[1]
+            IF    ${subjective_checked} == True
+                Select Checkbox
+                ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbSatisfied'])[1]
+            END
+        ELSE
+            BREAK
+        END
+    END
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
@@ -767,7 +781,7 @@ Book
     ...    ${defense_code}
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
-
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[4]
     Safe Click Element    (//span[normalize-space()='Français'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonCheckBook'])[1]
@@ -922,29 +936,3 @@ Safe Select From List By Label
 Safe Select From List By Index
     [Arguments]    ${locator}    ${index}
     Wait Until Keyword Succeeds    5x    2s    Select From List By Index    ${locator}    ${index}
-
-Check All Subjectivities
-    FOR    ${index}    IN RANGE    1    20
-        ${idx}=    Convert To String    ${index}
-        ${idx}=    Run Keyword If    ${index} < 10    Set Variable    0${index}    ELSE    Set Variable    ${index}
-        
-        ${mandatory_xpath}=    Set Variable    //input[contains(@id, 'repeaterSubjectivities_ctl${idx}_cbMandatory')]
-        ${satisfied_xpath}=    Set Variable    //input[contains(@id, 'repeaterSubjectivities_ctl${idx}_cbSatisfied')]
-        
-        ${exists}=    Run Keyword And Return Status    Page Should Contain Element    ${mandatory_xpath}
-        IF    ${exists} == True
-            ${mandatory_checked}=    Execute Javascript    return document.evaluate("${mandatory_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.checked;
-            IF    ${mandatory_checked} == False
-                Execute Javascript    document.evaluate("${mandatory_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-                Sleep    1s
-            END
-            
-            ${satisfied_checked}=    Execute Javascript    return document.evaluate("${satisfied_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.checked;
-            IF    ${satisfied_checked} == False
-                Execute Javascript    document.evaluate("${satisfied_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
-                Sleep    1s
-            END
-        ELSE
-            BREAK
-        END
-    END

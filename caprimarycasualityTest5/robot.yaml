@@ -1,6 +1,6 @@
 tasks:
-  Heavy Industry:
-    robotTaskName: Heavy Industry
+  Canada Primary Casualty:
+    robotTaskName: Canada Primary Casualty
 condaConfigFile: conda.yaml
 ignoreFiles:
   - .gitignore

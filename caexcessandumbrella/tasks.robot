@@ -316,6 +316,12 @@ Fill Insured Details[First Run]
 
     ...    111110 SOYBEAN FARMING
 
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('First Run - Risk Number: ${risk_number}\\n')
+
     Click Next And Wait For Element    (//legend[normalize-space()='Broker Info'])[1]
 
     ${brokfirm}=    Get From Dictionary    ${current_row}    M
@@ -659,6 +665,12 @@ Fill Insured Details[Renewal]
 
     ...    111110 SOYBEAN FARMING
 
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('Renewal - Risk Number: ${risk_number}\\n')
+
     Click Next And Wait For Element    (//a[normalize-space()='Broker Firm'])[1]
 
     Press Keys    None    PAGE_DOWN
@@ -798,6 +810,12 @@ Fill Insured Details[Copy Risk]
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_txtNAICSCode'])[1]
 
     ...    111110 SOYBEAN FARMING
+
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('Copy Risk - Risk Number: ${risk_number}\\n')
 
     Click Next And Wait For Element    (//legend[normalize-space()='Broker Info'])[1]
 
@@ -1210,9 +1228,13 @@ Post Bind Endorsement
 
     ...    ${effective_date_post_bind}
 
-    TRY
+    ${current_date}=    Get Current Date
 
-        ${expiry_date}=    Get From Dictionary    ${current_row}    AH
+    ${next_week_date}=    Add Time To Date    ${current_date}    7 days
+
+    ${expiry_date}=    Convert Date    ${next_week_date}    result_format=%m/%d/%Y
+
+    TRY
 
         Safe Input Text
 
@@ -1221,8 +1243,6 @@ Post Bind Endorsement
         ...    ${expiry_date}
 
     EXCEPT
-
-        ${expiry_date}=    Get From Dictionary    ${current_row}    AH
 
         Safe Input Text
 
@@ -1274,7 +1294,7 @@ Renewal
 
 Reissue
 
-    Sleep    4s
+    Sleep    300s
 
     Wait Until Element Is Visible    (//a[normalize-space()='Reissue'])[1]    30s
 

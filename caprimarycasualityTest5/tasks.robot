@@ -717,8 +717,7 @@ Ready To Bind
     Safe Click Element    (//a[normalize-space()='Bind'])[1]
     Sleep    2s
     Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
-    Safe Click Element    (//input[contains(@id, 'BtnNext')] | //span[normalize-space()='Next'])[1]
-    Sleep    2s
+    
     Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]

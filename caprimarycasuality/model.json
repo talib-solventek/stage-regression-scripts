@@ -13042,22 +13042,10 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//span[@class='ui-button-text'][normalize-space()='No'])[4]"
-              }
-            ],
-            "step": 33,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
                 "value": "(//span[normalize-space()='Français'])[1]"
               }
             ],
-            "step": 34,
+            "step": 33,
             "defaultReturns": null
           },
           {
@@ -13070,7 +13058,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonCheckBook'])[1]"
               }
             ],
-            "step": 35,
+            "step": 34,
             "defaultReturns": null
           }
         ]
