@@ -434,6 +434,12 @@ Fill Insured Details[Copy Risk]
     ...    20s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Submission Details'])[1]    20s
+    Safe Select From List By Label
+    ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
+    ...    Los Angeles
+    Safe Select From List By Label
+    ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListCompany'])[1]
+    ...    LSI2
     Safe Select From List By Index
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListAssistant'])[1]
     ...    1
