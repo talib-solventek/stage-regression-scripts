@@ -33,6 +33,7 @@ Primary GL
         Log    ${current_row}
         Set Global Variable    ${current_row}
         Flow to execute
+        BREAK
     END
 
 
@@ -62,7 +63,6 @@ Flow to execute
     Post Bind Endorsement
     Renewal
     View Risk
-    Close Browser
 
 Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
@@ -146,6 +146,9 @@ Fill Insured Details[First Run]
     ...    20s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('First Run - Risk Number: ${risk_number}\\n')
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
     ...    Los Angeles
@@ -401,6 +404,9 @@ Fill Insured Details[Renewal]
     ...    20s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Submission Details'])[1]    20s
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('Renewal - Risk Number: ${risk_number}\\n')
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Broker Firm'])[1]    20s
     Sleep    2s
@@ -434,6 +440,9 @@ Fill Insured Details[Copy Risk]
     ...    20s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Submission Details'])[1]    20s
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('Copy Risk - Risk Number: ${risk_number}\\n')
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
     ...    Los Angeles
@@ -530,19 +539,25 @@ Fill Pricing Details[Renewal]
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Loss Expo History'])[1]    20s
     Sleep    10s
-    Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_CheckBoxSingle'])[1]
+    Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_CheckBoxSingle"]
     Sleep    2s
-    Safe Click Element
-    ...    (//a[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_deleteLossExposure'])[1]
+    Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_deleteLossExposure"]
     Sleep    5s
-    ${variableExist}=    Is Element Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[5]
-    IF    ${variableExist} == 2
-        Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[5]
-    END
+    Safe Click Element    xpath=/html/body/div[13]/div[11]/div/button[1]
     Sleep    10s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
+    Sleep    5s
+    Safe Click Element    xpath=/html/body/div[3]/div[11]/div/button[1]/span
+    Sleep    5s
+    Safe Input Text    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_TextBoxValuationDate_textDate"]    1/1/2025
+    Sleep    2s
+    Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Man Rating'])[1]    10s
+    ${NAICS_Code}=    Get From Dictionary    ${current_row}    AD
+    Safe Input Text
+    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlManualRatingInfo1_txtNAICSCode'])[1]
+    ...    ${NAICS_Code}
+    Safe Click Element    (//a[normalize-space()='113310 LOGGING'])[1]
     Safe Click Element    (//span[normalize-space()='Correct'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonCalculate'])[1]
@@ -900,6 +915,29 @@ Pre Bind Endorsement[Reissue]
     Sleep    5s
 
 Pre Bind Endorsement[Renewal]
+    Sleep    5s
+    ${variableExist}=    Is Element Visible    xpath=/html/body/div[2]/div[3]/div/button
+    IF    ${variableExist} == True
+        Safe Click Element    xpath=/html/body/div[2]/div[3]/div/button
+        Sleep    2s
+    END
+    Safe Click Element    xpath=//*[@id="EndorsementTable"]/thead/tr/th[3]
+    Sleep    2s
+    Safe Click Element    xpath=//*[@id="EndorsementTable"]/thead/tr/th[3]
+    Sleep    2s
+    ${yes_checkboxes}=    Get WebElements    xpath=//tr[td[normalize-space()='Yes']]//input[@type='checkbox']
+    ${count}=    Get Length    ${yes_checkboxes}
+    IF    ${count} > 0
+        FOR    ${checkbox}    IN    @{yes_checkboxes}
+            Click Element    ${checkbox}
+        END
+        Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterEndorsement_ctl00_deleteEndorsement"]/span
+        Sleep    5s
+        ${variableExist}=    Is Element Visible    xpath=/html/body/div[3]/div[3]/div/button[1]
+        IF    ${variableExist} == True
+            Safe Click Element    xpath=/html/body/div[3]/div[3]/div/button[1]
+        END
+    END
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
     Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
@@ -922,6 +960,9 @@ Pre Bind Endorsement[Renewal]
 
 Quote[Reissue]
     Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[3]
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_BtnGenQuote'])[1]
 
 Ready To Bind
