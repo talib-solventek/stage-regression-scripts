@@ -9097,8 +9097,7 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_CheckBoxSingle'])[1]"
+                "value": "xpath=//*[@id=\"ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_CheckBoxSingle\"]"
               }
             ],
             "step": 11,
@@ -9147,8 +9146,7 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//a[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_deleteLossExposure'])[1]"
+                "value": "xpath=//*[@id=\"ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_deleteLossExposure\"]"
               }
             ],
             "step": 13,
@@ -9193,63 +9191,15 @@
           },
           {
             "type": "keyword",
-            "name": "Is Element Visible",
-            "icon": "grid-cell",
+            "name": "Safe Click Element",
             "args": [
               {
                 "type": "argument",
-                "name": "locator",
-                "valueType": "locator-browser",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "Locator for element",
-                "hide": false,
-                "value": "(//span[@class='ui-button-text'][normalize-space()='Yes'])[5]"
-              },
-              {
-                "type": "argument",
-                "name": "missing_ok",
-                "valueType": "boolean",
-                "defaultValue": "True",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Allow element to not exist",
-                "hide": false,
-                "value": ""
+                "value": "xpath=/html/body/div[13]/div[11]/div/button[1]"
               }
             ],
-            "returns": null,
-            "defaultReturns": "variableExist",
-            "doc": "Is element visible\n\n``locator`` element locator\n``missing_ok`` default True, set to False if keyword should\nFail if element does not exist\n\nExample:\n\n| ${res} | Is Element Visible | id:confirmation |",
-            "shortdoc": "Is element visible",
-            "tags": [],
-            "hide": false,
-            "uid": "372a47e58a2add22c09daf26357d73d9",
-            "step": 15
-          },
-          {
-            "type": "keyword",
-            "name": "IF",
-            "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 16,
-            "containerValue": {
-              "condition": "${variableExist} == 2"
-            },
-            "body": [
-              {
-                "type": "keyword",
-                "name": "Safe Click Element",
-                "args": [
-                  {
-                    "type": "argument",
-                    "value": "(//span[@class='ui-button-text'][normalize-space()='Yes'])[5]"
-                  }
-                ],
-                "step": 1,
-                "defaultReturns": null
-              }
-            ]
+            "step": 15,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -9286,7 +9236,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 17
+            "step": 16
           },
           {
             "type": "keyword",
@@ -9297,7 +9247,158 @@
                 "value": "(//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]"
               }
             ],
-            "step": 18,
+            "step": 17,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 18
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "xpath=/html/body/div[3]/div[11]/div/button[1]/span"
+              }
+            ],
+            "step": 19,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 20
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "value": "xpath=//*[@id=\"ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_TextBoxValuationDate_textDate\"]"
+              },
+              {
+                "type": "argument",
+                "value": "1/1/2025"
+              }
+            ],
+            "step": 21,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "2s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 22
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]"
+              }
+            ],
+            "step": 23,
             "defaultReturns": null
           },
           {
@@ -9346,7 +9447,75 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 19
+            "step": 24
+          },
+          {
+            "type": "keyword",
+            "name": "Get From Dictionary",
+            "icon": "table",
+            "args": [
+              {
+                "type": "argument",
+                "name": "dictionary",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Dictionary to get value from",
+                "hide": false,
+                "value": "${current_row}"
+              },
+              {
+                "type": "argument",
+                "name": "key",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Key for value",
+                "hide": false,
+                "value": "AD"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "NAICS_Code",
+            "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
+            "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
+            "tags": [],
+            "hide": false,
+            "uid": "5df73075f41a5956dead496984033faf",
+            "step": 25
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@id",
+                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlManualRatingInfo1_txtNAICSCode'])[1]"
+              }
+            ],
+            "step": 26,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "${NAICS_Code}",
+            "args": [],
+            "step": 27
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='113310 LOGGING'])[1]"
+              }
+            ],
+            "step": 28,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -9357,7 +9526,7 @@
                 "value": "(//span[normalize-space()='Correct'])[1]"
               }
             ],
-            "step": 20,
+            "step": 29,
             "defaultReturns": null
           },
           {
@@ -9370,7 +9539,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonCalculate'])[1]"
               }
             ],
-            "step": 21,
+            "step": 30,
             "defaultReturns": null
           },
           {
@@ -9408,7 +9577,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 22
+            "step": 31
           },
           {
             "type": "keyword",
@@ -9445,13 +9614,13 @@
             "tags": [],
             "hide": false,
             "uid": "372a47e58a2add22c09daf26357d73d9",
-            "step": 23
+            "step": 32
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 24,
+            "step": 33,
             "containerValue": {
               "condition": "${variableExist} == True"
             },
@@ -9505,7 +9674,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 25
+            "step": 34
           },
           {
             "type": "keyword",
@@ -9516,7 +9685,7 @@
                 "value": "(//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]"
               }
             ],
-            "step": 26,
+            "step": 35,
             "defaultReturns": null
           },
           {
@@ -9565,7 +9734,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 27
+            "step": 36
           },
           {
             "type": "keyword",
@@ -9613,7 +9782,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 28
+            "step": 37
           },
           {
             "type": "keyword",
@@ -9661,169 +9830,6 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 29
-          },
-          {
-            "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
-            "args": [
-              {
-                "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "10s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
-              }
-            ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 30
-          },
-          {
-            "type": "keyword",
-            "name": "TRY",
-            "args": [],
-            "step": 31,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Get From Dictionary",
-            "icon": "table",
-            "args": [
-              {
-                "type": "argument",
-                "name": "dictionary",
-                "valueType": "unknown",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "Dictionary to get value from",
-                "hide": false,
-                "value": "${current_row}"
-              },
-              {
-                "type": "argument",
-                "name": "key",
-                "valueType": "unknown",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "Key for value",
-                "hide": false,
-                "value": "AG"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "total_policy_premium",
-            "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
-            "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
-            "tags": [],
-            "hide": false,
-            "uid": "5df73075f41a5956dead496984033faf",
-            "step": 32
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_tbTotalPolicyPremium'])[1]"
-              }
-            ],
-            "step": 33,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "100000",
-            "args": [],
-            "step": 34
-          },
-          {
-            "type": "keyword",
-            "name": "EXCEPT",
-            "args": [],
-            "step": 35,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Get From Dictionary",
-            "icon": "table",
-            "args": [
-              {
-                "type": "argument",
-                "name": "dictionary",
-                "valueType": "unknown",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "Dictionary to get value from",
-                "hide": false,
-                "value": "${current_row}"
-              },
-              {
-                "type": "argument",
-                "name": "key",
-                "valueType": "unknown",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "Key for value",
-                "hide": false,
-                "value": "AG"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "total_policy_premium",
-            "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
-            "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
-            "tags": [],
-            "hide": false,
-            "uid": "5df73075f41a5956dead496984033faf",
-            "step": 36
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_tbTotalPolicyPremium'])[1]"
-              }
-            ],
-            "step": 37,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "100000",
-            "args": [],
             "step": 38
           },
           {
@@ -9895,11 +9901,11 @@
                 "required": true,
                 "doc": "Key for value",
                 "hide": false,
-                "value": "AH"
+                "value": "AG"
               }
             ],
             "returns": "unknown",
-            "defaultReturns": "exposure_premium",
+            "defaultReturns": "total_policy_premium",
             "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
             "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
             "tags": [],
@@ -9914,7 +9920,7 @@
               {
                 "type": "argument",
                 "name": "(//input[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_listViewSummaryOfPricingExposure_ctrl0_TextBoxExposurePremium'])[1]"
+                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_tbTotalPolicyPremium'])[1]"
               }
             ],
             "step": 42,
@@ -9922,7 +9928,7 @@
           },
           {
             "type": "keyword",
-            "name": "${exposure_premium}",
+            "name": "100000",
             "args": [],
             "step": 43
           },
@@ -9935,6 +9941,143 @@
           },
           {
             "type": "keyword",
+            "name": "Get From Dictionary",
+            "icon": "table",
+            "args": [
+              {
+                "type": "argument",
+                "name": "dictionary",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Dictionary to get value from",
+                "hide": false,
+                "value": "${current_row}"
+              },
+              {
+                "type": "argument",
+                "name": "key",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Key for value",
+                "hide": false,
+                "value": "AG"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "total_policy_premium",
+            "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
+            "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
+            "tags": [],
+            "hide": false,
+            "uid": "5df73075f41a5956dead496984033faf",
+            "step": 45
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@id",
+                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_tbTotalPolicyPremium'])[1]"
+              }
+            ],
+            "step": 46,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "100000",
+            "args": [],
+            "step": 47
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "10s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 48
+          },
+          {
+            "type": "keyword",
+            "name": "TRY",
+            "args": [],
+            "step": 49,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Get From Dictionary",
+            "icon": "table",
+            "args": [
+              {
+                "type": "argument",
+                "name": "dictionary",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Dictionary to get value from",
+                "hide": false,
+                "value": "${current_row}"
+              },
+              {
+                "type": "argument",
+                "name": "key",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Key for value",
+                "hide": false,
+                "value": "AH"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "exposure_premium",
+            "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
+            "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
+            "tags": [],
+            "hide": false,
+            "uid": "5df73075f41a5956dead496984033faf",
+            "step": 50
+          },
+          {
+            "type": "keyword",
             "name": "Safe Input Text",
             "args": [
               {
@@ -9943,14 +10086,40 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_listViewSummaryOfPricingExposure_ctrl0_TextBoxExposurePremium'])[1]"
               }
             ],
-            "step": 45,
+            "step": 51,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${exposure_premium}",
             "args": [],
-            "step": 46
+            "step": 52
+          },
+          {
+            "type": "keyword",
+            "name": "EXCEPT",
+            "args": [],
+            "step": 53,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@id",
+                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_Option1SummaryOfPricing_listViewSummaryOfPricingExposure_ctrl0_TextBoxExposurePremium'])[1]"
+              }
+            ],
+            "step": 54,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "${exposure_premium}",
+            "args": [],
+            "step": 55
           },
           {
             "type": "keyword",
@@ -9987,7 +10156,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 47
+            "step": 56
           },
           {
             "type": "keyword",
@@ -10051,13 +10220,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 48
+            "step": 57
           },
           {
             "type": "keyword",
             "name": "${rate_per}",
             "args": [],
-            "step": 49
+            "step": 58
           },
           {
             "type": "keyword",
@@ -10094,7 +10263,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 50
+            "step": 59
           },
           {
             "type": "keyword",
@@ -10131,7 +10300,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 51
+            "step": 60
           },
           {
             "type": "keyword",
@@ -10195,13 +10364,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 52
+            "step": 61
           },
           {
             "type": "keyword",
             "name": "${exposure_base}",
             "args": [],
-            "step": 53
+            "step": 62
           },
           {
             "type": "keyword",
@@ -10238,7 +10407,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 54
+            "step": 63
           },
           {
             "type": "keyword",
@@ -10275,7 +10444,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 55
+            "step": 64
           },
           {
             "type": "keyword",
@@ -10339,13 +10508,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 56
+            "step": 65
           },
           {
             "type": "keyword",
             "name": "${exposure_premium}",
             "args": [],
-            "step": 57
+            "step": 66
           },
           {
             "type": "keyword",
@@ -10382,7 +10551,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 58
+            "step": 67
           },
           {
             "type": "keyword",
@@ -10419,7 +10588,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 59
+            "step": 68
           },
           {
             "type": "keyword",
@@ -10483,13 +10652,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 60
+            "step": 69
           },
           {
             "type": "keyword",
             "name": "${premium_percentage}",
             "args": [],
-            "step": 61
+            "step": 70
           },
           {
             "type": "keyword",
@@ -10526,7 +10695,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 62
+            "step": 71
           },
           {
             "type": "keyword",
@@ -10563,7 +10732,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 63
+            "step": 72
           },
           {
             "type": "keyword",
@@ -10627,13 +10796,13 @@
             "tags": [],
             "hide": true,
             "uid": "4c823c9a7e94facae4457788e778b822",
-            "step": 64
+            "step": 73
           },
           {
             "type": "keyword",
             "name": "${tria_premium}",
             "args": [],
-            "step": 65
+            "step": 74
           },
           {
             "type": "keyword",
@@ -10644,7 +10813,7 @@
                 "value": "(//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]"
               }
             ],
-            "step": 66,
+            "step": 75,
             "defaultReturns": null
           },
           {
@@ -10682,7 +10851,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 67
+            "step": 76
           },
           {
             "type": "keyword",
@@ -10730,7 +10899,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 68
+            "step": 77
           },
           {
             "type": "keyword",
@@ -10741,7 +10910,7 @@
                 "value": "(//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]"
               }
             ],
-            "step": 69,
+            "step": 78,
             "defaultReturns": null
           }
         ]

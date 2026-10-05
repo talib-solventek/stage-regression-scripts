@@ -476,19 +476,25 @@ Fill Pricing Details[Renewal]
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Loss Expo History'])[1]    20s
     Sleep    10s
-    Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_CheckBoxSingle'])[1]
+    Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_CheckBoxSingle"]
     Sleep    2s
-    Safe Click Element
-    ...    (//a[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_deleteLossExposure'])[1]
+    Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_deleteLossExposure"]
     Sleep    5s
-    ${variableExist}=    Is Element Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[5]
-    IF    ${variableExist} == 2
-        Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[5]
-    END
+    Safe Click Element    xpath=/html/body/div[13]/div[11]/div/button[1]
     Sleep    10s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
+    Sleep    5s
+    Safe Click Element    xpath=/html/body/div[3]/div[11]/div/button[1]/span
+    Sleep    5s
+    Safe Input Text    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_listViewExposure_ctrl0_TextBoxValuationDate_textDate"]    1/1/2025
+    Sleep    2s
+    Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Man Rating'])[1]    10s
+    ${NAICS_Code}=    Get From Dictionary    ${current_row}    AD
+    Safe Input Text
+    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlManualRatingInfo1_txtNAICSCode'])[1]
+    ...    ${NAICS_Code}
+    Safe Click Element    (//a[normalize-space()='113310 LOGGING'])[1]
     Safe Click Element    (//span[normalize-space()='Correct'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonCalculate'])[1]
