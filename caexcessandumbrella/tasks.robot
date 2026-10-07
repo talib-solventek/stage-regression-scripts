@@ -1294,7 +1294,7 @@ Renewal
 
 Reissue
 
-    Sleep    300s
+    Sleep    100s
 
     Wait Until Element Is Visible    (//a[normalize-space()='Reissue'])[1]    30s
 
@@ -1305,6 +1305,7 @@ Reissue
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='OK'])[1]
 
     Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[7]
+    Sleep    200s
 
     Verify Status
 

@@ -11471,7 +11471,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "300s"
+                "value": "100s"
               },
               {
                 "type": "argument",
@@ -11617,6 +11617,43 @@
           },
           {
             "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "200s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 7
+          },
+          {
+            "type": "keyword",
             "name": "Verify Status",
             "args": [
               {
@@ -11625,14 +11662,14 @@
                 "value": "//span[contains(@id, 'labelStatus')]"
               }
             ],
-            "step": 7,
+            "step": 8,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "Quoted (Pending, In Revision, RI)",
             "args": [],
-            "step": 8
+            "step": 9
           },
           {
             "type": "keyword",
@@ -11669,7 +11706,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 9
+            "step": 10
           },
           {
             "type": "keyword",
@@ -11717,7 +11754,7 @@
             "tags": [],
             "hide": false,
             "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
-            "step": 10
+            "step": 11
           },
           {
             "type": "keyword",
@@ -11728,35 +11765,35 @@
                 "value": "(//a[normalize-space()='Edit Quote'])[1]"
               }
             ],
-            "step": 11,
+            "step": 12,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "Fill Pricing Details[Reissue]",
             "args": [],
-            "step": 12,
+            "step": 13,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "Pre Bind Endorsement[Reissue]",
             "args": [],
-            "step": 13,
+            "step": 14,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "Quote",
             "args": [],
-            "step": 14,
+            "step": 15,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "Ready To Bind",
             "args": [],
-            "step": 15,
+            "step": 16,
             "defaultReturns": null
           },
           {
@@ -11768,7 +11805,7 @@
                 "value": "False"
               }
             ],
-            "step": 16,
+            "step": 17,
             "defaultReturns": null
           }
         ]

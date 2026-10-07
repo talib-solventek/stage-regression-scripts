@@ -19890,7 +19890,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "3s"
+                "value": "90s"
               },
               {
                 "type": "argument",

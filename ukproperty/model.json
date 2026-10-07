@@ -829,7 +829,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "900s"
+                "value": "200s"
               },
               {
                 "type": "argument",
@@ -5084,7 +5084,7 @@
               {
                 "type": "argument",
                 "name": "xpath",
-                "value": "//input[contains(@id, 'ButtonBrokerFirmSearchContains')]"
+                "value": "//input[contains(@id, 'ButtonBrokerFirmSearchStartsWith')]"
               }
             ],
             "step": 31,
@@ -9164,6 +9164,10 @@
               {
                 "type": "argument",
                 "value": "${download_policy}"
+              },
+              {
+                "type": "argument",
+                "value": "${is_copy_risk}=False"
               }
             ],
             "step": 1,
@@ -9776,6 +9780,54 @@
           },
           {
             "type": "keyword",
+            "name": "Run Keyword If",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "condition",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "'${is_copy_risk}' == 'True'"
+              },
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Sleep"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": "300s"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": null,
+            "doc": "Runs the given keyword with the given arguments, if ``condition`` is true.\n\n*NOTE:* Robot Framework 4.0 introduced built-in IF/ELSE support and using\nthat is generally recommended over using this keyword.\n\nThe given ``condition`` is evaluated in Python as explained in the\n`Evaluating expressions` section, and ``name`` and ``*args`` have same\nsemantics as with `Run Keyword`.\n\nExample, a simple if/else construct:\n| `Run Keyword If` | '${status}' == 'OK' | Some Action    | arg |\n| `Run Keyword If` | '${status}' != 'OK' | Another Action |\n\nIn this example, only either ``Some Action`` or ``Another Action`` is\nexecuted, based on the value of the ``${status}`` variable.\n\nVariables used like ``${variable}``, as in the examples above, are\nreplaced in the expression before evaluation. Variables are also\navailable in the evaluation namespace and can be accessed using special\n``$variable`` syntax as explained in the `Evaluating expressions` section.\n\nExample:\n| `Run Keyword If` | $result is None or $result == 'FAIL' | Keyword |\n\nThis keyword supports also optional ELSE and ELSE IF branches. Both\nof them are defined in ``*args`` and must use exactly format ``ELSE``\nor ``ELSE IF``, respectively. ELSE branches must contain first the\nname of the keyword to execute and then its possible arguments. ELSE\nIF branches must first contain a condition, like the first argument\nto this keyword, and then the keyword to execute and its possible\narguments. It is possible to have ELSE branch after ELSE IF and to\nhave multiple ELSE IF branches. Nested `Run Keyword If` usage is not\nsupported when using ELSE and/or ELSE IF branches.\n\nGiven previous example, if/else construct can also be created like this:\n| `Run Keyword If` | '${status}' == 'PASS' | Some Action | arg | ELSE | Another Action |\n\nThe return value of this keyword is the return value of the actually\nexecuted keyword or Python ``None`` if no keyword was executed (i.e.\nif ``condition`` was false). Hence, it is recommended to use ELSE\nand/or ELSE IF branches to conditionally assign return values from\nkeyword to variables (see `Set Variable If` you need to set fixed\nvalues conditionally). This is illustrated by the example below:\n\n| ${var1} =   | `Run Keyword If` | ${rc} == 0     | Some keyword returning a value |\n| ...         | ELSE IF          | 0 < ${rc} < 42 | Another keyword |\n| ...         | ELSE IF          | ${rc} < 0      | Another keyword with args | ${rc} | arg2 |\n| ...         | ELSE             | Final keyword to handle abnormal cases | ${rc} |\n| ${var2} =   | `Run Keyword If` | ${condition}  | Some keyword |\n\nIn this example, ${var2} will be set to ``None`` if ${condition} is\nfalse.\n\nNotice that ``ELSE`` and ``ELSE IF`` control words must be used\nexplicitly and thus cannot come from variables. If you need to use\nliteral ``ELSE`` and ``ELSE IF`` strings as arguments, you can escape\nthem with a backslash like ``\\ELSE`` and ``\\ELSE IF``.",
+            "shortdoc": "Runs the given keyword with the given arguments, if ``condition`` is true.",
+            "tags": [],
+            "hide": true,
+            "uid": "7b625b6e7e82d34f57976915baa6029e",
+            "step": 32
+          },
+          {
+            "type": "keyword",
             "name": "Safe Click Element",
             "args": [
               {
@@ -9784,7 +9836,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonBook'])[1]"
               }
             ],
-            "step": 32,
+            "step": 33,
             "defaultReturns": null
           }
         ]
@@ -11300,6 +11352,10 @@
               {
                 "type": "argument",
                 "value": "False"
+              },
+              {
+                "type": "argument",
+                "value": "True"
               }
             ],
             "step": 11,

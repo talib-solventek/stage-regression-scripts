@@ -58,7 +58,7 @@ Flow to execute
     ...    xpath=//span[contains(@id, 'labelStatus')]
     ...    Bound
     Copy Risk
-    Sleep    200s
+    Sleep    900s
     Reissue
     Post Bind Endorsement
     Renewal
@@ -565,7 +565,7 @@ Ready To Bind
     Sleep    90s
 
 Book
-    [Arguments]    ${download_policy}    ${is_copy_risk}=False
+    [Arguments]    ${download_policy}
     Wait Until Element Is Visible    (//a[normalize-space()='Book and Issue'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Book and Issue'])[1]
     Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
@@ -604,7 +604,6 @@ Book
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ConCertControl_txtEEAExposure'])[1]
     ...    ${eea_exposure}
-    Run Keyword If    '${is_copy_risk}' == 'True'    Sleep    300s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonBook'])[1]
 
@@ -708,7 +707,7 @@ Copy Risk
     Pre Bind Endorsement
     Quote[Copy Risk]
     Ready To Bind
-    Book    False    True
+    Book    False
 
 Continue on Next Risk
     Wait Until Element Is Visible    xpath=//a[normalize-space()='Create New Risk >']    20s

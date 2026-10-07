@@ -1021,7 +1021,7 @@ Post Bind Endorsement
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementEffectiveDate_datepickerEffectiveDate_textDate'])[1]
     ...    ${effective_date_post_bind}
-    Sleep    3s
+    Sleep    90s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_EndorsementStandardButtons_btnSubmit'])[1]
     Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
