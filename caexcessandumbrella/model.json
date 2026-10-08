@@ -667,6 +667,20 @@
                 "args": [],
                 "step": 5,
                 "defaultReturns": null
+              },
+              {
+                "type": "keyword",
+                "name": "Break",
+                "icon": "close",
+                "args": [],
+                "returns": null,
+                "defaultReturns": null,
+                "doc": "Allows exiting from a running loop structure, and continuing execution.\n",
+                "shortdoc": "Stop current FOR or WHILE loop",
+                "tags": [],
+                "hide": false,
+                "uid": "1cbfb724ceee46cd879df7c7cfbe7dca",
+                "step": 6
               }
             ]
           }
@@ -842,20 +856,6 @@
             "args": [],
             "step": 20,
             "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Close Browser",
-            "icon": "remove",
-            "args": [],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Closes the current browser.",
-            "shortdoc": "Closes the current browser.",
-            "tags": [],
-            "hide": false,
-            "uid": "3fbb5fcb51e7c5388853bd4e7fd27f05",
-            "step": 21
           }
         ]
       }
@@ -11114,66 +11114,33 @@
           },
           {
             "type": "keyword",
-            "name": "TRY",
-            "args": [],
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@id",
+                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
+              }
+            ],
             "step": 18,
             "defaultReturns": null
           },
           {
             "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
-              }
-            ],
-            "step": 19,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
             "name": "${expiry_date}",
             "args": [],
-            "step": 20
+            "step": 19
           },
           {
             "type": "keyword",
-            "name": "EXCEPT",
-            "args": [],
-            "step": 21,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
-              }
-            ],
-            "step": 22,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "${expiry_date}",
-            "args": [],
-            "step": 23
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
+            "name": "Safe Click Element If Visible",
             "args": [
               {
                 "type": "argument",
                 "value": "(//span[normalize-space()='No Premium'])[1]"
               }
             ],
-            "step": 24,
+            "step": 20,
             "defaultReturns": null
           },
           {
@@ -11182,49 +11149,60 @@
             "args": [
               {
                 "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit'])[1]"
+                "name": "//*[@id",
+                "value": "\"ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit\"]"
               }
             ],
-            "step": 25,
+            "step": 21,
             "defaultReturns": null
           },
           {
             "type": "keyword",
-            "name": "Sleep",
+            "name": "Wait Until Element Is Visible",
             "icon": "time",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
+                "name": "locator",
+                "valueType": "locator-browser",
                 "defaultValue": null,
                 "kind": "positional-or-named",
                 "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "doc": "Locator for element",
                 "hide": false,
-                "value": "3s"
+                "value": "//*[@id=\"ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_BtnBack\"]"
               },
               {
                 "type": "argument",
-                "name": "reason",
+                "name": "timeout",
                 "valueType": "string",
                 "defaultValue": "None",
                 "kind": "positional-or-named",
                 "required": false,
-                "doc": "Optional reason for sleeping",
+                "doc": "Time to wait, e.g. 5 seconds or 1 min",
+                "hide": false,
+                "value": "40s"
+              },
+              {
+                "type": "argument",
+                "name": "error",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Custom error message",
                 "hide": false,
                 "value": ""
               }
             ],
             "returns": null,
             "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
+            "doc": "Waits until the element ``locator`` is visible.\n\nFails if ``timeout`` expires before the element is visible. See\nthe `Timeouts` section for more information about using timeouts and\ntheir default value and the `Locating elements` section for details\nabout the locator syntax.\n\n``error`` can be used to override the default error message.",
+            "shortdoc": "Waits until the element ``locator`` is visible.",
             "tags": [],
             "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 26
+            "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
+            "step": 22
           },
           {
             "type": "keyword",
@@ -11232,10 +11210,10 @@
             "args": [
               {
                 "type": "argument",
-                "value": "xpath=//div[@class='RiskHeaderColumnOne']//div[1]"
+                "value": "//*[@id=\"ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_BtnBack\"]"
               }
             ],
-            "step": 27,
+            "step": 23,
             "defaultReturns": null
           }
         ]

@@ -403,6 +403,12 @@ Fill Insured Details[Renewal]
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
+    ${yes_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=/html/body/div[4]/div[3]/div/button[1]/span    5s
+    IF    ${yes_visible}
+        Safe Click Element    xpath=/html/body/div[4]/div[3]/div/button[1]/span
+    END
+    Safe Click Element
+    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
 Fill Pricing Details[Renewal]
     Wait Until Element Is Visible    (//legend[normalize-space()='General Information'])[1]    20s

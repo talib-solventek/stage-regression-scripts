@@ -3,9 +3,9 @@ tasks:
     robotTaskName: CA Excess and Umbrella
 condaConfigFile: conda.yaml
 ignoreFiles:
-  - .gitignore
+- .gitignore
 artifactsDir: output
 PATH:
-  - .
+- .
 PYTHONPATH:
-  - .
+- .

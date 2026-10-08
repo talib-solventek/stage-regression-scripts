@@ -6338,6 +6338,79 @@
             ],
             "step": 9,
             "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Run Keyword And Return Status",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Wait Until Element Is Visible"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": "xpath=/html/body/div[4]/div[3]/div/button[1]/span"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "yes_visible",
+            "doc": "Runs the given keyword with given arguments and returns the status as a Boolean value.\n\nThis keyword returns Boolean ``True`` if the keyword that is executed\nsucceeds and ``False`` if it fails. This is useful, for example, in\ncombination with `Run Keyword If`. If you are interested in the error\nmessage or return value, use `Run Keyword And Ignore Error` instead.\n\nThe keyword name and arguments work as in `Run Keyword`.\n\nExample:\n| ${passed} = | `Run Keyword And Return Status` | Keyword | args |\n| `Run Keyword If` | ${passed} | Another keyword |\n\nErrors caused by invalid syntax, timeouts, or fatal exceptions are not\ncaught by this keyword. Otherwise this keyword itself never fails.",
+            "shortdoc": "Runs the given keyword with given arguments and returns the status as a Boolean value.",
+            "tags": [],
+            "hide": true,
+            "uid": "887764c8c884141ff1e5992ac862fd83",
+            "step": 10
+          },
+          {
+            "type": "keyword",
+            "name": "IF",
+            "uid": "39c8942e1038872a822c0dc75eedbde3",
+            "step": 11,
+            "containerValue": {
+              "condition": "${yes_visible}"
+            },
+            "body": [
+              {
+                "type": "keyword",
+                "name": "Safe Click Element",
+                "args": [
+                  {
+                    "type": "argument",
+                    "value": "xpath=/html/body/div[4]/div[3]/div/button[1]/span"
+                  }
+                ],
+                "step": 1,
+                "defaultReturns": null
+              }
+            ]
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@id",
+                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]"
+              }
+            ],
+            "step": 12,
+            "defaultReturns": null
           }
         ]
       }

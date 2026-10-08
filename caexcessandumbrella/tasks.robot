@@ -61,6 +61,8 @@ CA Excess and Umbrella
         Set Global Variable    ${current_row}
 
         Flow to execute
+        
+        BREAK
 
     END
 
@@ -116,8 +118,6 @@ Flow to execute
     Renewal
 
     View Risk
-
-    Close Browser
 
 
 Login to App
@@ -1234,33 +1234,21 @@ Post Bind Endorsement
 
     ${expiry_date}=    Convert Date    ${next_week_date}    result_format=%m/%d/%Y
 
-    TRY
+    Safe Input Text
 
-        Safe Input Text
+    ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
 
-        ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
+    ...    ${expiry_date}
 
-        ...    ${expiry_date}
+    Safe Click Element If Visible    (//span[normalize-space()='No Premium'])[1]
 
-    EXCEPT
+    Safe Click Element
 
-        Safe Input Text
+    ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit"]
 
-        ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_BtnBack"]    40s
 
-        ...    ${expiry_date}
-
-        Safe Click Element    (//span[normalize-space()='No Premium'])[1]
-
-        Safe Click Element
-
-        ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit'])[1]
-
-    END
-
-    Sleep    3s
-
-    Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
+    Safe Click Element    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_BtnBack"]
 
 
 Renewal
