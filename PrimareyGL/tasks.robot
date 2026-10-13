@@ -163,6 +163,7 @@ Fill Insured Details[First Run]
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_TextBoxIndustryCode'])[1]
     ...    ${Indcode}
+    Extract Risk Number    First Run
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
     ${brokfirm}=    Get From Dictionary    ${current_row}    M
@@ -401,6 +402,7 @@ Fill Insured Details[Renewal]
     ...    20s
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Submission Details'])[1]    20s
+    Extract Risk Number    Renewal
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Broker Firm'])[1]    20s
     Sleep    2s
@@ -441,6 +443,7 @@ Fill Insured Details[Copy Risk]
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerEffectiveDate_textDate'])[1]
     ...    ${effdate}
+    Extract Risk Number    Copy Risk
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//a[normalize-space()='Broker Firm'])[1]    20s
     Sleep    2s
@@ -852,6 +855,29 @@ Pre Bind Endorsement[Reissue]
     Sleep    5s
 
 Pre Bind Endorsement[Renewal]
+    Sleep    5s
+    ${variableExist}=    Is Element Visible    xpath=/html/body/div[2]/div[3]/div/button
+    IF    ${variableExist} == True
+        Safe Click Element    xpath=/html/body/div[2]/div[3]/div/button
+        Sleep    2s
+    END
+    Safe Click Element    xpath=//*[@id="EndorsementTable"]/thead/tr/th[3]
+    Sleep    2s
+    Safe Click Element    xpath=//*[@id="EndorsementTable"]/thead/tr/th[3]
+    Sleep    2s
+    ${yes_checkboxes}=    Get WebElements    xpath=//tr[td[normalize-space()='Yes']]//input[@type='checkbox']
+    ${count}=    Get Length    ${yes_checkboxes}
+    IF    ${count} > 0
+        FOR    ${checkbox}    IN    @{yes_checkboxes}
+            Click Element    ${checkbox}
+        END
+        Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterEndorsement_ctl00_deleteEndorsement"]/span
+        Sleep    5s
+        ${variableExist}=    Is Element Visible    xpath=/html/body/div[3]/div[3]/div/button[1]
+        IF    ${variableExist} == True
+            Safe Click Element    xpath=/html/body/div[3]/div[3]/div/button[1]
+        END
+    END
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    5s
     Wait Until Keyword Succeeds    3x    5s    Wait Until Element Is Visible    (//a[normalize-space()='Subjectivities'])[1]    2s
@@ -874,6 +900,9 @@ Pre Bind Endorsement[Renewal]
 
 Quote[Reissue]
     Wait Until Element Is Visible    (//a[normalize-space()='Quote Final'])[1]    20s
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[3]
     Safe Click Element    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_BtnGenQuote'])[1]
 
 Ready To Bind
@@ -1021,7 +1050,7 @@ Post Bind Endorsement
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementEffectiveDate_datepickerEffectiveDate_textDate'])[1]
     ...    ${effective_date_post_bind}
-    Sleep    90s
+    Sleep    200s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_EndorsementStandardButtons_btnSubmit'])[1]
     Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
@@ -1050,7 +1079,7 @@ Renewal
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_datepickerPolicyExpiryDate_textDate'])[1]
     ...    ${renewal_policy_expiry_date}
-    Sleep    3s
+    Sleep    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_EndorsementStandardButtons_btnSubmit'])[1]
     Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
@@ -1150,4 +1179,13 @@ Check All Subjectivities
             BREAK
         END
     END
+
+Extract Risk Number
+    [Arguments]    ${flow_type}=First Run
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    ${risk_number}=    Strip String    ${risk_number}
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a').write('${flow_type} - Risk Number: ${risk_number}\\n')
+    Log    Extracted ${flow_type} Risk Number: ${risk_number}
+
 

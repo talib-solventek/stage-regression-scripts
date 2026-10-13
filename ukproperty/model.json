@@ -626,6 +626,68 @@
               },
               {
                 "type": "keyword",
+                "name": "Get From Dictionary",
+                "icon": "table",
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "dictionary",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "Dictionary to get value from",
+                    "hide": false,
+                    "value": "${current_row}"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "key",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "Key for value",
+                    "hide": false,
+                    "value": "A"
+                  }
+                ],
+                "returns": "unknown",
+                "defaultReturns": "url",
+                "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
+                "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
+                "tags": [],
+                "hide": false,
+                "uid": "5df73075f41a5956dead496984033faf",
+                "step": 4
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 5,
+                "containerValue": {
+                  "condition": "'${url}' == 'None' or '${url}' == '' or '${url}' == '${EMPTY}'"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "Break",
+                    "icon": "close",
+                    "args": [],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Allows exiting from a running loop structure, and continuing execution.\n",
+                    "shortdoc": "Stop current FOR or WHILE loop",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "1cbfb724ceee46cd879df7c7cfbe7dca",
+                    "step": 1
+                  }
+                ]
+              },
+              {
+                "type": "keyword",
                 "name": "Set Global Variable",
                 "icon": "variable-x",
                 "args": [
@@ -659,13 +721,13 @@
                 "tags": [],
                 "hide": false,
                 "uid": "2e06795fe5ae315e95ff5ba5506ecdf1",
-                "step": 4
+                "step": 6
               },
               {
                 "type": "keyword",
                 "name": "Flow to execute",
                 "args": [],
-                "step": 5,
+                "step": 7,
                 "defaultReturns": null
               }
             ]
@@ -879,20 +941,6 @@
             "args": [],
             "step": 21,
             "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Close Browser",
-            "icon": "remove",
-            "args": [],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Closes the current browser.",
-            "shortdoc": "Closes the current browser.",
-            "tags": [],
-            "hide": false,
-            "uid": "3fbb5fcb51e7c5388853bd4e7fd27f05",
-            "step": 22
           }
         ]
       }
@@ -6315,16 +6363,77 @@
           },
           {
             "type": "keyword",
-            "name": "Safe Click Element",
+            "name": "Wait Until Element Is Visible",
+            "icon": "time",
             "args": [
               {
                 "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]"
+                "name": "locator",
+                "valueType": "locator-browser",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Locator for element",
+                "hide": false,
+                "value": "(//legend[normalize-space()='Broker Info'])[1]"
+              },
+              {
+                "type": "argument",
+                "name": "timeout",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Time to wait, e.g. 5 seconds or 1 min",
+                "hide": false,
+                "value": "20s"
+              },
+              {
+                "type": "argument",
+                "name": "error",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Custom error message",
+                "hide": false,
+                "value": ""
               }
             ],
-            "step": 8,
-            "defaultReturns": null
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Waits until the element ``locator`` is visible.\n\nFails if ``timeout`` expires before the element is visible. See\nthe `Timeouts` section for more information about using timeouts and\ntheir default value and the `Locating elements` section for details\nabout the locator syntax.\n\n``error`` can be used to override the default error message.",
+            "shortdoc": "Waits until the element ``locator`` is visible.",
+            "tags": [],
+            "hide": false,
+            "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
+            "step": 8
+          },
+          {
+            "type": "keyword",
+            "name": "Execute Javascript",
+            "icon": "code",
+            "args": [
+              {
+                "type": "argument",
+                "name": "code",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": "JavaScript code to execute",
+                "hide": false,
+                "value": "window.scrollTo(0, document.body.scrollHeight)"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "return_value",
+            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
+            "shortdoc": "Executes the given JavaScript code with possible arguments.",
+            "tags": [],
+            "hide": false,
+            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
+            "step": 9
           },
           {
             "type": "keyword",
@@ -6336,7 +6445,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]"
               }
             ],
-            "step": 9,
+            "step": 10,
             "defaultReturns": null
           },
           {
@@ -6374,13 +6483,13 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 10
+            "step": 11
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 11,
+            "step": 12,
             "containerValue": {
               "condition": "${yes_visible}"
             },
@@ -6396,8 +6505,123 @@
                 ],
                 "step": 1,
                 "defaultReturns": null
+              },
+              {
+                "type": "keyword",
+                "name": "ELSE",
+                "args": [],
+                "step": 2,
+                "defaultReturns": null
+              },
+              {
+                "type": "keyword",
+                "name": "Run Keyword And Return Status",
+                "icon": null,
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "name",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": null,
+                    "hide": false,
+                    "value": "Wait Until Element Is Visible"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "args",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "var-positional",
+                    "required": false,
+                    "doc": null,
+                    "hide": false,
+                    "value": "xpath=//div[contains(@class,'ui-dialog')]//button[contains(.,'Yes')]"
+                  }
+                ],
+                "returns": "unknown",
+                "defaultReturns": "yes_dialog_visible",
+                "doc": "Runs the given keyword with given arguments and returns the status as a Boolean value.\n\nThis keyword returns Boolean ``True`` if the keyword that is executed\nsucceeds and ``False`` if it fails. This is useful, for example, in\ncombination with `Run Keyword If`. If you are interested in the error\nmessage or return value, use `Run Keyword And Ignore Error` instead.\n\nThe keyword name and arguments work as in `Run Keyword`.\n\nExample:\n| ${passed} = | `Run Keyword And Return Status` | Keyword | args |\n| `Run Keyword If` | ${passed} | Another keyword |\n\nErrors caused by invalid syntax, timeouts, or fatal exceptions are not\ncaught by this keyword. Otherwise this keyword itself never fails.",
+                "shortdoc": "Runs the given keyword with given arguments and returns the status as a Boolean value.",
+                "tags": [],
+                "hide": true,
+                "uid": "887764c8c884141ff1e5992ac862fd83",
+                "step": 3
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 4,
+                "containerValue": {
+                  "condition": "${yes_dialog_visible}"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "Safe Click Element",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "value": "xpath=//div[contains(@class,'ui-dialog')]//button[contains(.,'Yes')]"
+                      }
+                    ],
+                    "step": 1,
+                    "defaultReturns": null
+                  }
+                ]
               }
             ]
+          },
+          {
+            "type": "keyword",
+            "name": "Wait Until Element Is Visible",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "locator",
+                "valueType": "locator-browser",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Locator for element",
+                "hide": false,
+                "value": "(//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]"
+              },
+              {
+                "type": "argument",
+                "name": "timeout",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Time to wait, e.g. 5 seconds or 1 min",
+                "hide": false,
+                "value": "20s"
+              },
+              {
+                "type": "argument",
+                "name": "error",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Custom error message",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Waits until the element ``locator`` is visible.\n\nFails if ``timeout`` expires before the element is visible. See\nthe `Timeouts` section for more information about using timeouts and\ntheir default value and the `Locating elements` section for details\nabout the locator syntax.\n\n``error`` can be used to override the default error message.",
+            "shortdoc": "Waits until the element ``locator`` is visible.",
+            "tags": [],
+            "hide": false,
+            "uid": "1c88df3ba46684355cfbf655ebfcf1c0",
+            "step": 13
           },
           {
             "type": "keyword",
@@ -6409,8 +6633,68 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]"
               }
             ],
-            "step": 12,
+            "step": 14,
             "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Run Keyword And Return Status",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Wait Until Element Is Visible"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": "xpath=/html/body/div[4]/div[3]/div/button[1]/span"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "yes_visible_contacts",
+            "doc": "Runs the given keyword with given arguments and returns the status as a Boolean value.\n\nThis keyword returns Boolean ``True`` if the keyword that is executed\nsucceeds and ``False`` if it fails. This is useful, for example, in\ncombination with `Run Keyword If`. If you are interested in the error\nmessage or return value, use `Run Keyword And Ignore Error` instead.\n\nThe keyword name and arguments work as in `Run Keyword`.\n\nExample:\n| ${passed} = | `Run Keyword And Return Status` | Keyword | args |\n| `Run Keyword If` | ${passed} | Another keyword |\n\nErrors caused by invalid syntax, timeouts, or fatal exceptions are not\ncaught by this keyword. Otherwise this keyword itself never fails.",
+            "shortdoc": "Runs the given keyword with given arguments and returns the status as a Boolean value.",
+            "tags": [],
+            "hide": true,
+            "uid": "887764c8c884141ff1e5992ac862fd83",
+            "step": 15
+          },
+          {
+            "type": "keyword",
+            "name": "IF",
+            "uid": "39c8942e1038872a822c0dc75eedbde3",
+            "step": 16,
+            "containerValue": {
+              "condition": "${yes_visible_contacts}"
+            },
+            "body": [
+              {
+                "type": "keyword",
+                "name": "Safe Click Element",
+                "args": [
+                  {
+                    "type": "argument",
+                    "value": "xpath=/html/body/div[4]/div[3]/div/button[1]/span"
+                  }
+                ],
+                "step": 1,
+                "defaultReturns": null
+              }
+            ]
           }
         ]
       }
@@ -9241,6 +9525,10 @@
               {
                 "type": "argument",
                 "value": "${is_copy_risk}=False"
+              },
+              {
+                "type": "argument",
+                "value": "${is_renewal}=False"
               }
             ],
             "step": 1,
@@ -9901,6 +10189,54 @@
           },
           {
             "type": "keyword",
+            "name": "Run Keyword If",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "condition",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "'${is_renewal}' == 'True' or '${is_renewal}' == '${TRUE}'"
+              },
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Sleep"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": "100s"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": null,
+            "doc": "Runs the given keyword with the given arguments, if ``condition`` is true.\n\n*NOTE:* Robot Framework 4.0 introduced built-in IF/ELSE support and using\nthat is generally recommended over using this keyword.\n\nThe given ``condition`` is evaluated in Python as explained in the\n`Evaluating expressions` section, and ``name`` and ``*args`` have same\nsemantics as with `Run Keyword`.\n\nExample, a simple if/else construct:\n| `Run Keyword If` | '${status}' == 'OK' | Some Action    | arg |\n| `Run Keyword If` | '${status}' != 'OK' | Another Action |\n\nIn this example, only either ``Some Action`` or ``Another Action`` is\nexecuted, based on the value of the ``${status}`` variable.\n\nVariables used like ``${variable}``, as in the examples above, are\nreplaced in the expression before evaluation. Variables are also\navailable in the evaluation namespace and can be accessed using special\n``$variable`` syntax as explained in the `Evaluating expressions` section.\n\nExample:\n| `Run Keyword If` | $result is None or $result == 'FAIL' | Keyword |\n\nThis keyword supports also optional ELSE and ELSE IF branches. Both\nof them are defined in ``*args`` and must use exactly format ``ELSE``\nor ``ELSE IF``, respectively. ELSE branches must contain first the\nname of the keyword to execute and then its possible arguments. ELSE\nIF branches must first contain a condition, like the first argument\nto this keyword, and then the keyword to execute and its possible\narguments. It is possible to have ELSE branch after ELSE IF and to\nhave multiple ELSE IF branches. Nested `Run Keyword If` usage is not\nsupported when using ELSE and/or ELSE IF branches.\n\nGiven previous example, if/else construct can also be created like this:\n| `Run Keyword If` | '${status}' == 'PASS' | Some Action | arg | ELSE | Another Action |\n\nThe return value of this keyword is the return value of the actually\nexecuted keyword or Python ``None`` if no keyword was executed (i.e.\nif ``condition`` was false). Hence, it is recommended to use ELSE\nand/or ELSE IF branches to conditionally assign return values from\nkeyword to variables (see `Set Variable If` you need to set fixed\nvalues conditionally). This is illustrated by the example below:\n\n| ${var1} =   | `Run Keyword If` | ${rc} == 0     | Some keyword returning a value |\n| ...         | ELSE IF          | 0 < ${rc} < 42 | Another keyword |\n| ...         | ELSE IF          | ${rc} < 0      | Another keyword with args | ${rc} | arg2 |\n| ...         | ELSE             | Final keyword to handle abnormal cases | ${rc} |\n| ${var2} =   | `Run Keyword If` | ${condition}  | Some keyword |\n\nIn this example, ${var2} will be set to ``None`` if ${condition} is\nfalse.\n\nNotice that ``ELSE`` and ``ELSE IF`` control words must be used\nexplicitly and thus cannot come from variables. If you need to use\nliteral ``ELSE`` and ``ELSE IF`` strings as arguments, you can escape\nthem with a backslash like ``\\ELSE`` and ``\\ELSE IF``.",
+            "shortdoc": "Runs the given keyword with the given arguments, if ``condition`` is true.",
+            "tags": [],
+            "hide": true,
+            "uid": "7b625b6e7e82d34f57976915baa6029e",
+            "step": 33
+          },
+          {
+            "type": "keyword",
             "name": "Safe Click Element",
             "args": [
               {
@@ -9909,7 +10245,7 @@
                 "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonBook'])[1]"
               }
             ],
-            "step": 33,
+            "step": 34,
             "defaultReturns": null
           }
         ]
@@ -10871,7 +11207,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "600s"
+                "value": "30s"
               },
               {
                 "type": "argument",
@@ -10926,7 +11262,7 @@
                 "required": false,
                 "doc": "Time to wait, e.g. 5 seconds or 1 min",
                 "hide": false,
-                "value": "30s"
+                "value": "60s"
               },
               {
                 "type": "argument",
@@ -11015,6 +11351,14 @@
               {
                 "type": "argument",
                 "value": "False"
+              },
+              {
+                "type": "argument",
+                "value": "False"
+              },
+              {
+                "type": "argument",
+                "value": "True"
               }
             ],
             "step": 9,

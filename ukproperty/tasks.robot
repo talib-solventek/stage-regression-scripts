@@ -31,6 +31,10 @@ UK PROPERTY
         Log    ${counter}
         ${current_row}=    Get From List    ${excel_rows}    ${counter}
         Log    ${current_row}
+        ${url}=    Get From Dictionary    ${current_row}    A
+        IF    '${url}' == 'None' or '${url}' == '' or '${url}' == '${EMPTY}'
+            BREAK
+        END
         Set Global Variable    ${current_row}
         Flow to execute
     END
@@ -63,7 +67,6 @@ Flow to execute
     Post Bind Endorsement
     Renewal
     View Risk
-    Close Browser
 
 Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
@@ -399,16 +402,26 @@ Fill Insured Details[Renewal]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Safe Click Element
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
+    Wait Until Element Is Visible    (//legend[normalize-space()='Broker Info'])[1]    20s
+    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     ${yes_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=/html/body/div[4]/div[3]/div/button[1]/span    5s
     IF    ${yes_visible}
         Safe Click Element    xpath=/html/body/div[4]/div[3]/div/button[1]/span
+    ELSE
+        ${yes_dialog_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class,'ui-dialog')]//button[contains(.,'Yes')]    2s
+        IF    ${yes_dialog_visible}
+            Safe Click Element    xpath=//div[contains(@class,'ui-dialog')]//button[contains(.,'Yes')]
+        END
     END
+    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
+    ${yes_visible_contacts}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=/html/body/div[4]/div[3]/div/button[1]/span    5s
+    IF    ${yes_visible_contacts}
+        Safe Click Element    xpath=/html/body/div[4]/div[3]/div/button[1]/span
+    END
 
 Fill Pricing Details[Renewal]
     Wait Until Element Is Visible    (//legend[normalize-space()='General Information'])[1]    20s
@@ -571,7 +584,7 @@ Ready To Bind
     Sleep    90s
 
 Book
-    [Arguments]    ${download_policy}    ${is_copy_risk}=False
+    [Arguments]    ${download_policy}    ${is_copy_risk}=False    ${is_renewal}=False
     Wait Until Element Is Visible    (//a[normalize-space()='Book and Issue'])[1]    30s
     Safe Click Element    (//a[normalize-space()='Book and Issue'])[1]
     Wait Until Element Is Visible    (//legend[@id='fsMainContentLegend'])[1]    30s
@@ -611,6 +624,7 @@ Book
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ConCertControl_txtEEAExposure'])[1]
     ...    ${eea_exposure}
     Run Keyword If    '${is_copy_risk}' == 'True'    Sleep    300s
+    Run Keyword If    '${is_renewal}' == 'True' or '${is_renewal}' == '${TRUE}'    Sleep    100s
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonBook'])[1]
 
@@ -672,10 +686,10 @@ Post Bind Endorsement
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_EndorsementStandardButtons_btnSubmit'])[1]
     Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
-    Sleep    600s
+    Sleep    30s
 
 Renewal
-    Wait Until Element Is Visible    (//a[normalize-space()='Renew'])[1]    30s
+    Wait Until Element Is Visible    (//a[normalize-space()='Renew'])[1]    60s
     Safe Click Element    (//a[normalize-space()='Renew'])[1]
 
     Verify Status
@@ -685,7 +699,7 @@ Renewal
     Pre Bind Endorsement[Reissue]
     Quote[Reissue]
     Ready To Bind
-    Book    False
+    Book    False    False    True
 
 Reissue
     Wait Until Element Is Visible    (//a[normalize-space()='Reissue'])[1]    30s
