@@ -3,9 +3,9 @@ tasks:
     robotTaskName: UK HIGH EXCESS
 condaConfigFile: conda.yaml
 ignoreFiles:
-- .gitignore
+  - .gitignore
 artifactsDir: output
 PATH:
-- .
+  - .
 PYTHONPATH:
-- .
+  - .
