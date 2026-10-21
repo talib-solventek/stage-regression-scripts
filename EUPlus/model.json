@@ -626,6 +626,68 @@
               },
               {
                 "type": "keyword",
+                "name": "Get From Dictionary",
+                "icon": "table",
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "dictionary",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "Dictionary to get value from",
+                    "hide": false,
+                    "value": "${current_row}"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "key",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "Key for value",
+                    "hide": false,
+                    "value": "A"
+                  }
+                ],
+                "returns": "unknown",
+                "defaultReturns": "url",
+                "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
+                "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
+                "tags": [],
+                "hide": false,
+                "uid": "5df73075f41a5956dead496984033faf",
+                "step": 4
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 5,
+                "containerValue": {
+                  "condition": "not $url"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "Break",
+                    "icon": "close",
+                    "args": [],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Allows exiting from a running loop structure, and continuing execution.\n",
+                    "shortdoc": "Stop current FOR or WHILE loop",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "1cbfb724ceee46cd879df7c7cfbe7dca",
+                    "step": 1
+                  }
+                ]
+              },
+              {
+                "type": "keyword",
                 "name": "Set Global Variable",
                 "icon": "variable-x",
                 "args": [
@@ -659,13 +721,13 @@
                 "tags": [],
                 "hide": false,
                 "uid": "2e06795fe5ae315e95ff5ba5506ecdf1",
-                "step": 4
+                "step": 6
               },
               {
                 "type": "keyword",
                 "name": "Flow to execute",
                 "args": [],
-                "step": 5,
+                "step": 7,
                 "defaultReturns": null
               }
             ]
@@ -860,20 +922,6 @@
             "args": [],
             "step": 20,
             "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Close Browser",
-            "icon": "remove",
-            "args": [],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Closes the current browser.",
-            "shortdoc": "Closes the current browser.",
-            "tags": [],
-            "hide": false,
-            "uid": "3fbb5fcb51e7c5388853bd4e7fd27f05",
-            "step": 21
           }
         ]
       }

@@ -58,6 +58,12 @@ US E&U Plus
 
         Log    ${current_row}
 
+        ${url}=    Get From Dictionary    ${current_row}    A
+
+        IF    not $url
+            BREAK
+        END
+
         Set Global Variable    ${current_row}
 
         Flow to execute
@@ -117,7 +123,7 @@ Flow to execute
 
     View Risk
 
-    Close Browser
+    # Close Browser
 
 
 Login to App
