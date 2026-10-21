@@ -137,13 +137,13 @@ Login to App
 
     Set Selenium Implicit Wait    30s
 
-    Click Element When Visible    xpath=//a[normalize-space()='Create New Risk >']
+    Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
 
-    Click Element When Visible    xpath=//a[normalize-space()='US E&U Plus']
+    Safe Click Element    xpath=//a[normalize-space()='US E&U Plus']
 
     Sleep    10s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    id:ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlClearanceSearch_CreateInsured
 
@@ -155,7 +155,7 @@ Login to App
 
     Clear Element Text    xpath=//input[@type='email']
 
-    Input Text    xpath=//input[@type='email']    ${EMAIL}
+    Safe Input Text    xpath=//input[@type='email']    ${EMAIL}
 
     Sleep    1s
 
@@ -165,7 +165,7 @@ Login to App
 
     Clear Element Text    xpath=//input[@type='password']
 
-    Input Text    xpath=//input[@type='password']    ${NUSERPASSWORD}
+    Safe Input Text    xpath=//input[@type='password']    ${NUSERPASSWORD}
 
     Sleep    1s
 
@@ -195,11 +195,11 @@ Fill Insured Details
 
     IF    ${renewal} != True
 
-        Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
+        Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
 
         Sleep    1s
 
-        Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
+        Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
 
     END
 
@@ -207,7 +207,7 @@ Fill Insured Details
 
         ${iname}=    Get From Dictionary    ${current_row}    D
 
-        Input Text
+        Safe Input Text
 
         ...    //input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_TextBoxFirstNamedInsured1']
 
@@ -215,7 +215,7 @@ Fill Insured Details
 
         ${state}=    Get From Dictionary    ${current_row}    E
 
-        Select From List By Label
+        Safe Select From List By Label
 
         ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_ddUSState'])[1]
 
@@ -223,7 +223,7 @@ Fill Insured Details
 
         ${adl1}=    Get From Dictionary    ${current_row}    F
 
-        Input Text
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSAddressLine1'])[1]
 
@@ -231,7 +231,7 @@ Fill Insured Details
 
         ${city1}=    Get From Dictionary    ${current_row}    G
 
-        Select From List By Label
+        Safe Select From List By Label
 
         ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_ddUSCity'])[1]
 
@@ -239,45 +239,24 @@ Fill Insured Details
 
         ${zip1}=    Get From Dictionary    ${current_row}    H
 
-        Click Element When Visible
-
+        Safe Click Element
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'])[1]
 
-        ${zipelm}=    Get WebElement
-
+        Safe Input Text
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'])[1]
-
-        ${attribute}=    Get Element Attribute
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'])[1]
-
-        ...    value
-
-        Input Text
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'])[1]
-
         ...    ${zip1}
 
         Press Keys
-
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'])[1]
-
         ...    1+2+3+4+5+6+7+8+9
 
-        ${return_value}=    Execute Javascript    arguments[0].value='12345-6789'    ARGUMENTS    ${zipelm}
-
-        ${attribute}=    Get Element Attribute
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'])[1]
-
-        ...    value
+        Execute Javascript    var el = document.getElementById('ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSZipCode'); if(el) { el.value='12345-6789'; el.dispatchEvent(new Event('input', {bubbles: true})); el.dispatchEvent(new Event('change', {bubbles: true})); }
 
         Sleep    1s
 
         ${pobox}=    Get From Dictionary    ${current_row}    I
 
-        Input Text
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_FirstNamedInsured_AddressInsured_textBoxUSPoBox'])[1]
 
@@ -291,13 +270,13 @@ Fill Insured Details
 
     Click Next And Wait For Element    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListCompany'])[1]
 
     ...    LIUI
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListAssistant'])[1]
 
@@ -307,7 +286,7 @@ Fill Insured Details
 
         ${effdate}=    Get From Dictionary    ${current_row}    J
 
-        Input Text
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerEffectiveDate_textDate'])[1]
 
@@ -315,7 +294,7 @@ Fill Insured Details
 
         ${Indcode}=    Get From Dictionary    ${current_row}    K
 
-        Input Text
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_TextBoxIndustryCode'])[1]
 
@@ -327,13 +306,13 @@ Fill Insured Details
 
         ${effdate1}=    Get From Dictionary    ${current_row}    L
 
-        Input Text
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerEffectiveDate_textDate'])[1]
 
         ...    ${effdate1}
 
-        Input Text
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_TextBoxIndustryCode'])[1]
 
@@ -341,165 +320,207 @@ Fill Insured Details
 
     END
 
+    Extract Risk Number    ${firstRun}    ${copyRisk}
+
     Click Next And Wait For Element    (//legend[normalize-space()='Broker Info'])[1]
-
-    IF    ${firstRun} == True
-
-        ${brokfirm}=    Get From Dictionary    ${current_row}    M
-
-        Input Text
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]
-
-        ...    ${brokfirm}
-
-        Click Element When Visible
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchStartsWith'])[1]
-
-        Wait Until Element Is Visible
-
-        ...    xpath=//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"]
-
-        ...    30s
-
-        ${table_elements}=    Get WebElements
-
-        ...    xpath=//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"]
-
-        Log    Found ${table_elements.__len__()} elements in the broker info table
-
-        Click Element    ${table_elements}[2]
-
-        Sleep    5s
-
-        ${value1}=    Is Element Visible    (//span[normalize-space()='Yes'])[1]
-
-        IF    ${value1} == True
-
-            Click Element When Visible    (//span[normalize-space()='Yes'])[1]
-
-            Sleep    2s
-
-        END
-
-    END
-
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-
-    Wait Until Keyword Succeeds
-
-    ...    3x
-
-    ...    5s
-
-    ...    Click Element When Visible
-
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-
-    Sleep    5s
-
-    ${variableExist}=    Run Keyword And Return Status
-
-    ...    Element Should Be Visible
-
-    ...    (//span[normalize-space()='Continue'])[1]
-
-    IF    ${variableExist} == True
-
-        Wait Until Element Is Visible    (//span[normalize-space()='Continue'])[1]    10s
-
-        Click Element When Visible    (//span[normalize-space()='Continue'])[1]
-
-    END
-
-    Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
-
-    IF    ${firstRun} == True
-
-        ${brokcont}=    Get From Dictionary    ${current_row}    N
-
-        Input Text
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]
-
-        ...    ${brokcont}
-
-        Click Element When Visible
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]
-
-        Wait Until Element Is Visible
-
-        ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
-
-        ...    30s
-
-        ${table_elements}=    Get WebElements
-
-        ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
-
-        Log    Found ${table_elements.__len__()} elements in the broker contact table
-
-        Click Element    ${table_elements}[0]
-
-        Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
-
-    END
 
     IF    ${renewal} == True
 
-        ${brokcont}=    Get From Dictionary    ${current_row}    N
+        # Broker Firm Screen - Just click Next
+        Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
 
-        Input Text
+        Press Keys    None    PAGE_DOWN
 
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]
+        Wait Until Keyword Succeeds
 
-        ...    ${brokcont}
+        ...    3x
 
-        Click Element When Visible
+        ...    5s
 
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]
+        ...    Safe Click Element
 
-        Wait Until Element Is Visible
+        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
-        ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
+        Sleep    5s
 
-        ...    30s
+        ${variableExist}=    Run Keyword And Return Status
 
-        ${table_elements}=    Get WebElements
+        ...    Element Should Be Visible
 
-        ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
+        ...    (//span[normalize-space()='Continue'])[1]
 
-        Log    Found ${table_elements.__len__()} elements in the broker contact table
+        IF    ${variableExist} == True
 
-        Click Element    ${table_elements}[0]
+            Wait Until Element Is Visible    (//span[normalize-space()='Continue'])[1]    10s
 
-        Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
+            Safe Click Element    (//span[normalize-space()='Continue'])[1]
 
-    END
+        END
 
-    ${EditVisible}=    Is Element Visible
+        Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
 
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_repeaterBrokerContact_ctl01_buttonEditBroker'])[1]
+        # Broker Contact Screen - Just click Complete Submission button
+        Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
 
-    IF    ${EditVisible} == True
+        Press Keys    None    PAGE_DOWN
 
-        Click Element When Visible
+        Wait Until Keyword Succeeds
+
+        ...    3x
+
+        ...    5s
+
+        ...    Safe Click Element
+
+        ...    xpath=//input[@value='Complete Submission'] | //input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext']
+
+        Sleep    10s
+
+        ${value2}=    Safe Is Element Visible    (//span[normalize-space()='Continue'])[1]
+
+        IF    ${value2} == True
+
+            Safe Click Element    (//span[normalize-space()='Continue'])[1]
+
+        END
+
+    ELSE
+
+        IF    ${firstRun} == True
+
+            ${brokfirm}=    Get From Dictionary    ${current_row}    M
+
+            Safe Input Text
+
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_TextBoxBrokerFirm'])[1]
+
+            ...    ${brokfirm}
+
+            Safe Click Element
+
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirm_ButtonBrokerFirmSearchStartsWith'])[1]
+
+            Wait Until Element Is Visible
+
+            ...    xpath=//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"]
+
+            ...    30s
+
+            Safe Click Element
+            ...    xpath=(//table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tbody/tr/td//input[@type="submit"] | //table[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerFirmTableBrokerFirm']/tr/td//input[@type="submit"])[3]
+
+            Sleep    5s
+
+            ${value1}=    Safe Is Element Visible    (//span[normalize-space()='Yes'])[1]
+
+            IF    ${value1} == True
+
+                Safe Click Element    (//span[normalize-space()='Yes'])[1]
+
+                Sleep    2s
+
+            END
+
+        END
+
+        Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+
+        Wait Until Keyword Succeeds
+
+        ...    3x
+
+        ...    5s
+
+        ...    Safe Click Element
+
+        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
+
+        Sleep    5s
+
+        ${variableExist}=    Run Keyword And Return Status
+
+        ...    Element Should Be Visible
+
+        ...    (//span[normalize-space()='Continue'])[1]
+
+        IF    ${variableExist} == True
+
+            Wait Until Element Is Visible    (//span[normalize-space()='Continue'])[1]    10s
+
+            Safe Click Element    (//span[normalize-space()='Continue'])[1]
+
+        END
+
+        Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    20s
+
+        IF    ${firstRun} == True
+
+            ${brokcont}=    Get From Dictionary    ${current_row}    N
+
+            Safe Input Text
+
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_TextBoxBrokerContact'])[1]
+
+            ...    ${brokcont}
+
+            Safe Click Element
+
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]
+
+            Wait Until Element Is Visible
+
+            ...    xpath=//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"]
+
+            ...    30s
+
+            Safe Click Element
+            ...    xpath=(//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value="Select"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value="Select"])[1]
+
+            Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
+
+        END
+
+        ${EditVisible}=    Safe Is Element Visible
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_repeaterBrokerContact_ctl01_buttonEditBroker'])[1]
 
-        ${PCLicHolder}=    Is Checkbox Selected
+        IF    ${EditVisible} == True
 
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_chkPAndCLicenseHolder'])[1]
+            Safe Click Element
 
-        IF    ${PCLicHolder} == False
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_repeaterBrokerContact_ctl01_buttonEditBroker'])[1]
 
-            Select Checkbox
+            ${PCLicHolder}=    Safe Is Checkbox Selected
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_chkPAndCLicenseHolder'])[1]
 
-            Click Element When Visible
+            IF    ${PCLicHolder} == False
+
+                Safe Select Checkbox
+
+                ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_chkPAndCLicenseHolder'])[1]
+
+                Safe Click Element
+
+                ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave'])[1]
+
+            END
+
+            Press Keys    None    PAGE_DOWN
+
+            Wait Until Keyword Succeeds
+
+            ...    3x
+
+            ...    5s
+
+            ...    Safe Click Element
+
+            ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
+
+        ELSE
+
+            Safe Click Element
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave'])[1]
 
@@ -511,39 +532,21 @@ Fill Insured Details
 
             ...    5s
 
-            ...    Click Element When Visible
+            ...    Safe Click Element
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
         END
 
-    ELSE
+        Sleep    10s
 
-        Click Element When Visible
+        ${value2}=    Safe Is Element Visible    (//span[normalize-space()='Continue'])[1]
 
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave'])[1]
+        IF    ${value2} == True
 
-        Press Keys    None    PAGE_DOWN
+            Safe Click Element    (//span[normalize-space()='Continue'])[1]
 
-        Wait Until Keyword Succeeds
-
-        ...    3x
-
-        ...    5s
-
-        ...    Click Element When Visible
-
-        ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-
-    END
-
-    Sleep    10s
-
-    ${value2}=    Is Element Visible    (//span[normalize-space()='Continue'])[1]
-
-    IF    ${value2} == True
-
-        Click Element When Visible    (//span[normalize-space()='Continue'])[1]
+        END
 
     END
 
@@ -560,17 +563,17 @@ Fill Pricing Details
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
     IF    ${renewal} == True
 
-        ${value2}=    Is Element Visible    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
+        ${value2}=    Safe Is Element Visible    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
 
         IF    ${value2} == True
 
-            Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
+            Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Ok'])[1]
 
         END
 
@@ -580,7 +583,7 @@ Fill Pricing Details
 
     ${form}=    Get From Dictionary    ${current_row}    O
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlForm'])[1]
 
@@ -588,7 +591,7 @@ Fill Pricing Details
 
     ${attachment}=    Get From Dictionary    ${current_row}    P
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlAttachment'])[1]
 
@@ -596,39 +599,39 @@ Fill Pricing Details
 
     ${industry}=    Get From Dictionary    ${current_row}    Q
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlIndustry'])[1]
 
     ...    ${industry}
 
-    Click Element When Visible    (//span[normalize-space()='Non Project'])[1]
+    Safe Click Element    (//span[normalize-space()='Non Project'])[1]
 
     Sleep    10s
 
     ${industry_segment}=    Get From Dictionary    ${current_row}    R
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlIndustrySegment'])[1]
 
     ...    ${industry_segment}
 
-    Click Element When Visible    (//span[normalize-space()='Correct'])[1]
+    Safe Click Element    (//span[normalize-space()='Correct'])[1]
 
     ${category}=    Get From Dictionary    ${current_row}    S
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlCategory'])[1]
 
     ...    ${category}
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
 
     ${quote_rater}=    Get From Dictionary    ${current_row}    T
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlQuoteRater'])[1]
 
@@ -636,7 +639,7 @@ Fill Pricing Details
 
     ${exposure1}=    Get From Dictionary    ${current_row}    U
 
-    Input Text
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_txtExposure'])[1]
 
@@ -644,7 +647,7 @@ Fill Pricing Details
 
     ${exposure_base}=    Get From Dictionary    ${current_row}    V
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlExposureBase'])[1]
 
@@ -652,7 +655,7 @@ Fill Pricing Details
 
     ${premium_basis}=    Get From Dictionary    ${current_row}    W
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_ddlPremiumBasis'])[1]
 
@@ -660,17 +663,17 @@ Fill Pricing Details
 
     ${min_earned_premium}=    Get From Dictionary    ${current_row}    X
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_txtMinEarnedPremium'])[1]
 
     ...    ${min_earned_premium}
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
 
     ${total_limit_each_occur}=    Get From Dictionary    ${current_row}    Y
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_txtTotalLimitEachOccur'])[1]
 
@@ -678,13 +681,13 @@ Fill Pricing Details
 
     ${attachment_point}=    Get From Dictionary    ${current_row}    Z
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_txtAttachmentPoint'])[1]
 
     ...    ${attachment_point}
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrPolicyInfo_cblGaragedStates_0'])[1]
 
@@ -692,11 +695,11 @@ Fill Pricing Details
 
     IF    ${firstRun} == True
 
-        Click Element When Visible
+        Safe Click Element
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_underLyerSched_underLyerList_12'])[1]
 
-        Click Element When Visible
+        Safe Click Element
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_underLyerSched_ctrlCommercialExcessLiability_btnAdd'])[1]
 
@@ -708,7 +711,7 @@ Fill Pricing Details
 
         ${carrier}=    Get From Dictionary    ${current_row}    AA
 
-        Input Text When Element Is Visible
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctl00_txtCarrier'])[1]
 
@@ -716,7 +719,7 @@ Fill Pricing Details
 
         ${excess_of}=    Get From Dictionary    ${current_row}    AB
 
-        Input Text When Element Is Visible
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctl00_tbExcessOf'])[1]
 
@@ -724,7 +727,7 @@ Fill Pricing Details
 
         ${policy_number}=    Get From Dictionary    ${current_row}    AC
 
-        Input Text When Element Is Visible
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctl00_txtPolicyNumber'])[1]
 
@@ -732,25 +735,25 @@ Fill Pricing Details
 
         ${premium}=    Get From Dictionary    ${current_row}    AD
 
-        Input Text When Element Is Visible
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctl00_txtPremium'])[1]
 
         ...    ${premium}
 
-        Click Element When Visible
+        Safe Click Element
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnAddNewEntry'])[1]
 
     END
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_underLyerSched_ctrlCommercialExcessLiability_underlyerRepeater_ctl01_btnEdit'])[1]
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[2]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[2]
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnAddNewEntry'])[1]
 
@@ -760,7 +763,7 @@ Fill Pricing Details
 
     ${premesis_ops_occurence}=    Get From Dictionary    ${current_row}    AE
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlGLInfo_txtPremisesOpsOccurence'])[1]
 
@@ -768,7 +771,7 @@ Fill Pricing Details
 
     ${hazard_type}=    Get From Dictionary    ${current_row}    AF
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlGLInfo_ddlGLHazardType'])[1]
 
@@ -776,7 +779,7 @@ Fill Pricing Details
 
     ${rating_type}=    Get From Dictionary    ${current_row}    AG
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlGLInfo_ddlGLRatingType'])[1]
 
@@ -784,7 +787,7 @@ Fill Pricing Details
 
     ${underlying_primary}=    Get From Dictionary    ${current_row}    AH
 
-    Input Text
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlGLInfo_txtUnderlyingPrimary'])[1]
 
@@ -792,7 +795,7 @@ Fill Pricing Details
 
     ${primary_treat_def}=    Get From Dictionary    ${current_row}    AI
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlGLInfo_ddlPrimaryTreatDef'])[1]
 
@@ -802,7 +805,7 @@ Fill Pricing Details
 
     ${industry_code}=    Get From Dictionary    ${current_row}    AJ
 
-    Input Text When Element Is Visible
+    Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_formGLExposures_listViewProspectivepolicyclasscode_ctrl0_TextBoxIndustryCode'])[1]
     ...    10120
     Sleep    3s
@@ -814,7 +817,7 @@ Fill Pricing Details
 
     ${state}=    Get From Dictionary    ${current_row}    AK
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_formGLExposures_listViewProspectivepolicyclasscode_ctrl0_ddlState'])[1]
 
@@ -822,7 +825,7 @@ Fill Pricing Details
 
     ${territory}=    Get From Dictionary    ${current_row}    AL
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_formGLExposures_listViewProspectivepolicyclasscode_ctrl0_ddlTerritory'])[1]
 
@@ -830,49 +833,45 @@ Fill Pricing Details
 
     ${amount}=    Get From Dictionary    ${current_row}    AM
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_formGLExposures_listViewProspectivepolicyclasscode_ctrl0_txtAmount'])[1]
 
     ...    ${amount}
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_formGLExposures_btnGetDefaults'])[1]
 
     Sleep    5s
 
-    Click Next And Wait For Element
+    Click Next And Wait For Element    (//a[normalize-space()='GL Losses'])[1] | (//legend[normalize-space()='GL Losses'])[1] | (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
 
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
+    Click Next And Wait For Element    (//a[normalize-space()='Underlying GL Loss Rating'])[1] | (//legend[normalize-space()='Underlying GL Loss Rating'])[1] | (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
 
-    Click Next And Wait For Element    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
+    Click Next And Wait For Element    (//a[normalize-space()='Underlying Primary GL Selection'])[1] | (//legend[normalize-space()='Underlying Primary GL Selection'])[1] | (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
 
-    Click Next And Wait For Element
+    Click Next And Wait For Element    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_ddlPrimaryAutoRetention'])[1] | (//a[normalize-space()='AL Selection'])[1]
 
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-
-    Click Next And Wait For Element    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
-
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_ddlPrimaryAutoRetention'])[1]
 
     ...    Guaranteed Costs
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_txtPriAutoLimit'])[1]
 
     ...    500K
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_ddlSigHighHazardExposure'])[1]
 
     ...    1
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_btnCalculateAuto'])[1]
 
@@ -882,7 +881,7 @@ Fill Pricing Details
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -892,13 +891,13 @@ Fill Pricing Details
 
     FOR    ${index}    IN RANGE    0    5
 
-        ${is_element_visible}=    Is Element Visible
+        ${is_element_visible}=    Safe Is Element Visible
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrAlExposure_listViewExposure_ctrl${index}_TextBoxALExposureAmount'])[1]
 
         IF    ${is_element_visible} == True
 
-            Input Text When Element Is Visible
+            Safe Input Text
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrAlExposure_listViewExposure_ctrl${index}_TextBoxALExposureAmount'])[1]
 
@@ -914,7 +913,7 @@ Fill Pricing Details
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -926,17 +925,13 @@ Fill Pricing Details
 
     FOR    ${index}    IN RANGE    0    5
 
-        ${locator}=    Set Variable
+        ${field_id}=    Set Variable    ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAlLosses_listViewGroundUpLosses_ctrl${index}_datePickerLossValuationDate_textDate
 
-        ...    //input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAlLosses_listViewGroundUpLosses_ctrl${index}_datePickerLossValuationDate_textDate']
+        ${is_visible}=    Safe Is Element Visible    id:${field_id}    2s
 
-        ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    ${locator}
+        IF    ${is_visible} == True
 
-        IF    ${is_visible}
-
-            ${elm}=    Get WebElement    ${locator}
-
-            Execute Javascript    arguments[0].value = arguments[1];    ARGUMENTS    ${elm}    ${loss_valuation_date}
+            Execute Javascript    var el = document.getElementById('${field_id}'); if(el) { el.value = '${loss_valuation_date}'; el.dispatchEvent(new Event('input', {bubbles: true})); el.dispatchEvent(new Event('change', {bubbles: true})); }
 
         END
 
@@ -954,11 +949,11 @@ Fill Pricing Details
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
-    Click Element If Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[2]
+    Safe Click Element If Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[2]
 
     Click Next And Wait For Element    (//legend[normalize-space()='Rating Summary'])[1]
 
@@ -967,7 +962,7 @@ Fill Pricing Details
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible
+    ...    Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_form_btnCalculateLayers'])[1]
 
     Sleep    10s
@@ -977,7 +972,7 @@ Fill Pricing Details
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Input Text When Element Is Visible
+    ...    Safe Input Text
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_form_txtPrimaryPremiumComment'])[1]
     ...    ${primary_premium_comment}
 
@@ -986,7 +981,7 @@ Fill Pricing Details
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Input Text When Element Is Visible
+    ...    Safe Input Text
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_form_txtIlfDeviationComment'])[1]
     ...    ${deviation_comment}
 
@@ -995,7 +990,7 @@ Fill Pricing Details
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Input Text When Element Is Visible
+    ...    Safe Input Text
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_form_txtFinalPricingRationaleComment'])[1]
     ...    ${final_pricing_comment}
 
@@ -1006,18 +1001,18 @@ Fill Pricing Details
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
+    ...    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
 
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[2]
+    ...    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[2]
 
     Click Next And Wait For Element    (//a[normalize-space()='Rate Monitor'])[1]
 
     ${rate_monitor_coment}=    Get From Dictionary    ${current_row}    BI
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRateMonitor_txtRateMonitorComment'])[1]
 
@@ -1029,7 +1024,7 @@ Fill Pricing Details
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -1040,7 +1035,7 @@ Risk Creation[CopyRisk]
 
     Click Next And Wait For Element    (//a[normalize-space()='Policy Info'])[1]
 
-    Click Element When Visible    (//span[normalize-space()='Correct'])[1]
+    Safe Click Element    (//span[normalize-space()='Correct'])[1]
 
     Click Next And Wait For Element    (//a[normalize-space()='Schedule of Underlyers'])[1]
 
@@ -1058,13 +1053,13 @@ Risk Creation[CopyRisk]
 
     ${high_hazard_exposure}=    Get From Dictionary    ${current_row}    AR
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_ddlSigHighHazardExposure'])[1]
 
     ...    ${high_hazard_exposure}
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlAutoLiability_btnCalculateAuto'])[1]
 
@@ -1084,7 +1079,7 @@ Risk Creation[CopyRisk]
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -1101,7 +1096,7 @@ Risk Creation[Reissue]
 
         ...    5s
 
-        ...    Click Element When Visible
+        ...    Safe Click Element
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -1114,7 +1109,7 @@ Pre Bind Endorsement
 
     ${category_list}=    Get From Dictionary    ${current_row}    BJ
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DdCategoryList'])[1]
 
@@ -1124,7 +1119,7 @@ Pre Bind Endorsement
 
     ${endorsement_type_list}=    Get From Dictionary    ${current_row}    BK
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DdEndorsementTypeList'])[1]
 
@@ -1132,7 +1127,7 @@ Pre Bind Endorsement
 
     Sleep    2s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btAddEndorsement'])[1]
 
@@ -1144,19 +1139,19 @@ Pre Bind Endorsement
 
     FOR    ${index}    IN RANGE    1    10
 
-        ${subjective_exist}=    Is Element Visible
+        ${subjective_exist}=    Safe Is Element Visible
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl0${index}_cbMandatory'])[1]
 
         IF    ${subjective_exist} == True
 
-            ${subjective_checked}=    Is Checkbox Selected
+            ${subjective_checked}=    Safe Is Checkbox Selected
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl0${index}_cbMandatory'])[1]
 
             IF    ${subjective_checked} == True
 
-                Select Checkbox
+                Safe Select Checkbox
 
                 ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl0${index}_cbSatisfied'])[1]
 
@@ -1172,19 +1167,19 @@ Pre Bind Endorsement
 
     FOR    ${index}    IN RANGE    10    20
 
-        ${subjective_exist}=    Is Element Visible
+        ${subjective_exist}=    Safe Is Element Visible
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbMandatory'])[1]
 
         IF    ${subjective_exist} == True
 
-            ${subjective_checked}=    Is Checkbox Selected
+            ${subjective_checked}=    Safe Is Checkbox Selected
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbMandatory'])[1]
 
             IF    ${subjective_checked} == True
 
-                Select Checkbox
+                Safe Select Checkbox
 
                 ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbSatisfied'])[1]
 
@@ -1204,7 +1199,7 @@ Pre Bind Endorsement
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -1226,19 +1221,19 @@ Pre Bind Endorsement[Renewal]
 
     FOR    ${index}    IN RANGE    1    10
 
-        ${subjective_exist}=    Is Element Visible
+        ${subjective_exist}=    Safe Is Element Visible
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl0${index}_cbMandatory'])[1]
 
         IF    ${subjective_exist} == True
 
-            ${subjective_checked}=    Is Checkbox Selected
+            ${subjective_checked}=    Safe Is Checkbox Selected
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl0${index}_cbMandatory'])[1]
 
             IF    ${subjective_checked} == True
 
-                Select Checkbox
+                Safe Select Checkbox
 
                 ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl0${index}_cbSatisfied'])[1]
 
@@ -1254,19 +1249,19 @@ Pre Bind Endorsement[Renewal]
 
     FOR    ${index}    IN RANGE    10    20
 
-        ${subjective_exist}=    Is Element Visible
+        ${subjective_exist}=    Safe Is Element Visible
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbMandatory'])[1]
 
         IF    ${subjective_exist} == True
 
-            ${subjective_checked}=    Is Checkbox Selected
+            ${subjective_checked}=    Safe Is Checkbox Selected
 
             ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbMandatory'])[1]
 
             IF    ${subjective_checked} == True
 
-                Select Checkbox
+                Safe Select Checkbox
 
                 ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlSubjectivities_repeaterSubjectivities_ctl${index}_cbSatisfied'])[1]
 
@@ -1286,7 +1281,7 @@ Pre Bind Endorsement[Renewal]
 
     ...    5s
 
-    ...    Click Element When Visible
+    ...    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
 
@@ -1295,21 +1290,21 @@ Quote
 
     Wait Until Element Is Visible    (//legend[normalize-space()='Quote Final Info'])[1]    20s
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[1]
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[3]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[3]
 
     ${comments_under_quote}=    Get From Dictionary    ${current_row}    BL
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//textarea[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_form_tbComments'])[1]
 
     ...    ${comments_under_quote}
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnGenerateQuote'])[1]
 
@@ -1318,7 +1313,7 @@ Ready To Bind
 
     Wait Until Element Is Visible    (//a[normalize-space()='Bind'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Bind'])[1]
+    Safe Click Element    (//a[normalize-space()='Bind'])[1]
 
     Wait Until Element Is Visible
 
@@ -1326,7 +1321,7 @@ Ready To Bind
 
     ...    30s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
 
@@ -1337,17 +1332,17 @@ Ready To Bind
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
+    ...    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
 
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
+    ...    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
 
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible
+    ...    Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
 
 
@@ -1355,7 +1350,7 @@ Ready To Bind[Renewal]
 
     Wait Until Element Is Visible    (//a[normalize-space()='Bind'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Bind'])[1]
+    Safe Click Element    (//a[normalize-space()='Bind'])[1]
 
     Wait Until Element Is Visible
 
@@ -1363,7 +1358,7 @@ Ready To Bind[Renewal]
 
     ...    30s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
 
@@ -1374,18 +1369,50 @@ Ready To Bind[Renewal]
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
+    ...    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
 
     Wait Until Keyword Succeeds
     ...    3x
     ...    2s
-    ...    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
+    ...    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
 
-    Wait Until Keyword Succeeds
-    ...    3x
-    ...    2s
-    ...    Click Element When Visible
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext'])[1]
+    Sleep    2s
+    Wait For Page Ready    5s
+
+    ${bind_locator}=    Set Variable    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonNext"]
+    ${manage_broker_locator}=    Set Variable    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlBrokerValidationPageDisplay_btnManageBrokerSelections"]
+
+    ${manage_broker_visible}=    Safe Is Element Visible    ${manage_broker_locator}    3s
+    ${bind_enabled}=    Run Keyword And Return Status    Element Should Be Enabled    ${bind_locator}
+
+    ${bind_success}=    Set Variable    ${FALSE}
+    IF    ${manage_broker_visible} == False and ${bind_enabled} == True
+        ${bind_success}=    Run Keyword And Return Status    Wait Until Keyword Succeeds    3x    2s    Safe Click Element    ${bind_locator}
+    END
+
+    IF    ${bind_success} == False
+        Log    Bind button is disabled or Manage Broker Selections is visible. Performing broker contact update.
+        Safe Click Element    ${manage_broker_locator}
+        Wait For Page Ready    10s
+        Wait Until Element Is Visible    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_repeaterBrokerContact_ctl01_buttonEditBroker"]    30s
+
+        Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_repeaterBrokerContact_ctl01_buttonEditBroker"]
+        Wait For Page Ready    10s
+        Wait Until Element Is Visible    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_chkPAndCLicenseHolder"]    30s
+
+        Safe Select Checkbox    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_chkPAndCLicenseHolder"]
+
+        Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave"]
+        Wait For Page Ready    10s
+        Wait Until Element Is Visible    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext"]    30s
+
+        Press Keys    None    PAGE_DOWN
+        Safe Click Element    xpath=//*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext"]
+        Wait For Page Ready    10s
+        Wait Until Element Is Visible    ${bind_locator}    30s
+
+        Wait Until Keyword Succeeds    10x    2s    Safe Click Element    ${bind_locator}
+    END
 
 
 Book
@@ -1394,25 +1421,25 @@ Book
 
     Wait Until Element Is Visible    (//a[normalize-space()='Book and Issue'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Book and Issue'])[1]
+    Safe Click Element    (//a[normalize-space()='Book and Issue'])[1]
 
     Wait Until Element Is Visible    (//legend[normalize-space()='Reinsurance'])[1]    30s
 
     ${days_to_cancel}=    Get From Dictionary    ${current_row}    BM
 
-    Select From List By Index
+    Safe Select From List By Index
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlBook_ddlDaysToCancel'])[1]
 
     ...    ${days_to_cancel}
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[2]
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[3]
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[4]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='No'])[4]
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonCheck'])[1]
 
@@ -1423,7 +1450,7 @@ Risk UW eFile
 
     Wait Until Element Is Visible    (//a[normalize-space()='Risk UW eFile'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Risk UW eFile'])[1]
+    Safe Click Element    (//a[normalize-space()='Risk UW eFile'])[1]
 
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    30s
 
@@ -1435,7 +1462,7 @@ Risk UW eFile
 
     ...    20s
 
-    Click Element If Visible
+    Safe Click Element If Visible
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnReload'])[1]
 
@@ -1443,7 +1470,7 @@ Risk UW eFile
 
     Wait Until Element Is Visible    (//td[@role='gridcell'])[5]//a    120s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnReload'])[1]
 
@@ -1451,9 +1478,9 @@ Risk UW eFile
 
         Wait Until Element Is Visible    (//a[normalize-space()='Policy.pdf'])[1]    240s
 
-        Click Element When Visible    (//a[normalize-space()='Policy.pdf'])[1]
+        Safe Click Element    (//a[normalize-space()='Policy.pdf'])[1]
 
-        Click Element If Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
+        Safe Click Element If Visible    (//span[@class='ui-button-text'][normalize-space()='No'])[1]
 
     ELSE
 
@@ -1461,14 +1488,14 @@ Risk UW eFile
 
     END
 
-    Click Element When Visible    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
+    Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
 
 
 Copy Quote
 
     Wait Until Element Is Visible    (//a[normalize-space()='Copy Quote'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Copy Quote'])[1]
+    Safe Click Element    (//a[normalize-space()='Copy Quote'])[1]
 
     Wait Until Element Is Visible
 
@@ -1482,7 +1509,7 @@ Copy Quote
 
     ...    Option 2 - [Status : Quoted (In Revision)]
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//span[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl00_HeaderQuote'])[1]
 
@@ -1491,11 +1518,11 @@ View Risk
 
     Wait Until Element Is Visible    (//a[normalize-space()='View Risk'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='View Risk'])[1]
+    Safe Click Element    (//a[normalize-space()='View Risk'])[1]
 
     Sleep    5s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ButtonViewCurrent'])[1]
 
@@ -1510,11 +1537,11 @@ Copy Risk
 
     Wait Until Element Is Visible    (//a[normalize-space()='Copy Risk'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Copy Risk'])[1]
+    Safe Click Element    (//a[normalize-space()='Copy Risk'])[1]
 
     Sleep    5s
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[5]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[5]
 
     Sleep    10s
 
@@ -1540,7 +1567,7 @@ Copy Risk
 
     ELSE
 
-        Click Element When Visible    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
+        Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
 
     END
 
@@ -1549,11 +1576,11 @@ Post Bind Endorsement
 
     Wait Until Element Is Visible    (//a[normalize-space()='Endorsement'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Endorsement'])[1]
+    Safe Click Element    (//a[normalize-space()='Endorsement'])[1]
 
     ${category_list}=    Get From Dictionary    ${current_row}    BN
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DdCategoryList'])[1]
 
@@ -1563,7 +1590,7 @@ Post Bind Endorsement
 
     ${endorsement_type_list}=    Get From Dictionary    ${current_row}    BO
 
-    Select From List By Label
+    Safe Select From List By Label
 
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DdEndorsementTypeList'])[1]
 
@@ -1571,17 +1598,17 @@ Post Bind Endorsement
 
     Sleep    2s
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btAddEndorsement'])[1]
 
     Sleep    3s
 
-    Click Element When Visible    (//span[normalize-space()='Additional Premium'])[1]
+    Safe Click Element    (//span[normalize-space()='Additional Premium'])[1]
 
     ${endorsement_premium}=    Get From Dictionary    ${current_row}    BP
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementPremium_tbEndorsementPremium'])[1]
 
@@ -1589,7 +1616,7 @@ Post Bind Endorsement
 
     ${effective_date_post_bind}=    Get From Dictionary    ${current_row}    BQ
 
-    Input Text When Element Is Visible
+    Safe Input Text
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementEffectiveDate_datepickerEffectiveDate_textDate'])[1]
 
@@ -1599,7 +1626,7 @@ Post Bind Endorsement
 
         ${Expiry_date}=    Get From Dictionary    ${current_row}    BR
 
-        Input Text When Element Is Visible
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerPolicyExpiryDate_textDate'])[1]
 
@@ -1609,7 +1636,7 @@ Post Bind Endorsement
 
         ${Expiry_date}=    Get From Dictionary    ${current_row}    BR
 
-        Input Text When Element Is Visible
+        Safe Input Text
 
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DatePickerPolicyExpiryDate_textDate'])[1]
 
@@ -1621,26 +1648,26 @@ Post Bind Endorsement
 
     TRY
 
-        Click Element When Visible    (//span[normalize-space()='No Premium'])[1]
+        Safe Click Element    (//span[normalize-space()='No Premium'])[1]
 
     EXCEPT
 
-        Click Element When Visible    (//span[normalize-space()='No Premium'])[1]
+        Safe Click Element    (//span[normalize-space()='No Premium'])[1]
 
     END
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_EndorsementStandardButtons_btnSubmit'])[1]
 
-    Click Element When Visible    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
+    Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
 
 
 Renewal
 
     Wait Until Element Is Visible    (//a[normalize-space()='Renew'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Renew'])[1]
+    Safe Click Element    (//a[normalize-space()='Renew'])[1]
 
     Sleep    10s
 
@@ -1656,7 +1683,7 @@ Renewal
 
     Quote
 
-    Ready To Bind
+    Ready To Bind[Renewal]
 
     Book    False
 
@@ -1665,11 +1692,11 @@ Reissue
 
     Wait Until Element Is Visible    (//a[normalize-space()='Reissue'])[1]    30s
 
-    Click Element When Visible    (//a[normalize-space()='Reissue'])[1]
+    Safe Click Element    (//a[normalize-space()='Reissue'])[1]
 
     Sleep    10s
 
-    Click Element When Visible    (//span[@class='ui-button-text'][normalize-space()='Yes'])[7]
+    Safe Click Element    (//span[@class='ui-button-text'][normalize-space()='Yes'])[7]
 
     Sleep    5s
 
@@ -1679,7 +1706,7 @@ Reissue
 
     ...    Quoted (Pending, In Revision, RI)
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    (//a[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_repeaterQuoteOptions_ctl01_quoteTab_btnEditQuote_lnkButton'])[1]
 
@@ -1698,15 +1725,15 @@ Continue on Next Risk
 
     Wait Until Element Is Visible    xpath=//a[normalize-space()='Create New Risk >']    20s
 
-    Click Element When Visible    xpath=//a[normalize-space()='Create New Risk >']
+    Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
 
-    Click Element When Visible    xpath=//a[normalize-space()='Create New Risk >']
+    Safe Click Element    xpath=//a[normalize-space()='Create New Risk >']
 
     Wait Until Element Is Visible    xpath=//a[normalize-space()='US E&U Plus']    30s
 
-    Click Element When Visible    xpath=//a[normalize-space()='US E&U Plus']
+    Safe Click Element    xpath=//a[normalize-space()='US E&U Plus']
 
-    Click Element When Visible
+    Safe Click Element
 
     ...    id:ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlClearanceSearch_CreateInsured
 
@@ -1714,28 +1741,196 @@ Continue on Next Risk
 
 
 Verify Status
-
     [Arguments]    ${location}    ${status_expected}
+    Wait Until Keyword Succeeds    25x    3s    Verify Status Matches    ${location}    ${status_expected}
 
-    Wait Until Keyword Succeeds    10x    3s    Element Text Should Be    ${location}    ${status_expected}
+Verify Status Matches
+    [Arguments]    ${location}    ${status_expected}
+    Wait For Page Ready    10s
+    ${status_actual}=    RPA.Browser.Selenium.Get Text    ${location}
+    ${match}=    Evaluate    '${status_expected}' == '${status_actual}' or ('${status_expected}' == 'Submission (Pricing In Progress)' and '${status_actual}' == 'Submission (Pending)')
+    Should Be True    ${match}    Expected status '${status_expected}' but got '${status_actual}'
+
+
+Wait For Page Ready
+    [Arguments]    ${timeout}=30s
+    Wait Until Keyword Succeeds    ${timeout}    1s    Check Page Ready State
+
+Check Page Ready State
+    ${doc_ready}=    Execute Javascript    return document.readyState == 'complete';
+    Should Be True    ${doc_ready}
+    ${asp_idle}=    Execute Javascript    return (typeof Sys === 'undefined' || typeof Sys.WebForms === 'undefined' || !Sys.WebForms.PageRequestManager.getInstance().get_isInAsyncPostBack());
+    Should Be True    ${asp_idle}
+
+
+Safe Click Element
+    [Arguments]    ${locator}
+    Wait Until Keyword Succeeds    30x    2s    Attempt Safe Click    ${locator}
+
+Attempt Safe Click
+    [Arguments]    ${locator}
+    Wait For Page Ready    5s
+    TRY
+        Wait Until Element Is Visible    ${locator}    5s
+        Click Element    ${locator}
+    EXCEPT
+        TRY
+            Scroll Element Into View    ${locator}
+            Click Element When Visible    ${locator}    5s
+        EXCEPT
+            ${is_id}=    Evaluate    '''${locator}'''.startswith('id:')
+            IF    ${is_id}
+                ${raw_id}=    Evaluate    '''${locator}'''.replace('id:', '')
+                Execute Javascript    var el = document.getElementById("${raw_id}"); if(el) { el.scrollIntoView({block: 'center'}); el.click(); } else { throw 'Element not found'; }
+            ELSE
+                ${clean_xpath}=    Evaluate    '''${locator}'''.replace('xpath=', '').replace('"', '\"')
+                Execute Javascript    var el = document.evaluate("${clean_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(el) { el.scrollIntoView({block: 'center'}); el.click(); } else { throw 'Element not found'; }
+            END
+        END
+    END
+
+
+Safe Click Element If Visible
+    [Arguments]    ${locator}
+    ${visible}=    Safe Is Element Visible    ${locator}    3s
+    IF    ${visible} == True
+        Safe Click Element    ${locator}
+    END
+
+
+Safe Input Text
+    [Arguments]    ${locator}    ${text}
+    Wait Until Keyword Succeeds    30x    2s    Attempt Safe Input Text    ${locator}    ${text}
+
+Attempt Safe Input Text
+    [Arguments]    ${locator}    ${text}
+    Wait For Page Ready    5s
+    TRY
+        Wait Until Element Is Visible    ${locator}    5s
+        Clear Element Text    ${locator}
+        Input Text    ${locator}    ${text}
+    EXCEPT
+        TRY
+            Scroll Element Into View    ${locator}
+            Clear Element Text    ${locator}
+            Input Text    ${locator}    ${text}
+        EXCEPT
+            ${is_id}=    Evaluate    '''${locator}'''.startswith('id:')
+            IF    ${is_id}
+                ${raw_id}=    Evaluate    '''${locator}'''.replace('id:', '')
+                Execute Javascript    var el = document.getElementById("${raw_id}"); if(el) { el.scrollIntoView({block: 'center'}); el.value = "${text}"; el.dispatchEvent(new Event('input', {bubbles: true})); el.dispatchEvent(new Event('change', {bubbles: true})); el.dispatchEvent(new Event('blur', {bubbles: true})); } else { throw 'Element not found'; }
+            ELSE
+                ${clean_xpath}=    Evaluate    '''${locator}'''.replace('xpath=', '').replace('"', '\"')
+                Execute Javascript    var el = document.evaluate("${clean_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if(el) { el.scrollIntoView({block: 'center'}); el.value = "${text}"; el.dispatchEvent(new Event('input', {bubbles: true})); el.dispatchEvent(new Event('change', {bubbles: true})); el.dispatchEvent(new Event('blur', {bubbles: true})); } else { throw 'Element not found'; }
+            END
+        END
+    END
+
+
+Safe Select From List By Label
+    [Arguments]    ${locator}    ${label}
+    Wait Until Keyword Succeeds    30x    2s    Attempt Select By Label    ${locator}    ${label}
+
+Attempt Select By Label
+    [Arguments]    ${locator}    ${label}
+    Wait For Page Ready    5s
+    TRY
+        Wait Until Element Is Visible    ${locator}    5s
+        Select From List By Label    ${locator}    ${label}
+    EXCEPT
+        Scroll Element Into View    ${locator}
+        Select From List By Label    ${locator}    ${label}
+    END
+
+
+Safe Select From List By Index
+    [Arguments]    ${locator}    ${index}
+    Wait Until Keyword Succeeds    30x    2s    Attempt Select By Index    ${locator}    ${index}
+
+Attempt Select By Index
+    [Arguments]    ${locator}    ${index}
+    Wait For Page Ready    5s
+    TRY
+        Wait Until Element Is Visible    ${locator}    5s
+        Select From List By Index    ${locator}    ${index}
+    EXCEPT
+        Scroll Element Into View    ${locator}
+        Select From List By Index    ${locator}    ${index}
+    END
+
+
+Safe Is Element Visible
+    [Arguments]    ${locator}    ${timeout}=5s
+    ${status}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${locator}    ${timeout}
+    RETURN    ${status}
+
+
+Safe Select Checkbox
+    [Arguments]    ${locator}
+    Wait Until Keyword Succeeds    30x    2s    Attempt Select Checkbox    ${locator}
+
+Attempt Select Checkbox
+    [Arguments]    ${locator}
+    Wait For Page Ready    5s
+    TRY
+        Wait Until Element Is Visible    ${locator}    5s
+        Select Checkbox    ${locator}
+    EXCEPT
+        Scroll Element Into View    ${locator}
+        Select Checkbox    ${locator}
+    END
+
+
+Safe Is Checkbox Selected
+    [Arguments]    ${locator}
+    Wait For Page Ready    5s
+    ${status}=    Run Keyword And Return Status    Checkbox Should Be Selected    ${locator}
+    RETURN    ${status}
 
 
 Click Next And Wait For Element
-
     [Arguments]    ${expected_element_locator}
-
-    Wait Until Keyword Succeeds    3x    1s    Attempt Next Page Transition    ${expected_element_locator}
-
+    Wait Until Keyword Succeeds    15x    3s    Attempt Next Page Transition    ${expected_element_locator}
 
 Attempt Next Page Transition
-
     [Arguments]    ${expected_element_locator}
-
     Press Keys    None    PAGE_DOWN
+    Wait For Page Ready    5s
+    Safe Click Element    (//input[contains(@id, 'btnNext')] | //input[contains(@id, 'ButtonNext')])[1]
+    Sleep    3s
+    Wait For Page Ready    15s
+    Wait Until Element Is Visible    ${expected_element_locator}    30s
 
-    Click Element When Visible
 
-    ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
-    Sleep    4s
-    Wait Until Element Is Visible    ${expected_element_locator}    15s
+Extract Risk Number
+    [Arguments]    ${firstRun}=${False}    ${copyRisk}=${False}
 
+    # 1. Wait for page ready and the Risk Number element in the header to load
+    Wait For Page Ready    10s
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    30s
+
+    # 2. Extract the text explicitly using the Selenium library to avoid conflicts
+    ${risk_number}=    Wait Until Keyword Succeeds    5x    2s    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+
+    # 3. Dynamically set the flow type label based on your script's current workflow
+    IF    '${firstRun}' in ['First Run', 'Copy Risk', 'Renewal']
+        ${flow_type}=    Set Variable    ${firstRun}
+    ELSE
+        ${flow_type}=    Set Variable If    '${firstRun}' == 'True' or ${firstRun} == True    First Run    '${copyRisk}' == 'True' or ${copyRisk} == True    Copy Risk    Renewal
+    END
+
+    # 4. Append to the file using Python's built-in open() method.
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a', encoding='utf-8').write($flow_type + ' - Risk Number: ' + $risk_number.strip() + chr(10))
+
+
+Select Option By Label
+    [Arguments]    ${locator}    ${label}
+    Safe Select From List By Label    ${locator}    ${label}
+
+Select Option By Index
+    [Arguments]    ${locator}    ${index}
+    Safe Select From List By Index    ${locator}    ${index}
+
+Input Text Safely
+    [Arguments]    ${locator}    ${text}
+    Safe Input Text    ${locator}    ${text}

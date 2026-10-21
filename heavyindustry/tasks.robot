@@ -60,7 +60,7 @@ Flow to execute
     Post Bind Endorsement
     Renewal
     View Risk
-    Close Browser
+    # Close Browser
 
 Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
@@ -365,11 +365,9 @@ Fill Pricing Details[First Run]
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_divNavButtons"]/input[2]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
-    Sleep    60s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    Sleep    30s
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -507,11 +505,9 @@ Fill Pricing Details[Copy Risk]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
     Sleep    30s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -618,13 +614,12 @@ Fill Pricing Details[Renewal]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
-    Sleep    60s
-    Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    Sleep    30s
     Safe Click Element
-    ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
+    ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
+    Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
     ${liu_share}=    Get From Dictionary    ${current_row}    AV
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]
@@ -888,38 +883,42 @@ Post Bind Endorsement
     ...    (//input[@id='ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_btAddEndorsement'])[1]
     Sleep    3s
     ${endorsement_effective_date}=    Get From Dictionary    ${current_row}    CF
+    ${endorsement_effective_date}=    Evaluate
+    ...    $endorsement_effective_date.strftime('%d/%m/%Y') if hasattr($endorsement_effective_date, 'strftime') else __import__('datetime').datetime.strptime(str($endorsement_effective_date).split('.')[0].strip(), '%Y-%m-%d %H:%M:%S' if ' ' in str($endorsement_effective_date) else '%Y-%m-%d').strftime('%d/%m/%Y') if '-' in str($endorsement_effective_date) else str($endorsement_effective_date)
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerEndorsementEffectiveDate_textDate'])[1]
-    ...    01/01/2025
+    ...    ${endorsement_effective_date}
     TRY
-        ${expiry_date}=    Get Current Date    increment=5 days    result_format=%m/%d/%Y
+        ${expiry_date}=    Get Current Date    increment=5 days    result_format=%d/%m/%Y
         Safe Input Text
         ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
         ...    ${expiry_date}
     EXCEPT
-        ${expiry_date}=    Get Current Date    increment=5 days    result_format=%m/%d/%Y
+        ${expiry_date}=    Get Current Date    increment=5 days    result_format=%d/%m/%Y
         Safe Input Text
         ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]
         ...    ${expiry_date}
     END
-    TRY
-        ${due_days}=    Get From Dictionary    ${current_row}    CH
-        Safe Input Text
-        ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]
-        ...    ${due_days}
-    EXCEPT
-        ${due_days}=    Get From Dictionary    ${current_row}    CH
-        Safe Input Text
-        ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]
-        ...    ${due_days}
-        Safe Click Element    (//span[normalize-space()='No Premium'])[1]
-        Sleep    20s
-        Safe Click Element
-        ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit'])[1]
-    END
+    ${due_days}=    Get From Dictionary    ${current_row}    CH
+    Safe Input Text
+    ...    (//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]
+    ...    ${due_days}
+    Sleep    2s
+    Click Element    xpath=//body
+    Run Keyword And Ignore Error    Execute Javascript    if (document.activeElement) { document.activeElement.blur(); }
     Sleep    3s
-    Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
-    Sleep    900s
+    Safe Wait Until Element Is Visible
+    ...    xpath=//*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit"]
+    ...    30s
+    Safe Click Element
+    ...    xpath=//*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit"]
+    Sleep    5s
+    Safe Wait Until Element Is Visible
+    ...    xpath=//*[@id="ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_BtnBack"]
+    ...    60s
+    Safe Click Element
+    ...    xpath=//*[@id="ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_BtnBack"]
+    Sleep    5s
 
 Renewal
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Renew'])[1]    30s

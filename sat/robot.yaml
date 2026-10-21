@@ -3,9 +3,9 @@ tasks:
     robotTaskName: SAT
 condaConfigFile: conda.yaml
 ignoreFiles:
-- .gitignore
+  - .gitignore
 artifactsDir: output
 PATH:
-- .
+  - .
 PYTHONPATH:
-- .
+  - .

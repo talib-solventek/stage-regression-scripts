@@ -829,20 +829,6 @@
             "args": [],
             "step": 19,
             "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Close Browser",
-            "icon": "remove",
-            "args": [],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Closes the current browser.",
-            "shortdoc": "Closes the current browser.",
-            "tags": [],
-            "hide": false,
-            "uid": "3fbb5fcb51e7c5388853bd4e7fd27f05",
-            "step": 20
           }
         ]
       }
@@ -6132,32 +6118,6 @@
           },
           {
             "type": "keyword",
-            "name": "Execute Javascript",
-            "icon": "code",
-            "args": [
-              {
-                "type": "argument",
-                "name": "code",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "var-positional",
-                "required": false,
-                "doc": "JavaScript code to execute",
-                "hide": false,
-                "value": "window.scrollTo(0, document.body.scrollHeight)"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "return_value",
-            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
-            "shortdoc": "Executes the given JavaScript code with possible arguments.",
-            "tags": [],
-            "hide": false,
-            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
-            "step": 145
-          },
-          {
-            "type": "keyword",
             "name": "Safe Click Element",
             "args": [
               {
@@ -6166,7 +6126,7 @@
                 "value": "\"ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates\"]"
               }
             ],
-            "step": 146,
+            "step": 145,
             "defaultReturns": null
           },
           {
@@ -6183,7 +6143,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "60s"
+                "value": "30s"
               },
               {
                 "type": "argument",
@@ -6204,33 +6164,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 147
-          },
-          {
-            "type": "keyword",
-            "name": "Execute Javascript",
-            "icon": "code",
-            "args": [
-              {
-                "type": "argument",
-                "name": "code",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "var-positional",
-                "required": false,
-                "doc": "JavaScript code to execute",
-                "hide": false,
-                "value": "window.scrollTo(0, document.body.scrollHeight)"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "return_value",
-            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
-            "shortdoc": "Executes the given JavaScript code with possible arguments.",
-            "tags": [],
-            "hide": false,
-            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
-            "step": 148
+            "step": 146
           },
           {
             "type": "keyword",
@@ -6242,7 +6176,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 149,
+            "step": 147,
             "defaultReturns": null
           },
           {
@@ -6258,7 +6192,7 @@
                 "value": "120s"
               }
             ],
-            "step": 150,
+            "step": 148,
             "defaultReturns": null
           },
           {
@@ -6296,7 +6230,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 151
+            "step": 149
           },
           {
             "type": "keyword",
@@ -6308,14 +6242,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]"
               }
             ],
-            "step": 152,
+            "step": 150,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${liu_share}",
             "args": [],
-            "step": 153
+            "step": 151
           },
           {
             "type": "keyword",
@@ -6352,7 +6286,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 154
+            "step": 152
           },
           {
             "type": "keyword",
@@ -6364,14 +6298,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]"
               }
             ],
-            "step": 155,
+            "step": 153,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${commission}",
             "args": [],
-            "step": 156
+            "step": 154
           },
           {
             "type": "keyword",
@@ -6383,7 +6317,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 157,
+            "step": 155,
             "defaultReturns": null
           },
           {
@@ -6421,13 +6355,13 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 158
+            "step": 156
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 159,
+            "step": 157,
             "containerValue": {
               "condition": "${popup_visible}"
             },
@@ -6568,7 +6502,7 @@
                 "value": "120s"
               }
             ],
-            "step": 160,
+            "step": 158,
             "defaultReturns": null
           },
           {
@@ -6581,7 +6515,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 161,
+            "step": 159,
             "defaultReturns": null
           },
           {
@@ -6597,7 +6531,7 @@
                 "value": "120s"
               }
             ],
-            "step": 162,
+            "step": 160,
             "defaultReturns": null
           },
           {
@@ -6635,7 +6569,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 163
+            "step": 161
           },
           {
             "type": "keyword",
@@ -6666,7 +6600,7 @@
             "tags": [],
             "hide": false,
             "uid": "180446e0e95d3694635ec6fbede38233",
-            "step": 164
+            "step": 162
           },
           {
             "type": "keyword",
@@ -6703,7 +6637,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 165
+            "step": 163
           },
           {
             "type": "keyword",
@@ -6715,14 +6649,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtMarketCertified'])[1]"
               }
             ],
-            "step": 166,
+            "step": 164,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "1000",
             "args": [],
-            "step": 167
+            "step": 165
           },
           {
             "type": "keyword",
@@ -6759,7 +6693,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 168
+            "step": 166
           },
           {
             "type": "keyword",
@@ -6801,13 +6735,13 @@
             "tags": [],
             "hide": true,
             "uid": "4dd97a0566fd5bfd644f9db5a173d2f9",
-            "step": 169
+            "step": 167
           },
           {
             "type": "keyword",
             "name": "10000",
             "args": [],
-            "step": 170
+            "step": 168
           },
           {
             "type": "keyword",
@@ -6844,7 +6778,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 171
+            "step": 169
           },
           {
             "type": "keyword",
@@ -6859,7 +6793,7 @@
                 "value": "120s"
               }
             ],
-            "step": 172,
+            "step": 170,
             "defaultReturns": null
           },
           {
@@ -6871,7 +6805,7 @@
                 "value": "(//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]"
               }
             ],
-            "step": 173,
+            "step": 171,
             "defaultReturns": "tria_val"
           },
           {
@@ -6898,13 +6832,13 @@
             "tags": [],
             "hide": false,
             "uid": "df98a151ec90a4e5e9496c40c156a709",
-            "step": 174
+            "step": 172
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 175,
+            "step": 173,
             "containerValue": {
               "condition": "'100' not in '${tria_str}'"
             },
@@ -7010,7 +6944,7 @@
             "tags": [],
             "hide": true,
             "uid": "7fed82f52a533d8adfdf21896dc9a498",
-            "step": 176
+            "step": 174
           },
           {
             "type": "keyword",
@@ -7047,7 +6981,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 177
+            "step": 175
           },
           {
             "type": "keyword",
@@ -7059,7 +6993,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 178,
+            "step": 176,
             "defaultReturns": null
           },
           {
@@ -7075,7 +7009,7 @@
                 "value": "120s"
               }
             ],
-            "step": 179,
+            "step": 177,
             "defaultReturns": null
           },
           {
@@ -7087,7 +7021,7 @@
                 "value": "(//span[normalize-space()='+ve'])[1]"
               }
             ],
-            "step": 180,
+            "step": 178,
             "defaultReturns": null
           },
           {
@@ -7125,7 +7059,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 181
+            "step": 179
           },
           {
             "type": "keyword",
@@ -7137,14 +7071,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlLibertyIndex_txtRenewalYears'])[1]"
               }
             ],
-            "step": 182,
+            "step": 180,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${renewal_years}",
             "args": [],
-            "step": 183
+            "step": 181
           },
           {
             "type": "keyword",
@@ -7181,7 +7115,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 184
+            "step": 182
           },
           {
             "type": "keyword",
@@ -7223,13 +7157,13 @@
             "tags": [],
             "hide": false,
             "uid": "bf0502ad88c848964556d7b2fead69b5",
-            "step": 185
+            "step": 183
           },
           {
             "type": "keyword",
             "name": "${claims_approach}",
             "args": [],
-            "step": 186
+            "step": 184
           },
           {
             "type": "keyword",
@@ -7266,7 +7200,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 187
+            "step": 185
           },
           {
             "type": "keyword",
@@ -7308,13 +7242,13 @@
             "tags": [],
             "hide": false,
             "uid": "bf0502ad88c848964556d7b2fead69b5",
-            "step": 188
+            "step": 186
           },
           {
             "type": "keyword",
             "name": "${opinion}",
             "args": [],
-            "step": 189
+            "step": 187
           },
           {
             "type": "keyword",
@@ -7351,7 +7285,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 190
+            "step": 188
           },
           {
             "type": "keyword",
@@ -7393,13 +7327,13 @@
             "tags": [],
             "hide": false,
             "uid": "bf0502ad88c848964556d7b2fead69b5",
-            "step": 191
+            "step": 189
           },
           {
             "type": "keyword",
             "name": "${cyber_type}",
             "args": [],
-            "step": 192
+            "step": 190
           },
           {
             "type": "keyword",
@@ -7411,7 +7345,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 193,
+            "step": 191,
             "defaultReturns": null
           },
           {
@@ -7427,7 +7361,7 @@
                 "value": "120s"
               }
             ],
-            "step": 194,
+            "step": 192,
             "defaultReturns": null
           },
           {
@@ -7440,7 +7374,7 @@
                 "value": "'ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]"
               }
             ],
-            "step": 195,
+            "step": 193,
             "defaultReturns": null
           }
         ]
@@ -8233,32 +8167,6 @@
           },
           {
             "type": "keyword",
-            "name": "Execute Javascript",
-            "icon": "code",
-            "args": [
-              {
-                "type": "argument",
-                "name": "code",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "var-positional",
-                "required": false,
-                "doc": "JavaScript code to execute",
-                "hide": false,
-                "value": "window.scrollTo(0, document.body.scrollHeight)"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "return_value",
-            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
-            "shortdoc": "Executes the given JavaScript code with possible arguments.",
-            "tags": [],
-            "hide": false,
-            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
-            "step": 26
-          },
-          {
-            "type": "keyword",
             "name": "Safe Click Element",
             "args": [
               {
@@ -8267,7 +8175,7 @@
                 "value": "\"ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates\"]"
               }
             ],
-            "step": 27,
+            "step": 26,
             "defaultReturns": null
           },
           {
@@ -8305,33 +8213,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 28
-          },
-          {
-            "type": "keyword",
-            "name": "Execute Javascript",
-            "icon": "code",
-            "args": [
-              {
-                "type": "argument",
-                "name": "code",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "var-positional",
-                "required": false,
-                "doc": "JavaScript code to execute",
-                "hide": false,
-                "value": "window.scrollTo(0, document.body.scrollHeight)"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "return_value",
-            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
-            "shortdoc": "Executes the given JavaScript code with possible arguments.",
-            "tags": [],
-            "hide": false,
-            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
-            "step": 29
+            "step": 27
           },
           {
             "type": "keyword",
@@ -8343,7 +8225,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 30,
+            "step": 28,
             "defaultReturns": null
           },
           {
@@ -8359,7 +8241,7 @@
                 "value": "120s"
               }
             ],
-            "step": 31,
+            "step": 29,
             "defaultReturns": null
           },
           {
@@ -8397,7 +8279,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 32
+            "step": 30
           },
           {
             "type": "keyword",
@@ -8409,14 +8291,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]"
               }
             ],
-            "step": 33,
+            "step": 31,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${liu_share}",
             "args": [],
-            "step": 34
+            "step": 32
           },
           {
             "type": "keyword",
@@ -8453,7 +8335,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 35
+            "step": 33
           },
           {
             "type": "keyword",
@@ -8465,14 +8347,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]"
               }
             ],
-            "step": 36,
+            "step": 34,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${commission}",
             "args": [],
-            "step": 37
+            "step": 35
           },
           {
             "type": "keyword",
@@ -8484,7 +8366,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 38,
+            "step": 36,
             "defaultReturns": null
           },
           {
@@ -8522,13 +8404,13 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 39
+            "step": 37
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 40,
+            "step": 38,
             "containerValue": {
               "condition": "${popup_visible}"
             },
@@ -8669,7 +8551,7 @@
                 "value": "120s"
               }
             ],
-            "step": 41,
+            "step": 39,
             "defaultReturns": null
           },
           {
@@ -8682,7 +8564,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 42,
+            "step": 40,
             "defaultReturns": null
           },
           {
@@ -8698,7 +8580,7 @@
                 "value": "120s"
               }
             ],
-            "step": 43,
+            "step": 41,
             "defaultReturns": null
           },
           {
@@ -8714,7 +8596,7 @@
                 "value": "120s"
               }
             ],
-            "step": 44,
+            "step": 42,
             "defaultReturns": null
           },
           {
@@ -8726,7 +8608,7 @@
                 "value": "(//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]"
               }
             ],
-            "step": 45,
+            "step": 43,
             "defaultReturns": "tria_val"
           },
           {
@@ -8753,13 +8635,13 @@
             "tags": [],
             "hide": false,
             "uid": "df98a151ec90a4e5e9496c40c156a709",
-            "step": 46
+            "step": 44
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 47,
+            "step": 45,
             "containerValue": {
               "condition": "'100' not in '${tria_str}'"
             },
@@ -8818,7 +8700,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 48,
+            "step": 46,
             "defaultReturns": null
           },
           {
@@ -8828,6 +8710,35 @@
               {
                 "type": "argument",
                 "value": "(//*[normalize-space()='LibertyIndex'])[1]"
+              },
+              {
+                "type": "argument",
+                "value": "120s"
+              }
+            ],
+            "step": 47,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@name",
+                "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
+              }
+            ],
+            "step": 48,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Wait Until Element Is Visible",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//*[normalize-space()='Subjectivities'])[1]"
               },
               {
                 "type": "argument",
@@ -8844,39 +8755,10 @@
               {
                 "type": "argument",
                 "name": "(//input[@name",
-                "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
-              }
-            ],
-            "step": 50,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Wait Until Element Is Visible",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//*[normalize-space()='Subjectivities'])[1]"
-              },
-              {
-                "type": "argument",
-                "value": "120s"
-              }
-            ],
-            "step": 51,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@name",
                 "value": "'ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]"
               }
             ],
-            "step": 52,
+            "step": 50,
             "defaultReturns": null
           }
         ]
@@ -9547,32 +9429,6 @@
           },
           {
             "type": "keyword",
-            "name": "Execute Javascript",
-            "icon": "code",
-            "args": [
-              {
-                "type": "argument",
-                "name": "code",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "var-positional",
-                "required": false,
-                "doc": "JavaScript code to execute",
-                "hide": false,
-                "value": "window.scrollTo(0, document.body.scrollHeight)"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "return_value",
-            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
-            "shortdoc": "Executes the given JavaScript code with possible arguments.",
-            "tags": [],
-            "hide": false,
-            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
-            "step": 24
-          },
-          {
-            "type": "keyword",
             "name": "Safe Click Element",
             "args": [
               {
@@ -9581,7 +9437,7 @@
                 "value": "\"ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates\"]"
               }
             ],
-            "step": 25,
+            "step": 24,
             "defaultReturns": null
           },
           {
@@ -9598,7 +9454,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "60s"
+                "value": "30s"
               },
               {
                 "type": "argument",
@@ -9619,33 +9475,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 26
-          },
-          {
-            "type": "keyword",
-            "name": "Execute Javascript",
-            "icon": "code",
-            "args": [
-              {
-                "type": "argument",
-                "name": "code",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "var-positional",
-                "required": false,
-                "doc": "JavaScript code to execute",
-                "hide": false,
-                "value": "window.scrollTo(0, document.body.scrollHeight)"
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "return_value",
-            "doc": "Executes the given JavaScript code with possible arguments.\n\n``code`` may be divided into multiple cells in the test data and\n``code`` may contain multiple lines of code and arguments. In that case,\nthe JavaScript code parts are concatenated together without adding\nspaces and optional arguments are separated from ``code``.\n\nIf ``code`` is a path to an existing file, the JavaScript\nto execute will be read from that file. Forward slashes work as\na path separator on all operating systems.\n\nThe JavaScript executes in the context of the currently selected\nframe or window as the body of an anonymous function. Use ``window``\nto refer to the window of your application and ``document`` to refer\nto the document object of the current frame or window, e.g.\n``document.getElementById('example')``.\n\nThis keyword returns whatever the executed JavaScript code returns.\nReturn values are converted to the appropriate Python types.\n\nStarting from SeleniumLibrary 3.2 it is possible to provide JavaScript\n[https://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html#selenium.webdriver.remote.webdriver.WebDriver.execute_script|\narguments] as part of ``code`` argument. The JavaScript code and\narguments must be separated with `JAVASCRIPT` and `ARGUMENTS` markers\nand must be used exactly with this format. If the Javascript code is\nfirst, then the `JAVASCRIPT` marker is optional. The order of\n`JAVASCRIPT` and `ARGUMENTS` markers can be swapped, but if `ARGUMENTS`\nis the first marker, then `JAVASCRIPT` marker is mandatory. It is only\nallowed to use `JAVASCRIPT` and `ARGUMENTS` markers only one time in the\n``code`` argument.\n\nExamples:\n| `Execute JavaScript` | window.myFunc('arg1', 'arg2') |\n| `Execute JavaScript` | ${CURDIR}/js_to_execute.js    |\n| `Execute JavaScript` | alert(arguments[0]); | ARGUMENTS | 123 |\n| `Execute JavaScript` | ARGUMENTS | 123 | JAVASCRIPT | alert(arguments[0]); |",
-            "shortdoc": "Executes the given JavaScript code with possible arguments.",
-            "tags": [],
-            "hide": false,
-            "uid": "dd91745a37501f1baa7f7e4af0ef75aa",
-            "step": 27
+            "step": 25
           },
           {
             "type": "keyword",
@@ -9654,15 +9484,26 @@
               {
                 "type": "argument",
                 "name": "(//input[@name",
-                "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]Safe Wait Until Element Is Visible"
+                "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
+              }
+            ],
+            "step": 26,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Wait Until Element Is Visible",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//*[normalize-space()='Summary Of Pricing'])[1]"
               },
               {
                 "type": "argument",
-                "name": "(//*[normalize-space()",
-                "value": "'Summary Of Pricing'])[1]"
+                "value": "120s"
               }
             ],
-            "step": 28,
+            "step": 27,
             "defaultReturns": null
           },
           {
@@ -9700,7 +9541,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 29
+            "step": 28
           },
           {
             "type": "keyword",
@@ -9712,14 +9553,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtLiuSharePercentage'])[1]"
               }
             ],
-            "step": 30,
+            "step": 29,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${liu_share}",
             "args": [],
-            "step": 31
+            "step": 30
           },
           {
             "type": "keyword",
@@ -9756,7 +9597,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 32
+            "step": 31
           },
           {
             "type": "keyword",
@@ -9768,14 +9609,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlSummaryOfPricing_txtCommission'])[1]"
               }
             ],
-            "step": 33,
+            "step": 32,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${commission}",
             "args": [],
-            "step": 34
+            "step": 33
           },
           {
             "type": "keyword",
@@ -9787,7 +9628,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 35,
+            "step": 34,
             "defaultReturns": null
           },
           {
@@ -9825,13 +9666,13 @@
             "tags": [],
             "hide": true,
             "uid": "887764c8c884141ff1e5992ac862fd83",
-            "step": 36
+            "step": 35
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 37,
+            "step": 36,
             "containerValue": {
               "condition": "${popup_visible}"
             },
@@ -9972,7 +9813,7 @@
                 "value": "120s"
               }
             ],
-            "step": 38,
+            "step": 37,
             "defaultReturns": null
           },
           {
@@ -9985,7 +9826,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 39,
+            "step": 38,
             "defaultReturns": null
           },
           {
@@ -10001,7 +9842,7 @@
                 "value": "120s"
               }
             ],
-            "step": 40,
+            "step": 39,
             "defaultReturns": null
           },
           {
@@ -10033,7 +9874,7 @@
             "tags": [],
             "hide": false,
             "uid": "180446e0e95d3694635ec6fbede38233",
-            "step": 41
+            "step": 40
           },
           {
             "type": "keyword",
@@ -10070,7 +9911,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 42
+            "step": 41
           },
           {
             "type": "keyword",
@@ -10082,14 +9923,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtMarketCertified'])[1]"
               }
             ],
-            "step": 43,
+            "step": 42,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "1000",
             "args": [],
-            "step": 44
+            "step": 43
           },
           {
             "type": "keyword",
@@ -10126,7 +9967,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 45
+            "step": 44
           },
           {
             "type": "keyword",
@@ -10168,13 +10009,13 @@
             "tags": [],
             "hide": true,
             "uid": "4dd97a0566fd5bfd644f9db5a173d2f9",
-            "step": 46
+            "step": 45
           },
           {
             "type": "keyword",
             "name": "10000",
             "args": [],
-            "step": 47
+            "step": 46
           },
           {
             "type": "keyword",
@@ -10211,7 +10052,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 48
+            "step": 47
           },
           {
             "type": "keyword",
@@ -10226,7 +10067,7 @@
                 "value": "120s"
               }
             ],
-            "step": 49,
+            "step": 48,
             "defaultReturns": null
           },
           {
@@ -10238,7 +10079,7 @@
                 "value": "(//input[@id='ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlTria_txtAllOther'])[1]"
               }
             ],
-            "step": 50,
+            "step": 49,
             "defaultReturns": "tria_val"
           },
           {
@@ -10265,13 +10106,13 @@
             "tags": [],
             "hide": false,
             "uid": "df98a151ec90a4e5e9496c40c156a709",
-            "step": 51
+            "step": 50
           },
           {
             "type": "keyword",
             "name": "IF",
             "uid": "39c8942e1038872a822c0dc75eedbde3",
-            "step": 52,
+            "step": 51,
             "containerValue": {
               "condition": "'100' not in '${tria_str}'"
             },
@@ -10377,7 +10218,7 @@
             "tags": [],
             "hide": true,
             "uid": "7fed82f52a533d8adfdf21896dc9a498",
-            "step": 53
+            "step": 52
           },
           {
             "type": "keyword",
@@ -10414,7 +10255,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 54
+            "step": 53
           },
           {
             "type": "keyword",
@@ -10426,7 +10267,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 55,
+            "step": 54,
             "defaultReturns": null
           },
           {
@@ -10442,7 +10283,7 @@
                 "value": "120s"
               }
             ],
-            "step": 56,
+            "step": 55,
             "defaultReturns": null
           },
           {
@@ -10455,7 +10296,7 @@
                 "value": "'ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]"
               }
             ],
-            "step": 57,
+            "step": 56,
             "defaultReturns": null
           },
           {
@@ -10471,7 +10312,7 @@
                 "value": "120s"
               }
             ],
-            "step": 58,
+            "step": 57,
             "defaultReturns": null
           },
           {
@@ -10484,7 +10325,7 @@
                 "value": "'ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]"
               }
             ],
-            "step": 59,
+            "step": 58,
             "defaultReturns": null
           }
         ]
@@ -13349,6 +13190,60 @@
           },
           {
             "type": "keyword",
+            "name": "Evaluate",
+            "icon": "code",
+            "args": [
+              {
+                "type": "argument",
+                "name": "expression",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "Python expression to evaluate",
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "modules",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Comma separated list of Python modules to import",
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "namespace",
+                "valueType": "unknown",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": null,
+                "hide": true,
+                "value": ""
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "endorsement_effective_date",
+            "doc": "Evaluates the given expression in Python and returns the result.\n\n``expression`` is evaluated in Python as explained in the\n`Evaluating expressions` section.\n\n``modules`` argument can be used to specify a comma separated\nlist of Python modules to be imported and added to the evaluation\nnamespace.\n\n``namespace`` argument can be used to pass a custom evaluation\nnamespace as a dictionary. Possible ``modules`` are added to this\nnamespace.\n\nVariables used like ``${variable}`` are replaced in the expression\nbefore evaluation. Variables are also available in the evaluation\nnamespace and can be accessed using the special ``$variable`` syntax\nas explained in the `Evaluating expressions` section.\n\nStarting from Robot Framework 3.2, modules used in the expression are\nimported automatically. There are, however, two cases where they need to\nbe explicitly specified using the ``modules`` argument:\n\n- When nested modules like ``rootmod.submod`` are implemented so that\n  the root module does not automatically import sub modules. This is\n  illustrated by the ``selenium.webdriver`` example below.\n\n- When using a module in the expression part of a list comprehension.\n  This is illustrated by the ``json`` example below.\n\nExamples (expecting ``${result}`` is number 3.14):\n| ${status} =  | Evaluate | 0 < ${result} < 10 | # Would also work with string '3.14' |\n| ${status} =  | Evaluate | 0 < $result < 10   | # Using variable itself, not string representation |\n| ${random} =  | Evaluate | random.randint(0, sys.maxsize) |\n| ${options} = | Evaluate | selenium.webdriver.ChromeOptions() | modules=selenium.webdriver |\n| ${items} =   | Evaluate | [json.loads(item) for item in ('1', '\"b\"')] | modules=json |\n| ${ns} =      | Create Dictionary | x=${4}    | y=${2}              |\n| ${result} =  | Evaluate | x*10 + y           | namespace=${ns}     |\n=>\n| ${status} = True\n| ${random} = <random integer>\n| ${options} = ChromeOptions instance\n| ${items} = [1, 'b']\n| ${result} = 42\n\n*NOTE*: Prior to Robot Framework 3.2 using ``modules=rootmod.submod``\nwas not enough to make the root module itself available in the\nevaluation namespace. It needed to be taken into use explicitly like\n``modules=rootmod, rootmod.submod``.",
+            "shortdoc": "Evaluates the given expression in Python and returns the result.",
+            "tags": [],
+            "hide": false,
+            "uid": "94d2f2aabfda3169d54a9531cdb99890",
+            "step": 11
+          },
+          {
+            "type": "keyword",
+            "name": "$endorsement_effective_date.strftime('%d/%m/%Y') if hasattr($endorsement_effective_date, 'strftime') else __import__('datetime').datetime.strptime(str($endorsement_effective_date).split('.')[0].strip(), '%Y-%m-%d %H:%M:%S' if ' ' in str($endorsement_effective_date) else '%Y-%m-%d').strftime('%d/%m/%Y') if '-' in str($endorsement_effective_date) else str($endorsement_effective_date)",
+            "args": [],
+            "step": 12
+          },
+          {
+            "type": "keyword",
             "name": "Safe Input Text",
             "args": [
               {
@@ -13357,228 +13252,80 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerEndorsementEffectiveDate_textDate'])[1]"
               }
             ],
-            "step": 11,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "01/01/2025",
-            "args": [],
-            "step": 12
-          },
-          {
-            "type": "keyword",
-            "name": "TRY",
-            "args": [],
             "step": 13,
             "defaultReturns": null
           },
           {
             "type": "keyword",
-            "name": "Get Current Date",
-            "icon": "time",
-            "args": [
-              {
-                "type": "argument",
-                "name": "time_zone",
-                "valueType": "string",
-                "defaultValue": "local",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Timezone to use (`local` or `UTC`)",
-                "hide": false,
-                "value": "increment=5 days"
-              },
-              {
-                "type": "argument",
-                "name": "increment",
-                "valueType": "unknown",
-                "defaultValue": "0",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Time incremenet",
-                "hide": false,
-                "value": "result_format=%m/%d/%Y"
-              },
-              {
-                "type": "argument",
-                "name": "result_format",
-                "valueType": "string",
-                "defaultValue": "timestamp",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Format of returned date",
-                "hide": false,
-                "value": ""
-              },
-              {
-                "type": "argument",
-                "name": "exclude_millis",
-                "valueType": "boolean",
-                "defaultValue": "False",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Round and hide milliseconds",
-                "hide": false,
-                "value": ""
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "expiry_date",
-            "doc": "Returns current local or UTC time with an optional increment.\n\nArguments:\n- ``time_zone:``      Get the current time on this time zone. Currently only\n                      ``local`` (default) and ``UTC`` are supported.\n                      Has no effect if date is returned as an `epoch time`.\n- ``increment:``      Optional time increment to add to the returned date in\n                      one of the supported `time formats`. Can be negative.\n- ``result_format:``  Format of the returned date (see `date formats`).\n- ``exclude_millis:`` When set to any true value, rounds and drops\n                      milliseconds as explained in `millisecond handling`.\n\nExamples:\n| ${date} =       | Get Current Date |\n| Should Be Equal | ${date}          | 2014-06-12 20:00:58.946 |\n| ${date} =       | Get Current Date | UTC                     |\n| Should Be Equal | ${date}          | 2014-06-12 17:00:58.946 |\n| ${date} =       | Get Current Date | increment=02:30:00      |\n| Should Be Equal | ${date}          | 2014-06-12 22:30:58.946 |\n| ${date} =       | Get Current Date | UTC                     | - 5 hours |\n| Should Be Equal | ${date}          | 2014-06-12 12:00:58.946 |\n| ${date} =       | Get Current Date | result_format=datetime  |\n| Should Be Equal | ${date.year}     | ${2014}                 |\n| Should Be Equal | ${date.month}    | ${6}                    |",
-            "shortdoc": "Returns current local or UTC time with an optional increment.",
-            "tags": [],
-            "hide": false,
-            "uid": "7a1aead07b63f9ba63fc8e02abefe782",
+            "name": "${endorsement_effective_date}",
+            "args": [],
             "step": 14
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
-              }
-            ],
-            "step": 15,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "${expiry_date}",
-            "args": [],
-            "step": 16
-          },
-          {
-            "type": "keyword",
-            "name": "EXCEPT",
-            "args": [],
-            "step": 17,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Get Current Date",
-            "icon": "time",
-            "args": [
-              {
-                "type": "argument",
-                "name": "time_zone",
-                "valueType": "string",
-                "defaultValue": "local",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Timezone to use (`local` or `UTC`)",
-                "hide": false,
-                "value": "increment=5 days"
-              },
-              {
-                "type": "argument",
-                "name": "increment",
-                "valueType": "unknown",
-                "defaultValue": "0",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Time incremenet",
-                "hide": false,
-                "value": "result_format=%m/%d/%Y"
-              },
-              {
-                "type": "argument",
-                "name": "result_format",
-                "valueType": "string",
-                "defaultValue": "timestamp",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Format of returned date",
-                "hide": false,
-                "value": ""
-              },
-              {
-                "type": "argument",
-                "name": "exclude_millis",
-                "valueType": "boolean",
-                "defaultValue": "False",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Round and hide milliseconds",
-                "hide": false,
-                "value": ""
-              }
-            ],
-            "returns": "unknown",
-            "defaultReturns": "expiry_date",
-            "doc": "Returns current local or UTC time with an optional increment.\n\nArguments:\n- ``time_zone:``      Get the current time on this time zone. Currently only\n                      ``local`` (default) and ``UTC`` are supported.\n                      Has no effect if date is returned as an `epoch time`.\n- ``increment:``      Optional time increment to add to the returned date in\n                      one of the supported `time formats`. Can be negative.\n- ``result_format:``  Format of the returned date (see `date formats`).\n- ``exclude_millis:`` When set to any true value, rounds and drops\n                      milliseconds as explained in `millisecond handling`.\n\nExamples:\n| ${date} =       | Get Current Date |\n| Should Be Equal | ${date}          | 2014-06-12 20:00:58.946 |\n| ${date} =       | Get Current Date | UTC                     |\n| Should Be Equal | ${date}          | 2014-06-12 17:00:58.946 |\n| ${date} =       | Get Current Date | increment=02:30:00      |\n| Should Be Equal | ${date}          | 2014-06-12 22:30:58.946 |\n| ${date} =       | Get Current Date | UTC                     | - 5 hours |\n| Should Be Equal | ${date}          | 2014-06-12 12:00:58.946 |\n| ${date} =       | Get Current Date | result_format=datetime  |\n| Should Be Equal | ${date.year}     | ${2014}                 |\n| Should Be Equal | ${date.month}    | ${6}                    |",
-            "shortdoc": "Returns current local or UTC time with an optional increment.",
-            "tags": [],
-            "hide": false,
-            "uid": "7a1aead07b63f9ba63fc8e02abefe782",
-            "step": 18
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
-              }
-            ],
-            "step": 19,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "${expiry_date}",
-            "args": [],
-            "step": 20
           },
           {
             "type": "keyword",
             "name": "TRY",
             "args": [],
-            "step": 21,
+            "step": 15,
             "defaultReturns": null
           },
           {
             "type": "keyword",
-            "name": "Get From Dictionary",
-            "icon": "table",
+            "name": "Get Current Date",
+            "icon": "time",
             "args": [
               {
                 "type": "argument",
-                "name": "dictionary",
-                "valueType": "unknown",
-                "defaultValue": null,
+                "name": "time_zone",
+                "valueType": "string",
+                "defaultValue": "local",
                 "kind": "positional-or-named",
-                "required": true,
-                "doc": "Dictionary to get value from",
+                "required": false,
+                "doc": "Timezone to use (`local` or `UTC`)",
                 "hide": false,
-                "value": "${current_row}"
+                "value": "increment=5 days"
               },
               {
                 "type": "argument",
-                "name": "key",
+                "name": "increment",
                 "valueType": "unknown",
-                "defaultValue": null,
+                "defaultValue": "0",
                 "kind": "positional-or-named",
-                "required": true,
-                "doc": "Key for value",
+                "required": false,
+                "doc": "Time incremenet",
                 "hide": false,
-                "value": "CH"
+                "value": "result_format=%d/%m/%Y"
+              },
+              {
+                "type": "argument",
+                "name": "result_format",
+                "valueType": "string",
+                "defaultValue": "timestamp",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Format of returned date",
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "exclude_millis",
+                "valueType": "boolean",
+                "defaultValue": "False",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Round and hide milliseconds",
+                "hide": false,
+                "value": ""
               }
             ],
             "returns": "unknown",
-            "defaultReturns": "due_days",
-            "doc": "Returns a value from the given ``dictionary`` based on the given ``key``.\n\nIf the given ``key`` cannot be found from the ``dictionary``, this\nkeyword fails.\n\nThe given dictionary is never altered by this keyword.\n\nExample:\n| ${value} = | Get From Dictionary | ${D3} | b |\n=>\n| ${value} = 2",
-            "shortdoc": "Returns a value from the given ``dictionary`` based on the given ``key``.",
+            "defaultReturns": "expiry_date",
+            "doc": "Returns current local or UTC time with an optional increment.\n\nArguments:\n- ``time_zone:``      Get the current time on this time zone. Currently only\n                      ``local`` (default) and ``UTC`` are supported.\n                      Has no effect if date is returned as an `epoch time`.\n- ``increment:``      Optional time increment to add to the returned date in\n                      one of the supported `time formats`. Can be negative.\n- ``result_format:``  Format of the returned date (see `date formats`).\n- ``exclude_millis:`` When set to any true value, rounds and drops\n                      milliseconds as explained in `millisecond handling`.\n\nExamples:\n| ${date} =       | Get Current Date |\n| Should Be Equal | ${date}          | 2014-06-12 20:00:58.946 |\n| ${date} =       | Get Current Date | UTC                     |\n| Should Be Equal | ${date}          | 2014-06-12 17:00:58.946 |\n| ${date} =       | Get Current Date | increment=02:30:00      |\n| Should Be Equal | ${date}          | 2014-06-12 22:30:58.946 |\n| ${date} =       | Get Current Date | UTC                     | - 5 hours |\n| Should Be Equal | ${date}          | 2014-06-12 12:00:58.946 |\n| ${date} =       | Get Current Date | result_format=datetime  |\n| Should Be Equal | ${date.year}     | ${2014}                 |\n| Should Be Equal | ${date.month}    | ${6}                    |",
+            "shortdoc": "Returns current local or UTC time with an optional increment.",
             "tags": [],
             "hide": false,
-            "uid": "5df73075f41a5956dead496984033faf",
-            "step": 22
+            "uid": "7a1aead07b63f9ba63fc8e02abefe782",
+            "step": 16
           },
           {
             "type": "keyword",
@@ -13587,24 +13334,102 @@
               {
                 "type": "argument",
                 "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]"
+                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
               }
             ],
-            "step": 23,
+            "step": 17,
             "defaultReturns": null
           },
           {
             "type": "keyword",
-            "name": "${due_days}",
+            "name": "${expiry_date}",
             "args": [],
-            "step": 24
+            "step": 18
           },
           {
             "type": "keyword",
             "name": "EXCEPT",
             "args": [],
-            "step": 25,
+            "step": 19,
             "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Get Current Date",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_zone",
+                "valueType": "string",
+                "defaultValue": "local",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Timezone to use (`local` or `UTC`)",
+                "hide": false,
+                "value": "increment=5 days"
+              },
+              {
+                "type": "argument",
+                "name": "increment",
+                "valueType": "unknown",
+                "defaultValue": "0",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Time incremenet",
+                "hide": false,
+                "value": "result_format=%d/%m/%Y"
+              },
+              {
+                "type": "argument",
+                "name": "result_format",
+                "valueType": "string",
+                "defaultValue": "timestamp",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Format of returned date",
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "exclude_millis",
+                "valueType": "boolean",
+                "defaultValue": "False",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Round and hide milliseconds",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": "expiry_date",
+            "doc": "Returns current local or UTC time with an optional increment.\n\nArguments:\n- ``time_zone:``      Get the current time on this time zone. Currently only\n                      ``local`` (default) and ``UTC`` are supported.\n                      Has no effect if date is returned as an `epoch time`.\n- ``increment:``      Optional time increment to add to the returned date in\n                      one of the supported `time formats`. Can be negative.\n- ``result_format:``  Format of the returned date (see `date formats`).\n- ``exclude_millis:`` When set to any true value, rounds and drops\n                      milliseconds as explained in `millisecond handling`.\n\nExamples:\n| ${date} =       | Get Current Date |\n| Should Be Equal | ${date}          | 2014-06-12 20:00:58.946 |\n| ${date} =       | Get Current Date | UTC                     |\n| Should Be Equal | ${date}          | 2014-06-12 17:00:58.946 |\n| ${date} =       | Get Current Date | increment=02:30:00      |\n| Should Be Equal | ${date}          | 2014-06-12 22:30:58.946 |\n| ${date} =       | Get Current Date | UTC                     | - 5 hours |\n| Should Be Equal | ${date}          | 2014-06-12 12:00:58.946 |\n| ${date} =       | Get Current Date | result_format=datetime  |\n| Should Be Equal | ${date.year}     | ${2014}                 |\n| Should Be Equal | ${date.month}    | ${6}                    |",
+            "shortdoc": "Returns current local or UTC time with an optional increment.",
+            "tags": [],
+            "hide": false,
+            "uid": "7a1aead07b63f9ba63fc8e02abefe782",
+            "step": 20
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "name": "(//input[@id",
+                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_DatePickerPolicyExpiryDate_textDate'])[1]"
+              }
+            ],
+            "step": 21,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "${expiry_date}",
+            "args": [],
+            "step": 22
           },
           {
             "type": "keyword",
@@ -13641,7 +13466,7 @@
             "tags": [],
             "hide": false,
             "uid": "5df73075f41a5956dead496984033faf",
-            "step": 26
+            "step": 23
           },
           {
             "type": "keyword",
@@ -13653,26 +13478,14 @@
                 "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderEndorsementMain_ContentPlaceHolderEndorsement_tbDueDays'])[1]"
               }
             ],
-            "step": 27,
+            "step": 24,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "${due_days}",
             "args": [],
-            "step": 28
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//span[normalize-space()='No Premium'])[1]"
-              }
-            ],
-            "step": 29,
-            "defaultReturns": null
+            "step": 25
           },
           {
             "type": "keyword",
@@ -13688,7 +13501,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "20s"
+                "value": "2s"
               },
               {
                 "type": "argument",
@@ -13709,20 +13522,103 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 30
+            "step": 26
           },
           {
             "type": "keyword",
-            "name": "Safe Click Element",
+            "name": "Click Element",
+            "icon": null,
             "args": [
               {
                 "type": "argument",
-                "name": "(//input[@id",
-                "value": "'ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_endorsementStandardButtons_btnSubmit'])[1]"
+                "name": "locator",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "xpath=//body"
+              },
+              {
+                "type": "argument",
+                "name": "index",
+                "valueType": "number",
+                "defaultValue": "0",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "action",
+                "valueType": "boolean",
+                "defaultValue": "True",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": ""
+              },
+              {
+                "type": "argument",
+                "name": "timeout",
+                "valueType": "number",
+                "defaultValue": "10",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": ""
               }
             ],
-            "step": 31,
-            "defaultReturns": null
+            "returns": "unknown",
+            "defaultReturns": null,
+            "doc": "Click element\n\n:param target: element to click\n:param index: target element index if multiple are returned\n:param action: call click action on element (default), or use coordinates\n:param timeout: timeout in seconds to find element",
+            "shortdoc": "Click element",
+            "tags": [],
+            "hide": true,
+            "uid": "7fed82f52a533d8adfdf21896dc9a498",
+            "step": 27
+          },
+          {
+            "type": "keyword",
+            "name": "Run Keyword And Ignore Error",
+            "icon": null,
+            "args": [
+              {
+                "type": "argument",
+                "name": "name",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": null,
+                "hide": false,
+                "value": "Execute Javascript"
+              },
+              {
+                "type": "argument",
+                "name": "args",
+                "valueType": "unknown",
+                "defaultValue": null,
+                "kind": "var-positional",
+                "required": false,
+                "doc": null,
+                "hide": false,
+                "value": "if (document.activeElement) { document.activeElement.blur(); }"
+              }
+            ],
+            "returns": "unknown",
+            "defaultReturns": null,
+            "doc": "Runs the given keyword with the given arguments and ignores possible error.\n\nThis keyword returns two values, so that the first is either string\n``PASS`` or ``FAIL``, depending on the status of the executed keyword.\nThe second value is either the return value of the keyword or the\nreceived error message. See `Run Keyword And Return Status` If you are\nonly interested in the execution status.\n\nThe keyword name and arguments work as in `Run Keyword`. See\n`Run Keyword If` for a usage example.\n\nErrors caused by invalid syntax, timeouts, or fatal exceptions are not\ncaught by this keyword. Otherwise this keyword itself never fails.\n\n*NOTE:* Robot Framework 5.0 introduced native TRY/EXCEPT functionality\nthat is generally recommended for error handling.",
+            "shortdoc": "Runs the given keyword with the given arguments and ignores possible error.",
+            "tags": [],
+            "hide": true,
+            "uid": "4dd97a0566fd5bfd644f9db5a173d2f9",
+            "step": 28
           },
           {
             "type": "keyword",
@@ -13759,7 +13655,26 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 32
+            "step": 29
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Wait Until Element Is Visible",
+            "args": [
+              {
+                "type": "argument",
+                "name": "xpath",
+                "value": "//*[@id"
+              }
+            ],
+            "step": 30,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "30s",
+            "args": [],
+            "step": 31
           },
           {
             "type": "keyword",
@@ -13767,10 +13682,11 @@
             "args": [
               {
                 "type": "argument",
-                "value": "xpath=//div[@class='RiskHeaderColumnOne']//div[1]"
+                "name": "xpath",
+                "value": "//*[@id"
               }
             ],
-            "step": 33,
+            "step": 32,
             "defaultReturns": null
           },
           {
@@ -13787,7 +13703,7 @@
                 "required": true,
                 "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
                 "hide": false,
-                "value": "900s"
+                "value": "5s"
               },
               {
                 "type": "argument",
@@ -13808,7 +13724,76 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 34
+            "step": 33
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Wait Until Element Is Visible",
+            "args": [
+              {
+                "type": "argument",
+                "name": "xpath",
+                "value": "//*[@id"
+              }
+            ],
+            "step": 34,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "60s",
+            "args": [],
+            "step": 35
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "name": "xpath",
+                "value": "//*[@id"
+              }
+            ],
+            "step": 36,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 37
           }
         ]
       }

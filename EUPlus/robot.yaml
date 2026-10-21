@@ -3,9 +3,9 @@ tasks:
     robotTaskName: US E&U Plus
 condaConfigFile: conda.yaml
 ignoreFiles:
-  - .gitignore
+- .gitignore
 artifactsDir: output
 PATH:
-  - .
+- .
 PYTHONPATH:
-  - .
+- .
