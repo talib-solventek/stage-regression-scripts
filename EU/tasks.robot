@@ -269,12 +269,12 @@ Fill Insured Details
         Click Element When Visible
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]
         Sleep    4s
-        Wait Until Element Is Visible    (//table[@id='TableBrokerContactSearch']//input[@value="Select"])[1]    30s
+        Wait Until Element Is Visible    (//table[@id='TableBrokerContactSearch']//input[@value="Select"])[3]    30s
         Wait Until Keyword Succeeds
         ...    5x
         ...    2s
         ...    Click Element
-        ...    (//table[@id='TableBrokerContactSearch']//input[@value="Select"])[1]
+        ...    (//table[@id='TableBrokerContactSearch']//input[@value="Select"])[3]
         Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]
         Click Element When Visible
         ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ButtonSave'])[1]
@@ -803,4 +803,4 @@ Check All Subjectivities
         ELSE
             BREAK
         END
-    END
+    END
