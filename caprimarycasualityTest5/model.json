@@ -3878,7 +3878,7 @@
             "args": [
               {
                 "type": "argument",
-                "value": "xpath=(//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value=\"Select\"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value=\"Select\"])[1]"
+                "value": "xpath=(//table[@id='TableBrokerContactSearch']/tbody/tr/td//input[@value=\"Select\"] | //table[@id='TableBrokerContactSearch']/tr/td//input[@value=\"Select\"])[3]"
               }
             ],
             "step": 86,
