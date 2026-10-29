@@ -12,6 +12,8 @@ Library     String
 *** Variables ***
 ${DATA_SOURCE}      ${CURDIR}${/}DataSheet.xlsx
 ${DRIVER}           ${CURDIR}${/}msedgedriver.exe
+${firstRun}         ${TRUE}
+${copyRisk}         ${FALSE}
 
 *** Tasks ***
 Canada Primary Casualty
@@ -37,6 +39,8 @@ Canada Primary Casualty
 
 *** Keywords ***
 Flow to execute
+    Set Task Variable    ${firstRun}    ${TRUE}
+    Set Task Variable    ${copyRisk}    ${FALSE}
     Login to App
     Risk Creation[First Run]
     Verify Status
@@ -62,6 +66,21 @@ Flow to execute
     Renewal
     View Risk
     Close Browser
+
+Extract Risk Number
+    [Arguments]    ${flow_name}=${EMPTY}
+    # 1. Wait for the Risk Number element in the header to load
+    Wait Until Element Is Visible    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]    15s
+    
+    # 2. Extract the text explicitly using the Selenium library to avoid conflicts
+    ${risk_number}=    RPA.Browser.Selenium.Get Text    //*[@id="ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ctrlRiskHeader_btnReturnToRiskSummary"]
+    
+    # 3. Dynamically set the flow type label based on parameter or script's current workflow
+    ${flow_type}=    Set Variable If    '${flow_name}' != '${EMPTY}'    ${flow_name}    ${firstRun} == True    First Run    ${copyRisk} == True    Copy Risk    Renewal
+    
+    # 4. Append to the file using Python's built-in open() method. 
+    Evaluate    open(r'${CURDIR}${/}risk_numbers.txt', 'a', encoding='utf-8').write($flow_type + ' - Risk Number: ' + $risk_number.strip() + chr(10))
+    Log    Extracted ${flow_type} - Risk Number: ${risk_number}
 
 Login to App
     ${URL}=    Get From Dictionary    ${current_row}    A
@@ -141,6 +160,7 @@ Fill Insured Details[First Run]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    60s
+    Extract Risk Number    First Run
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
     ...    Calgary
@@ -400,6 +420,7 @@ Fill Insured Details[Renewal]
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Sleep    3s
     Wait Until Element Is Visible    (//a[normalize-space()='Submission Details'])[1]    60s
+    Extract Risk Number    Renewal
     Safe Input Text
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_txtNAICSCode'])[1]
     ...    111110 SOYBEAN FARMING
@@ -541,6 +562,7 @@ Fill Insured Details[Copy Risk]
     Safe Click Element
     ...    (//input[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_btnNext'])[1]
     Wait Until Element Is Visible    (//legend[@class='ui-widget ui-widget-header ui-corner-all'])[1]    60s
+    Extract Risk Number    Copy Risk
     Safe Select From List By Label
     ...    (//select[@id='ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_DropDownListBranch'])[1]
     ...    Calgary
@@ -825,6 +847,8 @@ Post Bind Endorsement
     Safe Click Element    xpath=//div[@class='RiskHeaderColumnOne']//div[1]
 
 Renewal
+    Set Task Variable    ${firstRun}    ${FALSE}
+    Set Task Variable    ${copyRisk}    ${FALSE}
     Wait For Page Ready    30s
     Wait Until Keyword Succeeds    40x    3s    Wait Until Element Is Visible    (//a[normalize-space()='Renew'])[1]    3s
     Safe Click Element    (//a[normalize-space()='Renew'])[1]
@@ -858,6 +882,8 @@ Reissue
     Book    False
 
 Copy Risk
+    Set Task Variable    ${firstRun}    ${FALSE}
+    Set Task Variable    ${copyRisk}    ${TRUE}
     Wait For Page Ready    30s
     Wait Until Keyword Succeeds    40x    3s    Wait Until Element Is Visible    (//a[normalize-space()='Copy Risk'])[1]    3s
     Safe Click Element    (//a[normalize-space()='Copy Risk'])[1]
