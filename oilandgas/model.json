@@ -5,6 +5,18 @@
       "name": "DATA_SOURCE",
       "value": "${CURDIR}${/}DataSheet.xlsx",
       "doc": "Variable defined in 'Tasks'"
+    },
+    {
+      "type": "single",
+      "name": "NAT_PERIL_RATER_STATUS_XPATH",
+      "value": "//*[@id=\"ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlNatPerilRates_lblRaterStatus\"]",
+      "doc": "Variable defined in 'Tasks'"
+    },
+    {
+      "type": "single",
+      "name": "XOL_RATER_STATUS_XPATH",
+      "value": "//*[@id=\"ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_lblRaterStatus\"]",
+      "doc": "Variable defined in 'Tasks'"
     }
   ],
   "workflow": [
@@ -6076,40 +6088,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${NAT_PERIL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 138
+            "step": 138,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -6213,40 +6200,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "30s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${XOL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 146
+            "step": 146,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -8348,40 +8310,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${NAT_PERIL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 19
+            "step": 19,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -8485,40 +8422,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "30s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${XOL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 27
+            "step": 27,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -9547,40 +9459,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${NAT_PERIL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 17
+            "step": 17,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -9684,40 +9571,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "30s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${XOL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 25
+            "step": 25,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -10757,40 +10619,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${NAT_PERIL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 16
+            "step": 16,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -10907,40 +10744,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "30s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${XOL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 24
+            "step": 24,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -15213,40 +15025,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${NAT_PERIL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 34
+            "step": 34,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -15363,40 +15150,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "30s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${XOL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 42
+            "step": 42,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -16309,40 +16071,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${NAT_PERIL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 34
+            "step": 34,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -16459,40 +16196,15 @@
           },
           {
             "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
+            "name": "Wait For Rater Status Complete",
             "args": [
               {
                 "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "30s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
+                "value": "${XOL_RATER_STATUS_XPATH}"
               }
             ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 42
+            "step": 42,
+            "defaultReturns": null
           },
           {
             "type": "keyword",
@@ -17597,136 +17309,10 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//span[@class='k-icon k-i-filter'])[8]"
+                "value": "//*[@id=\"navbar-collapse-1\"]/ul/li[1]/a"
               }
             ],
             "step": 16,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//input[@title='Value'])[1]"
-              },
-              {
-                "type": "argument",
-                "value": "${account_number}"
-              }
-            ],
-            "step": 17,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//button[normalize-space()='Filter'])[1]"
-              }
-            ],
-            "step": 18,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
-            "args": [
-              {
-                "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "10s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
-              }
-            ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 19
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//a[normalize-space()='Create RA'])[1]"
-              }
-            ],
-            "step": 20,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
-            "args": [
-              {
-                "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "20s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
-              }
-            ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 21
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//td[normalize-space()='test'])[1]"
-              }
-            ],
-            "step": 22,
             "defaultReturns": null
           },
           {
@@ -17764,7 +17350,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 23
+            "step": 17
           },
           {
             "type": "keyword",
@@ -17772,10 +17358,38 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//a[normalize-space()='Executive Summary'])[1]"
+                "value": "(//span[@class='k-icon k-i-filter'])[8]"
               }
             ],
-            "step": 24,
+            "step": 18,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//input[@title='Value'])[1]"
+              },
+              {
+                "type": "argument",
+                "value": "${account_number}"
+              }
+            ],
+            "step": 19,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//button[normalize-space()='Filter'])[1]"
+              }
+            ],
+            "step": 20,
             "defaultReturns": null
           },
           {
@@ -17813,13 +17427,160 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 21
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='Create RA'])[1]"
+              }
+            ],
+            "step": 22,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "20s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 23
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//td[normalize-space()='test'])[1]"
+              }
+            ],
+            "step": 24,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
             "step": 25
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='Executive Summary'])[1]"
+              }
+            ],
+            "step": 26,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "10s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 27
           },
           {
             "type": "keyword",
             "name": "FOR",
             "uid": "d55669822f1a8cf72ec1911e462a54eb",
-            "step": 26,
+            "step": 28,
             "containerValue": {
               "kind": "in",
               "start": "${item}",
@@ -17878,7 +17639,7 @@
             "tags": [],
             "hide": false,
             "uid": "06d650ba4a31a3db475d22c98ef66b6b",
-            "step": 27
+            "step": 29
           },
           {
             "type": "keyword",
@@ -17889,7 +17650,7 @@
                 "value": "xpath=//body"
               }
             ],
-            "step": 28,
+            "step": 30,
             "defaultReturns": null
           },
           {
@@ -17949,7 +17710,7 @@
             "tags": [],
             "hide": true,
             "uid": "7fed82f52a533d8adfdf21896dc9a498",
-            "step": 29
+            "step": 31
           },
           {
             "type": "keyword",
@@ -17975,7 +17736,7 @@
             "tags": [],
             "hide": true,
             "uid": "9acb0323b8eba93af5f7b66d96b5c48d",
-            "step": 30
+            "step": 32
           },
           {
             "type": "keyword",
@@ -17989,7 +17750,7 @@
             "tags": [],
             "hide": false,
             "uid": "6ef50f927e6fafbf01089ae3807675a7",
-            "step": 31
+            "step": 33
           },
           {
             "type": "keyword",
@@ -18026,7 +17787,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 32
+            "step": 34
           },
           {
             "type": "keyword",
@@ -18052,7 +17813,7 @@
             "tags": [],
             "hide": false,
             "uid": "06d650ba4a31a3db475d22c98ef66b6b",
-            "step": 33
+            "step": 35
           },
           {
             "type": "keyword",
@@ -18063,7 +17824,7 @@
                 "value": "xpath=//body"
               }
             ],
-            "step": 34,
+            "step": 36,
             "defaultReturns": null
           },
           {
@@ -18123,7 +17884,7 @@
             "tags": [],
             "hide": true,
             "uid": "7fed82f52a533d8adfdf21896dc9a498",
-            "step": 35
+            "step": 37
           },
           {
             "type": "keyword",
@@ -18149,7 +17910,7 @@
             "tags": [],
             "hide": true,
             "uid": "9acb0323b8eba93af5f7b66d96b5c48d",
-            "step": 36
+            "step": 38
           },
           {
             "type": "keyword",
@@ -18163,7 +17924,7 @@
             "tags": [],
             "hide": false,
             "uid": "6ef50f927e6fafbf01089ae3807675a7",
-            "step": 37
+            "step": 39
           },
           {
             "type": "keyword",
@@ -18200,7 +17961,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 38
+            "step": 40
           },
           {
             "type": "keyword",
@@ -18209,30 +17970,6 @@
               {
                 "type": "argument",
                 "value": "(//a[normalize-space()='RA Summary'])[1]"
-              }
-            ],
-            "step": 39,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "//span[@class='glyphicon glyphicon-edit']"
-              }
-            ],
-            "step": 40,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//a[normalize-space()='Loss Estimates'])[1]"
               }
             ],
             "step": 41,
@@ -18244,10 +17981,34 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//a[normalize-space()='EML'])[1]"
+                "value": "//span[@class='glyphicon glyphicon-edit']"
               }
             ],
             "step": 42,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='Loss Estimates'])[1]"
+              }
+            ],
+            "step": 43,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='EML'])[1]"
+              }
+            ],
+            "step": 44,
             "defaultReturns": null
           },
           {
@@ -18263,7 +18024,7 @@
                 "value": "10000"
               }
             ],
-            "step": 43,
+            "step": 45,
             "defaultReturns": null
           },
           {
@@ -18276,14 +18037,14 @@
                 "value": "'PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]"
               }
             ],
-            "step": 44,
+            "step": 46,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "100",
             "args": [],
-            "step": 45
+            "step": 47
           },
           {
             "type": "keyword",
@@ -18294,7 +18055,7 @@
                 "value": "(//a[normalize-space()='PML'])[1]"
               }
             ],
-            "step": 46,
+            "step": 48,
             "defaultReturns": null
           },
           {
@@ -18332,7 +18093,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 47
+            "step": 49
           },
           {
             "type": "keyword",
@@ -18347,7 +18108,7 @@
                 "value": "10000"
               }
             ],
-            "step": 48,
+            "step": 50,
             "defaultReturns": null
           },
           {
@@ -18360,14 +18121,14 @@
                 "value": "'PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]"
               }
             ],
-            "step": 49,
+            "step": 51,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "100",
             "args": [],
-            "step": 50
+            "step": 52
           },
           {
             "type": "keyword",
@@ -18378,7 +18139,7 @@
                 "value": "(//a[normalize-space()='RA Score'])[1]"
               }
             ],
-            "step": 51,
+            "step": 53,
             "defaultReturns": null
           },
           {
@@ -18390,7 +18151,7 @@
                 "value": "(//input[@id='convertQuick'])[1]"
               }
             ],
-            "step": 52,
+            "step": 54,
             "defaultReturns": null
           },
           {
@@ -18428,7 +18189,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 53
+            "step": 55
           },
           {
             "type": "keyword",
@@ -18443,7 +18204,7 @@
                 "value": "90"
               }
             ],
-            "step": 54,
+            "step": 56,
             "defaultReturns": null
           },
           {
@@ -18459,7 +18220,7 @@
                 "value": "89"
               }
             ],
-            "step": 55,
+            "step": 57,
             "defaultReturns": null
           },
           {
@@ -18475,7 +18236,7 @@
                 "value": "89"
               }
             ],
-            "step": 56,
+            "step": 58,
             "defaultReturns": null
           },
           {
@@ -18491,7 +18252,7 @@
                 "value": "89"
               }
             ],
-            "step": 57,
+            "step": 59,
             "defaultReturns": null
           },
           {
@@ -18507,7 +18268,7 @@
                 "value": "89"
               }
             ],
-            "step": 58,
+            "step": 60,
             "defaultReturns": null
           },
           {
@@ -18523,7 +18284,7 @@
                 "value": "89"
               }
             ],
-            "step": 59,
+            "step": 61,
             "defaultReturns": null
           },
           {
@@ -18539,7 +18300,7 @@
                 "value": "89"
               }
             ],
-            "step": 60,
+            "step": 62,
             "defaultReturns": null
           },
           {
@@ -18577,7 +18338,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 61
+            "step": 63
           },
           {
             "type": "keyword",
@@ -18592,7 +18353,7 @@
                 "value": "3"
               }
             ],
-            "step": 62,
+            "step": 64,
             "defaultReturns": null
           },
           {
@@ -18604,7 +18365,7 @@
                 "value": "(//a[normalize-space()='Location Summary'])[1]"
               }
             ],
-            "step": 63,
+            "step": 65,
             "defaultReturns": null
           },
           {
@@ -18642,7 +18403,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 64
+            "step": 66
           },
           {
             "type": "keyword",
@@ -18651,30 +18412,6 @@
               {
                 "type": "argument",
                 "value": "(//button[normalize-space()='Complete Location Risk Appraisal'])[1]"
-              }
-            ],
-            "step": 65,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//a[normalize-space()='Natural Perils'])[1]"
-              }
-            ],
-            "step": 66,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//input[@id='ReviewedByRiskEngineer'])[1]"
               }
             ],
             "step": 67,
@@ -18686,10 +18423,34 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//button[normalize-space()='Complete'])[1]"
+                "value": "(//a[normalize-space()='Natural Perils'])[1]"
               }
             ],
             "step": 68,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//input[@id='ReviewedByRiskEngineer'])[1]"
+              }
+            ],
+            "step": 69,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//button[normalize-space()='Complete'])[1]"
+              }
+            ],
+            "step": 70,
             "defaultReturns": null
           },
           {
@@ -18727,7 +18488,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 69
+            "step": 71
           },
           {
             "type": "keyword",
@@ -18741,7 +18502,7 @@
             "tags": [],
             "hide": false,
             "uid": "39bd098f5273da74679894e244c1b325",
-            "step": 70
+            "step": 72
           },
           {
             "type": "keyword",
@@ -18767,7 +18528,7 @@
             "tags": [],
             "hide": false,
             "uid": "10be1ad47d810d82b54f20f6b381d3dc",
-            "step": 71
+            "step": 73
           }
         ]
       }
@@ -19410,87 +19171,10 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//span[@class='k-icon k-i-filter'])[8]"
+                "value": "//*[@id=\"navbar-collapse-1\"]/ul/li[1]/a"
               }
             ],
             "step": 19,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Input Text",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//input[@title='Value'])[1]"
-              },
-              {
-                "type": "argument",
-                "value": "${account_number}"
-              }
-            ],
-            "step": 20,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//button[normalize-space()='Filter'])[1]"
-              }
-            ],
-            "step": 21,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Sleep",
-            "icon": "time",
-            "args": [
-              {
-                "type": "argument",
-                "name": "time_",
-                "valueType": "string",
-                "defaultValue": null,
-                "kind": "positional-or-named",
-                "required": true,
-                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
-                "hide": false,
-                "value": "10s"
-              },
-              {
-                "type": "argument",
-                "name": "reason",
-                "valueType": "string",
-                "defaultValue": "None",
-                "kind": "positional-or-named",
-                "required": false,
-                "doc": "Optional reason for sleeping",
-                "hide": false,
-                "value": ""
-              }
-            ],
-            "returns": null,
-            "defaultReturns": null,
-            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
-            "shortdoc": "Pauses the test executed for the given time.",
-            "tags": [],
-            "hide": false,
-            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 22
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//a[normalize-space()='Renew RA'])[1]"
-              }
-            ],
-            "step": 23,
             "defaultReturns": null
           },
           {
@@ -19528,7 +19212,133 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 20
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//span[@class='k-icon k-i-filter'])[8]"
+              }
+            ],
+            "step": 21,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Input Text",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//input[@title='Value'])[1]"
+              },
+              {
+                "type": "argument",
+                "value": "${account_number}"
+              }
+            ],
+            "step": 22,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//button[normalize-space()='Filter'])[1]"
+              }
+            ],
+            "step": 23,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "10s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
             "step": 24
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='Renew RA'])[1]"
+              }
+            ],
+            "step": 25,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Sleep",
+            "icon": "time",
+            "args": [
+              {
+                "type": "argument",
+                "name": "time_",
+                "valueType": "string",
+                "defaultValue": null,
+                "kind": "positional-or-named",
+                "required": true,
+                "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                "hide": false,
+                "value": "5s"
+              },
+              {
+                "type": "argument",
+                "name": "reason",
+                "valueType": "string",
+                "defaultValue": "None",
+                "kind": "positional-or-named",
+                "required": false,
+                "doc": "Optional reason for sleeping",
+                "hide": false,
+                "value": ""
+              }
+            ],
+            "returns": null,
+            "defaultReturns": null,
+            "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+            "shortdoc": "Pauses the test executed for the given time.",
+            "tags": [],
+            "hide": false,
+            "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+            "step": 26
           },
           {
             "type": "keyword",
@@ -19539,7 +19349,7 @@
                 "value": "(//a[normalize-space()='Executive Summary'])[1]"
               }
             ],
-            "step": 25,
+            "step": 27,
             "defaultReturns": null
           },
           {
@@ -19577,7 +19387,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 26
+            "step": 28
           },
           {
             "type": "keyword",
@@ -19586,30 +19396,6 @@
               {
                 "type": "argument",
                 "value": "(//a[normalize-space()='RA Summary'])[1]"
-              }
-            ],
-            "step": 27,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "//span[@class='glyphicon glyphicon-edit']"
-              }
-            ],
-            "step": 28,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//a[normalize-space()='Loss Estimates'])[1]"
               }
             ],
             "step": 29,
@@ -19621,10 +19407,34 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//a[normalize-space()='EML'])[1]"
+                "value": "//span[@class='glyphicon glyphicon-edit']"
               }
             ],
             "step": 30,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='Loss Estimates'])[1]"
+              }
+            ],
+            "step": 31,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//a[normalize-space()='EML'])[1]"
+              }
+            ],
+            "step": 32,
             "defaultReturns": null
           },
           {
@@ -19640,7 +19450,7 @@
                 "value": "10000"
               }
             ],
-            "step": 31,
+            "step": 33,
             "defaultReturns": null
           },
           {
@@ -19653,14 +19463,14 @@
                 "value": "'PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]"
               }
             ],
-            "step": 32,
+            "step": 34,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "100",
             "args": [],
-            "step": 33
+            "step": 35
           },
           {
             "type": "keyword",
@@ -19671,7 +19481,7 @@
                 "value": "(//a[normalize-space()='PML'])[1]"
               }
             ],
-            "step": 34,
+            "step": 36,
             "defaultReturns": null
           },
           {
@@ -19709,7 +19519,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 35
+            "step": 37
           },
           {
             "type": "keyword",
@@ -19724,7 +19534,7 @@
                 "value": "10000"
               }
             ],
-            "step": 36,
+            "step": 38,
             "defaultReturns": null
           },
           {
@@ -19737,14 +19547,14 @@
                 "value": "'PropertyDamageOGPCFields_AdditionalDamagePercentage'])[1]"
               }
             ],
-            "step": 37,
+            "step": 39,
             "defaultReturns": null
           },
           {
             "type": "keyword",
             "name": "100",
             "args": [],
-            "step": 38
+            "step": 40
           },
           {
             "type": "keyword",
@@ -19755,7 +19565,7 @@
                 "value": "(//a[normalize-space()='RA Score'])[1]"
               }
             ],
-            "step": 39,
+            "step": 41,
             "defaultReturns": null
           },
           {
@@ -19767,7 +19577,7 @@
                 "value": "(//input[@id='convertQuick'])[1]"
               }
             ],
-            "step": 40,
+            "step": 42,
             "defaultReturns": null
           },
           {
@@ -19805,7 +19615,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 41
+            "step": 43
           },
           {
             "type": "keyword",
@@ -19820,7 +19630,7 @@
                 "value": "90"
               }
             ],
-            "step": 42,
+            "step": 44,
             "defaultReturns": null
           },
           {
@@ -19836,7 +19646,7 @@
                 "value": "89"
               }
             ],
-            "step": 43,
+            "step": 45,
             "defaultReturns": null
           },
           {
@@ -19852,7 +19662,7 @@
                 "value": "89"
               }
             ],
-            "step": 44,
+            "step": 46,
             "defaultReturns": null
           },
           {
@@ -19868,7 +19678,7 @@
                 "value": "89"
               }
             ],
-            "step": 45,
+            "step": 47,
             "defaultReturns": null
           },
           {
@@ -19884,7 +19694,7 @@
                 "value": "89"
               }
             ],
-            "step": 46,
+            "step": 48,
             "defaultReturns": null
           },
           {
@@ -19900,7 +19710,7 @@
                 "value": "89"
               }
             ],
-            "step": 47,
+            "step": 49,
             "defaultReturns": null
           },
           {
@@ -19916,7 +19726,7 @@
                 "value": "89"
               }
             ],
-            "step": 48,
+            "step": 50,
             "defaultReturns": null
           },
           {
@@ -19954,7 +19764,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 49
+            "step": 51
           },
           {
             "type": "keyword",
@@ -19969,7 +19779,7 @@
                 "value": "3"
               }
             ],
-            "step": 50,
+            "step": 52,
             "defaultReturns": null
           },
           {
@@ -19981,7 +19791,7 @@
                 "value": "(//a[normalize-space()='Location Summary'])[1]"
               }
             ],
-            "step": 51,
+            "step": 53,
             "defaultReturns": null
           },
           {
@@ -20019,7 +19829,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 52
+            "step": 54
           },
           {
             "type": "keyword",
@@ -20028,30 +19838,6 @@
               {
                 "type": "argument",
                 "value": "(//button[normalize-space()='Complete Location Risk Appraisal'])[1]"
-              }
-            ],
-            "step": 53,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//a[normalize-space()='Natural Perils'])[1]"
-              }
-            ],
-            "step": 54,
-            "defaultReturns": null
-          },
-          {
-            "type": "keyword",
-            "name": "Safe Click Element",
-            "args": [
-              {
-                "type": "argument",
-                "value": "(//input[@id='ReviewedByRiskEngineer'])[1]"
               }
             ],
             "step": 55,
@@ -20063,10 +19849,34 @@
             "args": [
               {
                 "type": "argument",
-                "value": "(//button[normalize-space()='Complete'])[1]"
+                "value": "(//a[normalize-space()='Natural Perils'])[1]"
               }
             ],
             "step": 56,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//input[@id='ReviewedByRiskEngineer'])[1]"
+              }
+            ],
+            "step": 57,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Click Element",
+            "args": [
+              {
+                "type": "argument",
+                "value": "(//button[normalize-space()='Complete'])[1]"
+              }
+            ],
+            "step": 58,
             "defaultReturns": null
           },
           {
@@ -20104,7 +19914,7 @@
             "tags": [],
             "hide": false,
             "uid": "c9fab33e9458412c527c3fe8a13ee37d",
-            "step": 57
+            "step": 59
           },
           {
             "type": "keyword",
@@ -20118,7 +19928,7 @@
             "tags": [],
             "hide": false,
             "uid": "39bd098f5273da74679894e244c1b325",
-            "step": 58
+            "step": 60
           },
           {
             "type": "keyword",
@@ -20144,7 +19954,7 @@
             "tags": [],
             "hide": false,
             "uid": "10be1ad47d810d82b54f20f6b381d3dc",
-            "step": 59
+            "step": 61
           }
         ]
       }
@@ -20623,6 +20433,675 @@
             "name": "${locator}",
             "args": [],
             "step": 6
+          }
+        ]
+      }
+    },
+    {
+      "Wait For Rater Status Complete": {
+        "type": "custom",
+        "keywords": [
+          {
+            "type": "keyword",
+            "name": "[Arguments]",
+            "args": [
+              {
+                "type": "argument",
+                "value": "${locator}"
+              },
+              {
+                "type": "argument",
+                "value": "${timeout}=600s"
+              },
+              {
+                "type": "argument",
+                "value": "${interval}=5s"
+              }
+            ],
+            "step": 1,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "Safe Wait Until Element Is Visible",
+            "args": [
+              {
+                "type": "argument",
+                "value": "${locator}"
+              },
+              {
+                "type": "argument",
+                "value": "120s"
+              }
+            ],
+            "step": 2,
+            "defaultReturns": null
+          },
+          {
+            "type": "keyword",
+            "name": "WHILE",
+            "uid": "901889f4f34f8ca18ac2f53d1fed346e",
+            "step": 3,
+            "containerValue": {
+              "condition": "True    limit=${timeout}"
+            },
+            "body": [
+              {
+                "type": "keyword",
+                "name": "Set Variable",
+                "icon": "variable-x",
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "values",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "var-positional",
+                    "required": false,
+                    "doc": "Values to assign",
+                    "hide": false,
+                    "value": "${EMPTY}"
+                  }
+                ],
+                "returns": "unknown",
+                "defaultReturns": "status_text",
+                "doc": "Returns the given values which can then be assigned to a variables.\n\nThis keyword is mainly used for setting scalar variables.\nAdditionally it can be used for converting a scalar variable\ncontaining a list to a list variable or to multiple scalar variables.\nIt is recommended to use `Create List` when creating new lists.\n\nExamples:\n| ${hi} =   | Set Variable | Hello, world! |\n| ${hi2} =  | Set Variable | I said: ${hi} |\n| ${var1}   | ${var2} =    | Set Variable | Hello | world |\n| @{list} = | Set Variable | ${list with some items} |\n| ${item1}  | ${item2} =   | Set Variable  | ${list with 2 items} |\n\nVariables created with this keyword are available only in the\nscope where they are created. See `Set Global Variable`,\n`Set Test Variable` and `Set Suite Variable` for information on how to\nset variables so that they are available also in a larger scope.",
+                "shortdoc": "Returns the given values which can then be assigned to a variables.",
+                "tags": [],
+                "hide": false,
+                "uid": "42b17aee2c2c60900c900f2963f7e9b4",
+                "step": 1
+              },
+              {
+                "type": "keyword",
+                "name": "${res_call}",
+                "args": [
+                  {
+                    "type": "argument",
+                    "value": "${res}="
+                  },
+                  {
+                    "type": "argument",
+                    "value": "Run Keyword And Ignore Error"
+                  },
+                  {
+                    "type": "argument",
+                    "value": "RPA.Browser.Selenium.Get Text"
+                  },
+                  {
+                    "type": "argument",
+                    "value": "${locator}"
+                  }
+                ],
+                "step": 2,
+                "defaultReturns": null
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 3,
+                "containerValue": {
+                  "condition": "'${res_call}' == 'PASS' and $res is not None and '${res}' != ''"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "Set Variable",
+                    "icon": "variable-x",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "name": "values",
+                        "valueType": "unknown",
+                        "defaultValue": null,
+                        "kind": "var-positional",
+                        "required": false,
+                        "doc": "Values to assign",
+                        "hide": false,
+                        "value": "${res}"
+                      }
+                    ],
+                    "returns": "unknown",
+                    "defaultReturns": "status_text",
+                    "doc": "Returns the given values which can then be assigned to a variables.\n\nThis keyword is mainly used for setting scalar variables.\nAdditionally it can be used for converting a scalar variable\ncontaining a list to a list variable or to multiple scalar variables.\nIt is recommended to use `Create List` when creating new lists.\n\nExamples:\n| ${hi} =   | Set Variable | Hello, world! |\n| ${hi2} =  | Set Variable | I said: ${hi} |\n| ${var1}   | ${var2} =    | Set Variable | Hello | world |\n| @{list} = | Set Variable | ${list with some items} |\n| ${item1}  | ${item2} =   | Set Variable  | ${list with 2 items} |\n\nVariables created with this keyword are available only in the\nscope where they are created. See `Set Global Variable`,\n`Set Test Variable` and `Set Suite Variable` for information on how to\nset variables so that they are available also in a larger scope.",
+                    "shortdoc": "Returns the given values which can then be assigned to a variables.",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "42b17aee2c2c60900c900f2963f7e9b4",
+                    "step": 1
+                  }
+                ]
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 4,
+                "containerValue": {
+                  "condition": "'${status_text}' == ''"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "${res_call}",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "value": "${res}="
+                      },
+                      {
+                        "type": "argument",
+                        "value": "Run Keyword And Ignore Error"
+                      },
+                      {
+                        "type": "argument",
+                        "value": "RPA.Browser.Selenium.Get Element Attribute"
+                      },
+                      {
+                        "type": "argument",
+                        "value": "${locator}"
+                      },
+                      {
+                        "type": "argument",
+                        "value": "textContent"
+                      }
+                    ],
+                    "step": 1,
+                    "defaultReturns": null
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "IF",
+                    "uid": "39c8942e1038872a822c0dc75eedbde3",
+                    "step": 2,
+                    "containerValue": {
+                      "condition": "'${res_call}' == 'PASS' and $res is not None and '${res}' != ''"
+                    },
+                    "body": [
+                      {
+                        "type": "keyword",
+                        "name": "Set Variable",
+                        "icon": "variable-x",
+                        "args": [
+                          {
+                            "type": "argument",
+                            "name": "values",
+                            "valueType": "unknown",
+                            "defaultValue": null,
+                            "kind": "var-positional",
+                            "required": false,
+                            "doc": "Values to assign",
+                            "hide": false,
+                            "value": "${res}"
+                          }
+                        ],
+                        "returns": "unknown",
+                        "defaultReturns": "status_text",
+                        "doc": "Returns the given values which can then be assigned to a variables.\n\nThis keyword is mainly used for setting scalar variables.\nAdditionally it can be used for converting a scalar variable\ncontaining a list to a list variable or to multiple scalar variables.\nIt is recommended to use `Create List` when creating new lists.\n\nExamples:\n| ${hi} =   | Set Variable | Hello, world! |\n| ${hi2} =  | Set Variable | I said: ${hi} |\n| ${var1}   | ${var2} =    | Set Variable | Hello | world |\n| @{list} = | Set Variable | ${list with some items} |\n| ${item1}  | ${item2} =   | Set Variable  | ${list with 2 items} |\n\nVariables created with this keyword are available only in the\nscope where they are created. See `Set Global Variable`,\n`Set Test Variable` and `Set Suite Variable` for information on how to\nset variables so that they are available also in a larger scope.",
+                        "shortdoc": "Returns the given values which can then be assigned to a variables.",
+                        "tags": [],
+                        "hide": false,
+                        "uid": "42b17aee2c2c60900c900f2963f7e9b4",
+                        "step": 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 5,
+                "containerValue": {
+                  "condition": "'${status_text}' == ''"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "${res_call}",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "value": "${res}="
+                      },
+                      {
+                        "type": "argument",
+                        "value": "Run Keyword And Ignore Error"
+                      },
+                      {
+                        "type": "argument",
+                        "value": "RPA.Browser.Selenium.Get Value"
+                      },
+                      {
+                        "type": "argument",
+                        "value": "${locator}"
+                      }
+                    ],
+                    "step": 1,
+                    "defaultReturns": null
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "IF",
+                    "uid": "39c8942e1038872a822c0dc75eedbde3",
+                    "step": 2,
+                    "containerValue": {
+                      "condition": "'${res_call}' == 'PASS' and $res is not None and '${res}' != ''"
+                    },
+                    "body": [
+                      {
+                        "type": "keyword",
+                        "name": "Set Variable",
+                        "icon": "variable-x",
+                        "args": [
+                          {
+                            "type": "argument",
+                            "name": "values",
+                            "valueType": "unknown",
+                            "defaultValue": null,
+                            "kind": "var-positional",
+                            "required": false,
+                            "doc": "Values to assign",
+                            "hide": false,
+                            "value": "${res}"
+                          }
+                        ],
+                        "returns": "unknown",
+                        "defaultReturns": "status_text",
+                        "doc": "Returns the given values which can then be assigned to a variables.\n\nThis keyword is mainly used for setting scalar variables.\nAdditionally it can be used for converting a scalar variable\ncontaining a list to a list variable or to multiple scalar variables.\nIt is recommended to use `Create List` when creating new lists.\n\nExamples:\n| ${hi} =   | Set Variable | Hello, world! |\n| ${hi2} =  | Set Variable | I said: ${hi} |\n| ${var1}   | ${var2} =    | Set Variable | Hello | world |\n| @{list} = | Set Variable | ${list with some items} |\n| ${item1}  | ${item2} =   | Set Variable  | ${list with 2 items} |\n\nVariables created with this keyword are available only in the\nscope where they are created. See `Set Global Variable`,\n`Set Test Variable` and `Set Suite Variable` for information on how to\nset variables so that they are available also in a larger scope.",
+                        "shortdoc": "Returns the given values which can then be assigned to a variables.",
+                        "tags": [],
+                        "hide": false,
+                        "uid": "42b17aee2c2c60900c900f2963f7e9b4",
+                        "step": 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "keyword",
+                "name": "Convert To String",
+                "icon": "variable-x",
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "item",
+                    "valueType": "unknown",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "Value to convert",
+                    "hide": false,
+                    "value": "${status_text}"
+                  }
+                ],
+                "returns": "string",
+                "defaultReturns": "status_str",
+                "doc": "Converts the given item to a Unicode string.\n\nStrings are also [http://www.macchiato.com/unicode/nfc-faq|\nNFC normalized].\n\nUse `Encode String To Bytes` and `Decode Bytes To String` keywords\nin ``String`` library if you need to convert between Unicode and byte\nstrings using different encodings. Use `Convert To Bytes` if you just\nwant to create byte strings.",
+                "shortdoc": "Converts the given item to a Unicode string.",
+                "tags": [],
+                "hide": false,
+                "uid": "df98a151ec90a4e5e9496c40c156a709",
+                "step": 6
+              },
+              {
+                "type": "keyword",
+                "name": "Strip String",
+                "icon": "text",
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "string",
+                    "valueType": "string",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "String to modify",
+                    "hide": false,
+                    "value": "${status_str}"
+                  },
+                  {
+                    "type": "argument",
+                    "name": "mode",
+                    "valueType": "string",
+                    "defaultValue": "both",
+                    "kind": "positional-or-named",
+                    "required": false,
+                    "doc": "Type of split, e.g. `left`, `right`, or `both`",
+                    "hide": false,
+                    "value": ""
+                  },
+                  {
+                    "type": "argument",
+                    "name": "characters",
+                    "valueType": "string",
+                    "defaultValue": "None",
+                    "kind": "positional-or-named",
+                    "required": false,
+                    "doc": "Characters to strip",
+                    "hide": false,
+                    "value": ""
+                  }
+                ],
+                "returns": "string",
+                "defaultReturns": "status_clean",
+                "doc": "Remove leading and/or trailing whitespaces from the given string.\n\n``mode`` is either ``left`` to remove leading characters, ``right`` to\nremove trailing characters, ``both`` (default) to remove the\ncharacters from both sides of the string or ``none`` to return the\nunmodified string.\n\nIf the optional ``characters`` is given, it must be a string and the\ncharacters in the string will be stripped in the string. Please note,\nthat this is not a substring to be removed but a list of characters,\nsee the example below.\n\nExamples:\n| ${stripped}=  | Strip String | ${SPACE}Hello${SPACE} | |\n| Should Be Equal | ${stripped} | Hello | |\n| ${stripped}=  | Strip String | ${SPACE}Hello${SPACE} | mode=left |\n| Should Be Equal | ${stripped} | Hello${SPACE} | |\n| ${stripped}=  | Strip String | aabaHelloeee | characters=abe |\n| Should Be Equal | ${stripped} | Hello | |",
+                "shortdoc": "Remove leading and/or trailing whitespaces from the given string.",
+                "tags": [],
+                "hide": false,
+                "uid": "4295b561dc99379bec34e1f15d73c291",
+                "step": 7
+              },
+              {
+                "type": "keyword",
+                "name": "Convert To Lower Case",
+                "icon": "text",
+                "args": [
+                  {
+                    "type": "argument",
+                    "name": "string",
+                    "valueType": "string",
+                    "defaultValue": null,
+                    "kind": "positional-or-named",
+                    "required": true,
+                    "doc": "String to modify",
+                    "hide": false,
+                    "value": "${status_clean}"
+                  }
+                ],
+                "returns": "string",
+                "defaultReturns": "status_lower",
+                "doc": "Converts string to lower case.\n\nUses Python's standard\n[https://docs.python.org/library/stdtypes.html#str.lower|lower()]\nmethod.\n\nExamples:\n| ${str1} = | Convert To Lower Case | ABC |\n| ${str2} = | Convert To Lower Case | 1A2c3D |\n| Should Be Equal | ${str1} | abc |\n| Should Be Equal | ${str2} | 1a2c3d |",
+                "shortdoc": "Converts string to lower case.",
+                "tags": [],
+                "hide": false,
+                "uid": "02025f147808d7abeb21f9299f6f299b",
+                "step": 8
+              },
+              {
+                "type": "keyword",
+                "name": "IF",
+                "uid": "39c8942e1038872a822c0dc75eedbde3",
+                "step": 9,
+                "containerValue": {
+                  "condition": "'complete' in $status_lower"
+                },
+                "body": [
+                  {
+                    "type": "keyword",
+                    "name": "Log",
+                    "icon": "print",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "name": "message",
+                        "valueType": "string",
+                        "defaultValue": null,
+                        "kind": "positional-or-named",
+                        "required": true,
+                        "doc": "The message to log",
+                        "hide": false,
+                        "value": "Rater status completed successfully: '${status_clean}'"
+                      },
+                      {
+                        "type": "argument",
+                        "name": "level",
+                        "valueType": "string",
+                        "defaultValue": "INFO",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Log level of message. Valid options are `TRACE`, `DEBUG`, `INFO` (default), `HTML`, `WARN`, and `ERROR`.",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "html",
+                        "valueType": "boolean",
+                        "defaultValue": "False",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Allow HTML content in message",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "console",
+                        "valueType": "boolean",
+                        "defaultValue": "False",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Write message to console in addition to log file",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "repr",
+                        "valueType": "boolean",
+                        "defaultValue": "DEPRECATED",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Format message with `repr` formatter",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "formatter",
+                        "valueType": "string",
+                        "defaultValue": "str",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Control the string representation of message. Valid options are `str` (default), `repr`, and `ascii`.",
+                        "hide": false,
+                        "value": ""
+                      }
+                    ],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Logs the given message with the given level.\n\nValid levels are TRACE, DEBUG, INFO (default), HTML, WARN, and ERROR.\nMessages below the current active log level are ignored. See\n`Set Log Level` keyword and ``--loglevel`` command line option\nfor more details about setting the level.\n\nMessages logged with the WARN or ERROR levels will be automatically\nvisible also in the console and in the Test Execution Errors section\nin the log file.\n\nIf the ``html`` argument is given a true value (see `Boolean\narguments`), the message will be considered HTML and special characters\nsuch as ``<`` are not escaped. For example, logging\n``<img src=\"image.png\">`` creates an image when ``html`` is true, but\notherwise the message is that exact string. An alternative to using\nthe ``html`` argument is using the HTML pseudo log level. It logs\nthe message as HTML using the INFO level.\n\nIf the ``console`` argument is true, the message will be written to\nthe console where test execution was started from in addition to\nthe log file. This keyword always uses the standard output stream\nand adds a newline after the written message. Use `Log To Console`\ninstead if either of these is undesirable,\n\nThe ``formatter`` argument controls how to format the string\nrepresentation of the message. Possible values are ``str`` (default),\n``repr``, ``ascii``, ``len``, and ``type``. They work similarly to\nPython built-in functions with same names. When using ``repr``, bigger\nlists, dictionaries and other containers are also pretty-printed so\nthat there is one item per row. For more details see `String\nrepresentations`.\n\nThe old way to control string representation was using the ``repr``\nargument. This argument has been deprecated and ``formatter=repr``\nshould be used instead.\n\nExamples:\n| Log | Hello, world!        |          |   | # Normal INFO message.   |\n| Log | Warning, world!      | WARN     |   | # Warning.               |\n| Log | <b>Hello</b>, world! | html=yes |   | # INFO message as HTML.  |\n| Log | <b>Hello</b>, world! | HTML     |   | # Same as above.         |\n| Log | <b>Hello</b>, world! | DEBUG    | html=true | # DEBUG as HTML. |\n| Log | Hello, console!   | console=yes | | # Log also to the console. |\n| Log | Null is \\x00    | formatter=repr | | # Log ``'Null is \\x00'``. |\n\nSee `Log Many` if you want to log multiple messages in one go, and\n`Log To Console` if you only want to write to the console.\n\nFormatter options ``type`` and ``log`` are new in Robot Framework 5.0.",
+                    "shortdoc": "Logs the given message with the given level.",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "dc1d71bbb5c4d2a5e936db79ef10c19f",
+                    "step": 1
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "Break",
+                    "icon": "close",
+                    "args": [],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Allows exiting from a running loop structure, and continuing execution.\n",
+                    "shortdoc": "Stop current FOR or WHILE loop",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "1cbfb724ceee46cd879df7c7cfbe7dca",
+                    "step": 2
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "ELSE IF",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "value": "'in progress' in $status_lower or 'in pregress' in $status_lower or 'inprogress' in $status_lower or $status_lower == '' or $status_lower == 'none'"
+                      }
+                    ],
+                    "step": 3,
+                    "defaultReturns": null
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "Log",
+                    "icon": "print",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "name": "message",
+                        "valueType": "string",
+                        "defaultValue": null,
+                        "kind": "positional-or-named",
+                        "required": true,
+                        "doc": "The message to log",
+                        "hide": false,
+                        "value": "Current rater status: '${status_clean}'. Waiting ${interval}..."
+                      },
+                      {
+                        "type": "argument",
+                        "name": "level",
+                        "valueType": "string",
+                        "defaultValue": "INFO",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Log level of message. Valid options are `TRACE`, `DEBUG`, `INFO` (default), `HTML`, `WARN`, and `ERROR`.",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "html",
+                        "valueType": "boolean",
+                        "defaultValue": "False",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Allow HTML content in message",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "console",
+                        "valueType": "boolean",
+                        "defaultValue": "False",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Write message to console in addition to log file",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "repr",
+                        "valueType": "boolean",
+                        "defaultValue": "DEPRECATED",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Format message with `repr` formatter",
+                        "hide": false,
+                        "value": ""
+                      },
+                      {
+                        "type": "argument",
+                        "name": "formatter",
+                        "valueType": "string",
+                        "defaultValue": "str",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Control the string representation of message. Valid options are `str` (default), `repr`, and `ascii`.",
+                        "hide": false,
+                        "value": ""
+                      }
+                    ],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Logs the given message with the given level.\n\nValid levels are TRACE, DEBUG, INFO (default), HTML, WARN, and ERROR.\nMessages below the current active log level are ignored. See\n`Set Log Level` keyword and ``--loglevel`` command line option\nfor more details about setting the level.\n\nMessages logged with the WARN or ERROR levels will be automatically\nvisible also in the console and in the Test Execution Errors section\nin the log file.\n\nIf the ``html`` argument is given a true value (see `Boolean\narguments`), the message will be considered HTML and special characters\nsuch as ``<`` are not escaped. For example, logging\n``<img src=\"image.png\">`` creates an image when ``html`` is true, but\notherwise the message is that exact string. An alternative to using\nthe ``html`` argument is using the HTML pseudo log level. It logs\nthe message as HTML using the INFO level.\n\nIf the ``console`` argument is true, the message will be written to\nthe console where test execution was started from in addition to\nthe log file. This keyword always uses the standard output stream\nand adds a newline after the written message. Use `Log To Console`\ninstead if either of these is undesirable,\n\nThe ``formatter`` argument controls how to format the string\nrepresentation of the message. Possible values are ``str`` (default),\n``repr``, ``ascii``, ``len``, and ``type``. They work similarly to\nPython built-in functions with same names. When using ``repr``, bigger\nlists, dictionaries and other containers are also pretty-printed so\nthat there is one item per row. For more details see `String\nrepresentations`.\n\nThe old way to control string representation was using the ``repr``\nargument. This argument has been deprecated and ``formatter=repr``\nshould be used instead.\n\nExamples:\n| Log | Hello, world!        |          |   | # Normal INFO message.   |\n| Log | Warning, world!      | WARN     |   | # Warning.               |\n| Log | <b>Hello</b>, world! | html=yes |   | # INFO message as HTML.  |\n| Log | <b>Hello</b>, world! | HTML     |   | # Same as above.         |\n| Log | <b>Hello</b>, world! | DEBUG    | html=true | # DEBUG as HTML. |\n| Log | Hello, console!   | console=yes | | # Log also to the console. |\n| Log | Null is \\x00    | formatter=repr | | # Log ``'Null is \\x00'``. |\n\nSee `Log Many` if you want to log multiple messages in one go, and\n`Log To Console` if you only want to write to the console.\n\nFormatter options ``type`` and ``log`` are new in Robot Framework 5.0.",
+                    "shortdoc": "Logs the given message with the given level.",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "dc1d71bbb5c4d2a5e936db79ef10c19f",
+                    "step": 4
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "Sleep",
+                    "icon": "time",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "name": "time_",
+                        "valueType": "string",
+                        "defaultValue": null,
+                        "kind": "positional-or-named",
+                        "required": true,
+                        "doc": "A number or time string, e.g. `1 day 2 hours` or `3s`",
+                        "hide": false,
+                        "value": "${interval}"
+                      },
+                      {
+                        "type": "argument",
+                        "name": "reason",
+                        "valueType": "string",
+                        "defaultValue": "None",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Optional reason for sleeping",
+                        "hide": false,
+                        "value": ""
+                      }
+                    ],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Pauses the test executed for the given time.\n\n``time`` may be either a number or a time string. Time strings are in\na format such as ``1 day 2 hours 3 minutes 4 seconds 5milliseconds`` or\n``1d 2h 3m 4s 5ms``, and they are fully explained in an appendix of\nRobot Framework User Guide. Optional `reason` can be used to explain why\nsleeping is necessary. Both the time slept and the reason are logged.\n\nExamples:\n| Sleep | 42                   |\n| Sleep | 1.5                  |\n| Sleep | 2 minutes 10 seconds |\n| Sleep | 10s                  | Wait for a reply |",
+                    "shortdoc": "Pauses the test executed for the given time.",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "c9fab33e9458412c527c3fe8a13ee37d",
+                    "step": 5
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "ELSE",
+                    "args": [],
+                    "step": 6,
+                    "defaultReturns": null
+                  },
+                  {
+                    "type": "keyword",
+                    "name": "Fail",
+                    "icon": "warning",
+                    "args": [
+                      {
+                        "type": "argument",
+                        "name": "msg",
+                        "valueType": "string",
+                        "defaultValue": "None",
+                        "kind": "positional-or-named",
+                        "required": false,
+                        "doc": "Optional error message",
+                        "hide": false,
+                        "value": "Automation stopped: Unexpected rater status '${status_clean}' encountered (expected 'Complete' or 'In Progress')."
+                      },
+                      {
+                        "type": "argument",
+                        "name": "tags",
+                        "valueType": "unknown",
+                        "defaultValue": null,
+                        "kind": "var-positional",
+                        "required": false,
+                        "doc": null,
+                        "hide": true,
+                        "value": ""
+                      }
+                    ],
+                    "returns": null,
+                    "defaultReturns": null,
+                    "doc": "Fails the test with the given message and optionally alters its tags.\n\nThe error message is specified using the ``msg`` argument.\nIt is possible to use HTML in the given error message, similarly\nas with any other keyword accepting an error message, by prefixing\nthe error with ``*HTML*``.\n\nIt is possible to modify tags of the current test case by passing tags\nafter the message. Tags starting with a hyphen (e.g. ``-regression``)\nare removed and others added. Tags are modified using `Set Tags` and\n`Remove Tags` internally, and the semantics setting and removing them\nare the same as with these keywords.\n\nExamples:\n| Fail | Test not ready   |             | | # Fails with the given message.    |\n| Fail | *HTML*<b>Test not ready</b> | | | # Fails using HTML in the message. |\n| Fail | Test not ready   | not-ready   | | # Fails and adds 'not-ready' tag.  |\n| Fail | OS not supported | -regression | | # Removes tag 'regression'.        |\n| Fail | My message       | tag    | -t*  | # Removes all tags starting with 't' except the newly added 'tag'. |\n\nSee `Fatal Error` if you need to stop the whole test execution.",
+                    "shortdoc": "Fails the test with the given message and optionally alters its tags.",
+                    "tags": [],
+                    "hide": false,
+                    "uid": "e11185b6e35c1b767174dc988aa0f179",
+                    "step": 7
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

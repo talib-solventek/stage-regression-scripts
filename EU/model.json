@@ -4858,7 +4858,7 @@
                     "required": true,
                     "doc": "Locator for element",
                     "hide": false,
-                    "value": "(//table[@id='TableBrokerContactSearch']//input[@value=\"Select\"])[3]"
+                    "value": "(//table[@id='TableBrokerContactSearch']//input[@value=\"Select\"])[5]"
                   },
                   {
                     "type": "argument",

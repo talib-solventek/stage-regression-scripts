@@ -11,6 +11,8 @@ Library     String
 
 *** Variables ***
 ${DATA_SOURCE}      ${CURDIR}${/}DataSheet.xlsx
+${NAT_PERIL_RATER_STATUS_XPATH}    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlNatPerilRates_lblRaterStatus"]
+${XOL_RATER_STATUS_XPATH}          //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_lblRaterStatus"]
 
 
 *** Tasks ***
@@ -355,7 +357,7 @@ Fill Pricing Details[First Run]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    120s
-    Sleep    10s
+    Wait For Rater Status Complete    ${NAT_PERIL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    120s
@@ -367,7 +369,7 @@ Fill Pricing Details[First Run]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
-    Sleep    30s
+    Wait For Rater Status Complete    ${XOL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -495,7 +497,7 @@ Fill Pricing Details[Copy Risk]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    120s
-    Sleep    10s
+    Wait For Rater Status Complete    ${NAT_PERIL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    120s
@@ -507,7 +509,7 @@ Fill Pricing Details[Copy Risk]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
-    Sleep    30s
+    Wait For Rater Status Complete    ${XOL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -604,7 +606,7 @@ Fill Pricing Details[Renewal]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    120s
-    Sleep    10s
+    Wait For Rater Status Complete    ${NAT_PERIL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    120s
@@ -616,7 +618,7 @@ Fill Pricing Details[Renewal]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
     Safe Click Element
     ...    //*[@id="ctl00_ctl00_ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_ContentPlaceHolderPolicyMain_ContentPlaceHolderMain_ctrlExcessOfLoss_btnXolRates"]
-    Sleep    30s
+    Wait For Rater Status Complete    ${XOL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -693,7 +695,7 @@ Fill Pricing Details[Reissue]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    120s
-    Sleep    10s
+    Wait For Rater Status Complete    ${NAT_PERIL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    120s
@@ -704,7 +706,7 @@ Fill Pricing Details[Reissue]
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Sleep    30s
+    Wait For Rater Status Complete    ${XOL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -1002,7 +1004,7 @@ Account
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    120s
-    Sleep    10s
+    Wait For Rater Status Complete    ${NAT_PERIL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    120s
@@ -1013,7 +1015,7 @@ Account
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Sleep    30s
+    Wait For Rater Status Complete    ${XOL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -1091,7 +1093,7 @@ Account[Renewal]
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Natural Peril Rates'])[1]    120s
-    Sleep    10s
+    Wait For Rater Status Complete    ${NAT_PERIL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Loss Experience'])[1]    120s
@@ -1102,7 +1104,7 @@ Account[Renewal]
     ...    (//input[@name='ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Excess Of Loss'])[1]    120s
     Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
-    Sleep    30s
+    Wait For Rater Status Complete    ${XOL_RATER_STATUS_XPATH}
     Safe Click Element
     ...    (//input[@name='ctl00$ctl00$ctl00$ctl00$PartContentPlaceHolderMain$ContentPlaceHolderMain$ContentPlaceHolderPolicyMain$ContentPlaceHolderMain$ctl00'])[1]
     Safe Wait Until Element Is Visible    (//*[normalize-space()='Summary Of Pricing'])[1]    120s
@@ -1165,7 +1167,9 @@ RA Approval
     Sleep    10s
     ${locator}=    Send Keys    keys=${NUSER}{TAB}${NUSERPASSWORD}    send_enter=${TRUE}
     Send Keys    keys={RETURN}    send_enter=${TRUE}
-    Sleep    120s
+    Sleep    30s
+    Safe Click Element    //*[@id="navbar-collapse-1"]/ul/li[1]/a
+    Sleep    5s
     Safe Click Element    (//span[@class='k-icon k-i-filter'])[8]
     Safe Input Text    (//input[@title='Value'])[1]    ${account_number}
     Safe Click Element    (//button[normalize-space()='Filter'])[1]
@@ -1246,6 +1250,8 @@ RA Approval[Renewal]
     ${locator}=    Send Keys    keys=${NUSER}{TAB}${NUSERPASSWORD}    send_enter=${TRUE}
     Send Keys    keys={RETURN}    send_enter=${TRUE}
     Sleep    120s
+    Safe Click Element    //*[@id="navbar-collapse-1"]/ul/li[1]/a
+    Sleep    5s
     Safe Click Element    (//span[@class='k-icon k-i-filter'])[8]
     Safe Input Text    (//input[@title='Value'])[1]    ${account_number}
     Safe Click Element    (//button[normalize-space()='Filter'])[1]
@@ -1322,4 +1328,39 @@ Safe Wait Until Element Is Visible
     ...    ${retry_interval}
     ...    Check Element Visibility Safely
     ...    ${locator}
+
+Wait For Rater Status Complete
+    [Arguments]    ${locator}    ${timeout}=600s    ${interval}=5s
+    Safe Wait Until Element Is Visible    ${locator}    120s
+    WHILE    True    limit=${timeout}
+        ${status_text}=    Set Variable    ${EMPTY}
+        ${res_call}    ${res}=    Run Keyword And Ignore Error    RPA.Browser.Selenium.Get Text    ${locator}
+        IF    '${res_call}' == 'PASS' and $res is not None and '${res}' != ''
+            ${status_text}=    Set Variable    ${res}
+        END
+        IF    '${status_text}' == ''
+            ${res_call}    ${res}=    Run Keyword And Ignore Error    RPA.Browser.Selenium.Get Element Attribute    ${locator}    textContent
+            IF    '${res_call}' == 'PASS' and $res is not None and '${res}' != ''
+                ${status_text}=    Set Variable    ${res}
+            END
+        END
+        IF    '${status_text}' == ''
+            ${res_call}    ${res}=    Run Keyword And Ignore Error    RPA.Browser.Selenium.Get Value    ${locator}
+            IF    '${res_call}' == 'PASS' and $res is not None and '${res}' != ''
+                ${status_text}=    Set Variable    ${res}
+            END
+        END
+        ${status_str}=    Convert To String    ${status_text}
+        ${status_clean}=    Strip String    ${status_str}
+        ${status_lower}=    Convert To Lower Case    ${status_clean}
+        IF    'complete' in $status_lower
+            Log    Rater status completed successfully: '${status_clean}'
+            BREAK
+        ELSE IF    'in progress' in $status_lower or 'in pregress' in $status_lower or 'inprogress' in $status_lower or $status_lower == '' or $status_lower == 'none'
+            Log    Current rater status: '${status_clean}'. Waiting ${interval}...
+            Sleep    ${interval}
+        ELSE
+            Fail    Automation stopped: Unexpected rater status '${status_clean}' encountered (expected 'Complete' or 'In Progress').
+        END
+    END
 
