@@ -3,9 +3,9 @@ tasks:
     robotTaskName: US PROPERTY
 condaConfigFile: conda.yaml
 ignoreFiles:
-  - .gitignore
+- .gitignore
 artifactsDir: output
 PATH:
-  - .
+- .
 PYTHONPATH:
-  - .
+- .
