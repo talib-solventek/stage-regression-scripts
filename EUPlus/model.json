@@ -3882,7 +3882,7 @@
                       {
                         "type": "argument",
                         "name": "(//input[@id",
-                        "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchStartsWith'])[1]"
+                        "value": "'ctl00_ctl00_PartContentPlaceHolderMain_ContentPlaceHolderMain_CtrlBrokerContact_ctrlBrokerContactSearch_ButtonBrokerContactSearchContains'])[1]"
                       }
                     ],
                     "step": 4,
